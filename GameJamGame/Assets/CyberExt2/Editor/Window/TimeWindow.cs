@@ -1,0 +1,63 @@
+﻿using Cyberevolver.Unity;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace Cyberevolver.EditorUnity
+{
+    public sealed class TimeWindow : EditorWindow
+    {
+
+        private Vector2 scrol = default;
+        [MenuItem("Cyberevolver/Time")]
+        public static void Open()
+        {
+            EditorWindow.GetWindow<TimeWindow>("Time").Show();
+        }
+        private void OnInspectorUpdate()
+        {
+            Repaint();
+        }
+        private void OnGUI()
+        {
+           
+            if(Application.isPlaying==false)
+            {
+                EditorGUILayout.HelpBox("It's available only in play mode", UnityEditor.MessageType.Info);
+                return;
+                
+            }
+           
+            scrol = EditorGUILayout.BeginScrollView(scrol,false,true);
+            Time.timeScale = EditorGUILayout.FloatField("Time Scale", Time.timeScale);
+            GUI.enabled=false;
+            MakeField("Time", Time.time);
+            MakeField("Unscaled Time", Time.unscaledTime);
+            MakeField("Frame Count", Time.frameCount);
+            MakeField("DeltaTime", Time.deltaTime);
+            MakeField("Capture Framerate", Time.unscaledDeltaTime);
+            MakeField("Fixed Delta Time", Time.fixedDeltaTime);
+            MakeField("Fixed Unscaled DeltaTime", Time.fixedUnscaledDeltaTime);
+            MakeField("Capture Delta Time", Time.captureDeltaTime);
+            MakeField("Rendered Frame Count", Time.renderedFrameCount);
+            MakeField("Capture Framerate", Time.captureFramerate);
+            GUI.enabled = true;
+            EditorGUILayout.EndScrollView();
+         
+         
+
+        }
+        private void MakeField(string name, float val)
+        {
+            EditorGUILayout.FloatField(name, val);
+
+        }
+    }
+
+
+}
+
