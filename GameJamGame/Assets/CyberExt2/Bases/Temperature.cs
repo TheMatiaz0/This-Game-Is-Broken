@@ -12,9 +12,9 @@ namespace Cyberevolver
     /// <summary>
     /// Represents temperature. You can set or get by any temperature measure.
     /// </summary>
-    public struct Temperature
+    public  struct Temperature
     {
-        private Dictionary<TemperatureMode, double> Value { get; }
+        private  Dictionary<TemperatureMode, double> Value { get; }
         /// <summary>
         /// It will be used, when you call <see cref="ToString"/>
         /// </summary>

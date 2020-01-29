@@ -14,6 +14,7 @@ public class Paralex : MonoBehaviourPlus
     private Vector2 startPos;
 
     [DropdownBy(nameof(GetViev))]
+    
     public uint viev;
     private IEnumerable GetViev()
     {
@@ -23,6 +24,7 @@ public class Paralex : MonoBehaviourPlus
 
     private void Start()
     {
+    
         startPos = this.transform.position;
     }
     private void Update()
