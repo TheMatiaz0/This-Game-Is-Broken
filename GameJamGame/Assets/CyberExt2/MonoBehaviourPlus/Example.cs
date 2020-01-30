@@ -9,8 +9,6 @@ using System.Reflection;
 
 public class Example : MonoBehaviour
 {
-
-    p
     public int x;
     [Button]
     public void PressMe()
