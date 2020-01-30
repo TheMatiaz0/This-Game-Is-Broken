@@ -33,9 +33,11 @@ namespace Cyberevolver.Unity
     public class CyberAttributeUsageAttribute : Attribute
     {
         public LegalTypeFlags Flag { get; }
-        public CyberAttributeUsageAttribute(LegalTypeFlags legalTypeFlags)
+        public Type[] AdditionalLegalType { get; }
+        public CyberAttributeUsageAttribute(LegalTypeFlags legalTypeFlags,params Type[] goodTypes)
         {
             Flag = legalTypeFlags;
+            AdditionalLegalType = goodTypes ?? new Type[0];
         }
     }
 }

@@ -10,10 +10,13 @@ using System.Reflection;
 public class Example : MonoBehaviour
 {
 
+    p
+    public int x;
+    [Button]
+    public void PressMe()
+    {
 
-	[AutoLoad]
-	public Transform tr;
-
+    }
 }
 public class Mother : MonoBehaviourPlus
 {

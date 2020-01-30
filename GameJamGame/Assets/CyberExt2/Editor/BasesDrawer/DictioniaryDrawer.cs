@@ -137,12 +137,8 @@ namespace Cyberevolver.EditorUnity
 
 
 
-
-
             object[] keyValues = keys.ToEnumerable().Select(element => element.GetJustValue()).ToArray();
                 
-                
-               
                
         
                 EditorGUILayout.Space();
@@ -158,8 +154,6 @@ namespace Cyberevolver.EditorUnity
                 
              
                 EditorGUI.indentLevel--;
-
-            
 
         }
 

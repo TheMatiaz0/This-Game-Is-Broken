@@ -512,7 +512,7 @@ namespace Cyberevolver.EditorUnity
                         CyberAttributeUsageAttribute drawerConditionsAtt = atr.GetType().GetCustomAttribute<CyberAttributeUsageAttribute>();
                         if (drawerConditionsAtt != null&&(CyberEdit.Current?.CurrentProp!=null))
                         {
-                            if (drawerConditionsAtt.Flag.IsGoodWith(CyberEdit.Current.CurrentProp) == false)
+                            if (drawerConditionsAtt.Flag.IsGoodWith(drawerConditionsAtt.AdditionalLegalType,CyberEdit.Current.CurrentProp) == false)
                                 throw new CyberAttributeException(drawer.GetType(), $"This attribute requirers {drawerConditionsAtt.Flag}");
                         }
 

@@ -9,7 +9,7 @@ using UnityEngine;
 using System.Collections;
 namespace Cyberevolver.Unity
 {
-    [CyberAttributeUsage(LegalTypeFlags.Vector2|LegalTypeFlags.Vector2Int)]
+    [CyberAttributeUsage(LegalTypeFlags.Vector2|LegalTypeFlags.Vector2Int,typeof(Range))]
     [AttributeUsage(AttributeTargets.Field)]
     public class MinMaxSliderAttribute : CyberAttrribute
     {

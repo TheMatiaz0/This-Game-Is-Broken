@@ -9,7 +9,7 @@ using UnityEngine;
 using System.Collections;
 namespace Cyberevolver.Unity
 {
-    [AttributeUsage(AttributeTargets.Field|AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Field|AttributeTargets.Method|AttributeTargets.Class|AttributeTargets.Struct)]
     public class StartHorizontalAttribute : CyberAttrribute
     {
       

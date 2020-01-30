@@ -83,10 +83,9 @@ namespace Cyberevolver.EditorUnity
       
         
        
-        private IEnumerable<MemberInfo> members;
+        private IEnumerable<FieldInfo> fields;
+        private IEnumerable<MethodInfo> methods;
 
-      
-      
         public CyberEdit(SerializedObject serializedObject, UObj target,params object[] deepWay)
         {
             SerializedObject = serializedObject;
@@ -165,7 +164,9 @@ namespace Cyberevolver.EditorUnity
             script = this.SerializedObject.FindProperty("m_Script");
             
          
-            members = GetTotalMembers(targetType);
+            var members=  GetTotalFields(targetType);
+             fields = members.OfType<FieldInfo>();
+             methods = members.OfType<MethodInfo>();
             groups =
                 (from item in members
                  let atr = item.GetCustomAttribute<GroupAttribute>()
@@ -180,7 +181,7 @@ namespace Cyberevolver.EditorUnity
 
             try
             {
-                foreach (var member in members)
+                foreach (var member in fields)
                     if (member is FieldInfo field)
                         TheEditor.DoOnAtr<IEnableInspectorDrawer>(field, (d, a) => d.DrawOnEnable(a, GetPropByName(field.Name), field));
                 SerializedObject.ApplyModifiedProperties();
@@ -205,7 +206,7 @@ namespace Cyberevolver.EditorUnity
                 current = current.BaseType;
             }
         }
-        private IEnumerable<MemberInfo> GetTotalMembers(Type type)
+        private IEnumerable<MemberInfo> GetTotalFields(Type type)
         {
            foreach(Type item in GetAllTypeToSearch(type))
             {
@@ -273,10 +274,9 @@ namespace Cyberevolver.EditorUnity
             DrawClass(Target.GetType());
             HashSet<string> alreadyDrawerFolders = new HashSet<string>(); 
           
-            foreach (MemberInfo member in members)
+            foreach (MemberInfo member in fields)
             {
-                if (member is MethodInfo)
-                    continue;//fix by duck tape i know i will fix it before later
+                
                 try
                 {
                     CurrentInspectedMember = member;
@@ -312,9 +312,8 @@ namespace Cyberevolver.EditorUnity
                 
             }
             //fix by duck tape i know i will fix it before later
-            foreach (var item in members)
-                if (item is MethodInfo method)
-                    TheEditor.DrawMethod(method);
+            foreach (var item in methods)
+                TheEditor.DrawMethod(item);
             TheEditor.ClearEnderDrawers();
               
          

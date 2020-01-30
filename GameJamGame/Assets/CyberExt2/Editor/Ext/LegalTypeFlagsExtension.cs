@@ -1,12 +1,23 @@
 ﻿using Cyberevolver.Unity;
+using System;
 using UnityEditor;
 
 namespace Cyberevolver.EditorUnity
 {
     public static class LegalTypeFlagsExtension
     {
-        public static bool IsGoodWith(this LegalTypeFlags flag, SerializedProperty prop)
+        public static bool IsGoodWith(this LegalTypeFlags flag,Type[] goodTypes ,SerializedProperty prop)
         {
+
+
+
+           
+            if(goodTypes!=null)
+            {
+                foreach (var item in goodTypes)
+                    if (TheReflection.Is(CyberEdit.Current.CurrentField.FieldType, item))
+                        return true;
+            }
 
             if (flag.HasFlag(LegalTypeFlags.Array) && prop.isArray)
                 return true;

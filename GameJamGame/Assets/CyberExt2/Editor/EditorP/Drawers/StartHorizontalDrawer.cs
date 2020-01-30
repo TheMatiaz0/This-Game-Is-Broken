@@ -11,8 +11,13 @@ using System.Collections;
 namespace  Cyberevolver.EditorUnity
 {
     [Drawer(typeof(StartHorizontalAttribute))]
-    public class StartHorizontalDrawer : IAlwaysDrawer,IEnderDrawer
+    public class StartHorizontalDrawer : IAlwaysDrawer,IEnderDrawer,IClassDrawer
     {
+        public void Draw(CyberAttrribute attribute)
+        {
+            DrawBefore(attribute);
+        }
+
         public void DrawAfter(CyberAttrribute cyberAttribute)
         {
             
