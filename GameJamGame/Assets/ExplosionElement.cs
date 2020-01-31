@@ -11,26 +11,31 @@ using Cyberevolver.Unity;
 
 public class ExplosionElement : MonoBehaviourPlus
 {
-    protected void Start ()
-    {
-        StartCoroutine(DestroyAllBugs());
-    }
+
+
+    private bool shouldStartBeDestroyed;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bug bug;
         if((bug=collision.GetComponent<Bug>())!=null)
         {
-            bug.Rgb.AddForce((this.transform.position - bug.transform.position).normalized*20);
-            LeanTween.alpha(bug.gameObject, 0, 2);
+            bug.Rgb.bodyType = RigidbodyType2D.Dynamic;
+
+            bug.Rgb.AddForce((Vector2)(bug.transform.position-this.transform.position ).normalized*300
+                +Vector2.up*150);
+              LeanTween.alpha(bug.gameObject, 0, 2).setOnComplete(()=>Destroy(bug.gameObject));
+         
+            shouldStartBeDestroyed = true;
             Debug.Log("Explode");
         }
     }
-
-    private IEnumerator DestroyAllBugs()
+    private void Update()
     {
-        yield return Async.FixedUpdate;
-        yield return Async.FixedUpdate;
-        Destroy(this.gameObject);
+        if (shouldStartBeDestroyed)
+            Destroy(this.gameObject);
     }
+
+
 }

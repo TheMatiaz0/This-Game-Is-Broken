@@ -20,13 +20,17 @@ public abstract class ActiveElement : MonoBehaviourPlus
 
     [SerializeField]
     [Foldout(EventFold)]
-
+  
 
     private GameObject onKillPrefab;
     [SerializeField]
     private UnityEvent onKilled;
     protected virtual void OnColidWithPlayer(PlayerController player) { }
     protected virtual void OnKill() { }
+    protected virtual void Start()
+    {
+        Rgb.bodyType = RigidbodyType2D.Kinematic;
+    }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController player;
@@ -37,6 +41,7 @@ public abstract class ActiveElement : MonoBehaviourPlus
            
         }
     }
+   
     public void DestroyWithEffect()
     {
         OnKill();
