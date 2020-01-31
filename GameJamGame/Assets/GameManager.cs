@@ -62,7 +62,7 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
         anim.setEase(scoreAnim).setOnComplete(() =>
         {
             LeanTween.scale(scoreEntity.rectTransform, new Vector2(1, 1), 1f);
-        };
+        });
     }
 
 

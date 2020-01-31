@@ -16,9 +16,9 @@ public abstract class ActiveElement : MonoBehaviourPlus
     protected const string EventFold = "Events";
 
     [SerializeField]
-    [AssetOnly]
+   
     private GameObject onKillPrefab;
-    [SerializeField,Foldout(EventFold)]
+    [SerializeField]
     private UnityEvent onKilled;
     protected virtual void OnColidWithPlayer(PlayerMovement player) { }
     protected virtual void OnKill() { }
