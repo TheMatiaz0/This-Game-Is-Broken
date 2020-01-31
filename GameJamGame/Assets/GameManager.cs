@@ -44,9 +44,12 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     public event EventHandler<SimpleArgs<int>> OnScoreChanged = delegate { };
 #if UNITY_EDITOR
+    [StartHorizontal]
     [field:SerializeField]
+    [CustomGui("Score")]
     private int _devS;
     [Button("AddScore")]
+    [EndAfter]
     public void _AddScoreManual()
     {
         AddScore(_devS);
