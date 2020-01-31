@@ -18,7 +18,7 @@ public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
 
     [SerializeField]
     [Min(0)]
-    private int radius;
+    private int radius = 5;
 
     public void Explode(Vector2 pos)
     {
