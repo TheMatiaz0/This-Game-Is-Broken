@@ -44,7 +44,7 @@ public  class Wave : ActiveElement
     }
     protected override void OnColidWithPlayer(PlayerController player)
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
