@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviourPlus
     protected void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
