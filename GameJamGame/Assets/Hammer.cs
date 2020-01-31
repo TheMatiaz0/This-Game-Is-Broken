@@ -13,6 +13,6 @@ public class Hammer : Collectable
 {
     protected override void OnCollect()
     {
-        GameManager.Instance.AddScore(10);
+        ExplodeManager.Instance.Explode(this.transform.position);
     }
 }

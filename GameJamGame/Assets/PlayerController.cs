@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cyberevolver.Unity;
 
-public class PlayerMovement : MonoBehaviourPlus
+public class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
+    public List<GlitchEffect> CurrentGlitches { get; set; } = new List<GlitchEffect>();
+
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
     public float MovementSpeed { get; private set; } = 0.11f;
 
@@ -15,10 +17,20 @@ public class PlayerMovement : MonoBehaviourPlus
     public Rigidbody2D Rb2D { get; set; }
 
     private float move;
+    private bool hasJumped = false;
 
     protected void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+      
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            hasJumped = false;
+        }
     }
 
     protected void FixedUpdate()
@@ -33,7 +45,13 @@ public class PlayerMovement : MonoBehaviourPlus
 
     private void Jump ()
     {
+        if (hasJumped == true)
+        {
+            return;
+        }
+
         Rb2D.velocity = new Vector2(Rb2D.velocity.x, Vector3.up.y * JumpMultiple);
+        hasJumped = true;
     }
 
     private void Move ()
