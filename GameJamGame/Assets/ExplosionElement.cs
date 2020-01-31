@@ -11,6 +11,11 @@ using Cyberevolver.Unity;
 
 public class ExplosionElement : MonoBehaviourPlus
 {
+    protected void Start ()
+    {
+        StartCoroutine(DestroyAllBugs());
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bug bug;
@@ -21,9 +26,11 @@ public class ExplosionElement : MonoBehaviourPlus
             Debug.Log("Explode");
         }
     }
-    private void LateUpdate()
+
+    private IEnumerator DestroyAllBugs()
     {
+        yield return Async.FixedUpdate;
+        yield return Async.FixedUpdate;
         Destroy(this.gameObject);
     }
-
 }
