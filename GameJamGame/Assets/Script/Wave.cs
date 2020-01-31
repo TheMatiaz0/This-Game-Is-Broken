@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using UnityEngine.SceneManagement;
 
-public  class Wave : AutoInstanceBehaviour<Wave>
+public  class Wave : ActiveElement
 {
     
 
@@ -37,29 +38,16 @@ public  class Wave : AutoInstanceBehaviour<Wave>
     protected virtual void FixedUpdate()
     {      
         float speed = GetSpeedForTime(Time.time);
-
         var change = Direction.ToVector2() * speed;
-        Debug.Log(change.x);
-  
         this.Rgb.MovePosition((Vector2)this.transform.position + change);
 
     }
-
-#if UNITY_EDITOR
-    [StartHorizontal]
-    public AnimationCurve curve;
-    [Button()]
-    [EndAfter]
-    public void Generate()
+    protected override void OnColidWithPlayer(PlayerController player)
     {
-        curve = new AnimationCurve();
-        for(float val=0; val<5; val+=0.1f)
-        {
-            curve.AddKey(val, GetSpeedForTime(val));
-        }
+        
     }
 
-#endif
+
 
 
 
