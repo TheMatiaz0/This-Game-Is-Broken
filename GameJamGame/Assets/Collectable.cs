@@ -23,6 +23,7 @@ public class Collectable : ActiveElement
     {
         GameManager.Instance.AddScore(score);
         onCollect.Invoke();
+        OnCollect();
         DestroyWithEffect();
        
     }
