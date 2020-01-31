@@ -9,7 +9,7 @@ public class Bug : Collectable
 {
 	protected override void OnCollect()
 	{
-		Debug.Log("Error 404");
+		
 	}
 
 }
