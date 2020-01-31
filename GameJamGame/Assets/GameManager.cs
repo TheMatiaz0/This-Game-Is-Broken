@@ -40,7 +40,7 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     private void IfScoreChanged(object sender, SimpleArgs<int> e)
     {
-        scoreEntity.text = $"Score:{Score}";
+        scoreEntity.text = $"Score: {Score}";
         if(isAniming==false)
         {
             isAniming = true;
