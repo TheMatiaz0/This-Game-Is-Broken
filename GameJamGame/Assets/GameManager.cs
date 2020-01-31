@@ -59,7 +59,10 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     {
         Score += val;
         var anim = LeanTween.scale(scoreEntity.rectTransform, new Vector2(2, 2), 1f);
-        anim.setEase(scoreAnim).setOnComplete(() => LeanTween.scale(scoreEntity.rectTransform, new Vector2(1, 1), 1f));
+        anim.setEase(scoreAnim).setOnComplete(() =>
+        {
+            LeanTween.scale(scoreEntity.rectTransform, new Vector2(1, 1), 1f);
+        };
     }
 
 

@@ -35,7 +35,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
     public void DestroyWithEffect()
     {
         OnKill();
-        Instantiate(onKillPrefab).transform.position = this.transform.position;
+        if (onKillPrefab != null)
+            Instantiate(onKillPrefab).transform.position = this.transform.position;
         onKilled.Invoke();
         Destroy(this.gameObject);
         
