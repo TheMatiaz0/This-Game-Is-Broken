@@ -9,10 +9,14 @@ using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
 
-public class Hammer : Collectable
+public class ExplosionElement : MonoBehaviourPlus
 {
-    protected override void OnCollect()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        ExplodeManager.Instance.Explode(this.transform.position);
+        Bug bug;
+        if((bug=collision.GetComponent<Bug>())!=null)
+        {
+            bug.DestroyWithEffect();
+        }
     }
 }

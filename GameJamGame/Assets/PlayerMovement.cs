@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviourPlus
     protected void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+      
     }
 
     protected void FixedUpdate()

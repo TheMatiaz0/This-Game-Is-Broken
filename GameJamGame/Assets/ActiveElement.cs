@@ -19,8 +19,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
 
     [SerializeField]
     [Foldout(EventFold)]
-  
-   
+
+
     private GameObject onKillPrefab;
     [SerializeField]
     private UnityEvent onKilled;
