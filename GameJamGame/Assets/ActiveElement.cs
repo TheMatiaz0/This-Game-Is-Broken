@@ -15,7 +15,11 @@ public abstract class ActiveElement : MonoBehaviourPlus
 
     protected const string EventFold = "Events";
 
+
+
     [SerializeField]
+    [Foldout(EventFold)]
+  
    
     private GameObject onKillPrefab;
     [SerializeField]

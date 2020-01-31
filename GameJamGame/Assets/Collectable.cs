@@ -17,6 +17,7 @@ public class Collectable : ActiveElement
     [SerializeField]
     private int score = 0;
     [SerializeField]
+    [Foldout(EventFold)]
     private UnityEvent onCollect;
 
     protected sealed override void OnColidWithPlayer(PlayerMovement player)
