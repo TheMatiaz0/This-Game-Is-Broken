@@ -16,7 +16,7 @@ public abstract class ActiveElement : MonoBehaviourPlus
     protected const string EventFold = "Events";
 
     [Auto]
-    public Rigidbody2D Rgb { get; }
+    public Rigidbody2D Rgb { get; protected set; }
 
     [SerializeField]
     [Foldout(EventFold)]

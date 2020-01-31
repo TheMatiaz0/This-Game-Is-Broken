@@ -18,12 +18,13 @@ public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
 
     [SerializeField]
     [Min(0)]
-    private int radius = 5;
+    private int radius = 10;
 
     public void Explode(Vector2 pos)
     {
 
         GameObject g = new GameObject();
+        g.transform.position = pos;
         var colider= g.AddComponent<CircleCollider2D>();
         colider.radius = radius;
         colider.isTrigger = true;
