@@ -19,7 +19,11 @@ public class PlayerMovement : MonoBehaviourPlus
     protected void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+    }
 
+    protected void FixedUpdate()
+    {
+        Move();
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -30,19 +34,10 @@ public class PlayerMovement : MonoBehaviourPlus
     private void Jump ()
     {
         Rb2D.velocity = new Vector2(Rb2D.velocity.x, Vector3.up.y * JumpMultiple);
-
-        // Rb2D.AddForce(Vector3.up * JumpMultiple);
     }
 
     private void Move ()
     {
         Rb2D.velocity = new Vector2(move * Vector2.right.x, Rb2D.velocity.y);
-    }
-
-    protected void FixedUpdate()
-    {
-        Move();
-        // returns -1 to 1 multiplied by speed
-        //Rb2D.MovePosition((Vector2)transform.position + move * Vector2.right);
     }
 }

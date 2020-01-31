@@ -8,8 +8,23 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using UnityEngine.Events;
 
-public class Collectable : MonoBehaviourPlus
+public class Collectable : ActiveElement
 {
 
+
+    [SerializeField]
+    private int score = 0;
+    [SerializeField,Foldout(EventFold)]
+    private UnityEvent onCollect;
+
+    protected sealed override void OnColidWithPlayer(PlayerMovement player)
+    {
+        GameManager.Instance.AddScore(score);
+        onCollect.Invoke();
+        DestroyWithEffect();
+       
+    }
+    protected virtual void OnCollect() { }
 }
