@@ -19,11 +19,12 @@ public abstract class ActiveElement : MonoBehaviourPlus
     public Rigidbody2D Rgb { get; protected set; }
 
     [SerializeField]
-    [Foldout(EventFold)]
+    
   
 
     private GameObject onKillPrefab;
     [SerializeField]
+    [Foldout(EventFold)]
     private UnityEvent onKilled;
     protected virtual void OnColidWithPlayer(PlayerController player) { }
     protected virtual void OnKill() { }

@@ -16,13 +16,14 @@ namespace  Cyberevolver.EditorUnity
         private CyberEdit cyberEditor;
         private void OnEnable()
         {
-            try
-            {
-                cyberEditor = new CyberEdit(serializedObject, target);
-                cyberEditor.Active();
-            }
-            catch { }
-            
+
+            if (target == null)
+                return;
+            cyberEditor = new CyberEdit(serializedObject, target);
+            cyberEditor.Active();
+
+
+
         }
         public override void OnInspectorGUI()
         {

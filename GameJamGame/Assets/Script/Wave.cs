@@ -45,21 +45,7 @@ public  class Wave : AutoInstanceBehaviour<Wave>
 
     }
 
-#if UNITY_EDITOR
-    [StartHorizontal]
-    public AnimationCurve curve;
-    [Button()]
-    [EndAfter]
-    public void Generate()
-    {
-        curve = new AnimationCurve();
-        for(float val=0; val<5; val+=0.1f)
-        {
-            curve.AddKey(val, GetSpeedForTime(val));
-        }
-    }
 
-#endif
 
 
 
