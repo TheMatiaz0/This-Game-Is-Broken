@@ -15,23 +15,23 @@ using Cyberevolver.Unity;
 public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
 {
 
+
     [SerializeField]
-    private GameObject explodePrefab;
-    [SerializeField]
-    private SerializeTimeSpan growTime;
-    [SerializeField]
-    [Range(2,100)]
-    private float scalePower;
+    [Min(0)]
+    private int radius;
 
     public void Explode(Vector2 pos)
     {
 
-        
-        GameObject g= Instantiate(explodePrefab.gameObject);
-        g.transform.position = pos;
+        GameObject g = new GameObject();
+        var colider= g.AddComponent<CircleCollider2D>();
+        colider.radius = radius;
+        colider.isTrigger = true;
+        var rigi= colider.gameObject.AddComponent<Rigidbody2D>();
+        rigi.bodyType = RigidbodyType2D.Kinematic;
+
         g.AddComponent<ExplosionElement>();
-        LeanTween.scale(g, new Vector2(scalePower, scalePower), (float)growTime.TimeSpan.TotalSeconds)
-            .setOnComplete(() => LeanTween.alpha(g, 0, 1));
+
         
     }
 
