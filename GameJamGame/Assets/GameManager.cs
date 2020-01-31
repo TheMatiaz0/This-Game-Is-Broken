@@ -12,9 +12,13 @@ using Cyberevolver.Unity;
 
 public class GameManager : AutoInstanceBehaviour<GameManager>
 {
+
+    private bool isAniming;
     [SerializeField]
     private Text scoreEntity;
     private int _Score;
+    [SerializeField]
+    private LeanTweenType scoreAnim = LeanTweenType.easeInOutBounce;
     public int Score
     {
         get => _Score;
@@ -37,15 +41,37 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     private void IfScoreChanged(object sender, SimpleArgs<int> e)
     {
         scoreEntity.text = $"Score:{Score}";
+        if(isAniming==false)
+        {
+            isAniming = true;
+            var anim= LeanTween.scale(scoreEntity.rectTransform, new Vector2(2, 2), 1f);
+            anim.setEase(scoreAnim).setOnComplete(() =>
+            {
+                LeanTween.scale(scoreEntity.rectTransform, new Vector2(1, 1), 1f)
+                .setOnComplete(() => isAniming = false);
+            });
+        }
+        
 
     }
 
     public event EventHandler<SimpleArgs<int>> OnScoreChanged = delegate { };
-   
+#if UNITY_EDITOR
+    [StartHorizontal]
+    [field:SerializeField]
+    [CustomGui("Score")]
+    private int _devS;
+    [Button("AddScore")]
+    [EndAfter]
+    public void _AddScoreManual()
+    {
+        AddScore(_devS);
+    }
+#endif
     public void AddScore(int val)
     {
         Score += val;
-        LeanTween.size(scoreEntity.,new Vector2(2,2),1f).setOnComplete(()=>scoreEntity.)
+
     }
 
 

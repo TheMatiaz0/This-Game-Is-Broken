@@ -15,10 +15,14 @@ public abstract class ActiveElement : MonoBehaviourPlus
 
     protected const string EventFold = "Events";
 
+
+
     [SerializeField]
-    [AssetOnly]
+    [Foldout(EventFold)]
+  
+   
     private GameObject onKillPrefab;
-    [SerializeField,Foldout(EventFold)]
+    [SerializeField]
     private UnityEvent onKilled;
     protected virtual void OnColidWithPlayer(PlayerMovement player) { }
     protected virtual void OnKill() { }
@@ -35,7 +39,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
     public void DestroyWithEffect()
     {
         OnKill();
-        Instantiate(onKillPrefab).transform.position = this.transform.position;
+        if (onKillPrefab != null)
+            Instantiate(onKillPrefab).transform.position = this.transform.position;
         onKilled.Invoke();
         Destroy(this.gameObject);
         
