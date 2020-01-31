@@ -24,12 +24,12 @@ public abstract class ActiveElement : MonoBehaviourPlus
     private GameObject onKillPrefab;
     [SerializeField]
     private UnityEvent onKilled;
-    protected virtual void OnColidWithPlayer(PlayerMovement player) { }
+    protected virtual void OnColidWithPlayer(PlayerController player) { }
     protected virtual void OnKill() { }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerMovement player;
-        if((player= collision.GetComponent<PlayerMovement>())!=null)
+        PlayerController player;
+        if((player= collision.GetComponent<PlayerController>())!=null)
         {
             OnColidWithPlayer(player);
            

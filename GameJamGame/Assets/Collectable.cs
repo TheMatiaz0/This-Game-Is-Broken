@@ -20,7 +20,7 @@ public class Collectable : ActiveElement
     [Foldout(EventFold)]
     private UnityEvent onCollect;
 
-    protected sealed override void OnColidWithPlayer(PlayerMovement player)
+    protected sealed override void OnColidWithPlayer(PlayerController player)
     {
         GameManager.Instance.AddScore(score);
         onCollect.Invoke();

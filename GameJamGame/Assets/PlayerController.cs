@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cyberevolver.Unity;
 
-public class PlayerMovement : MonoBehaviourPlus
+public class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
+    public List<GlitchEffect> CurrentGlitches { get; set; } = new List<GlitchEffect>();
+
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
     public float MovementSpeed { get; private set; } = 0.11f;
 
