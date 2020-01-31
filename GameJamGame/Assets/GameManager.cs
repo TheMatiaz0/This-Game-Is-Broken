@@ -15,6 +15,8 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     [SerializeField]
     private Text scoreEntity;
     private int _Score;
+    [SerializeField]
+    private LeanTweenType scoreAnim = LeanTweenType.easeInOutBounce;
     public int Score
     {
         get => _Score;
@@ -41,11 +43,20 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     }
 
     public event EventHandler<SimpleArgs<int>> OnScoreChanged = delegate { };
-   
+#if UNITY_EDITOR
+    [field:SerializeField]
+    private int _devS;
+    [Button("AddScore")]
+    public void _AddScoreManual()
+    {
+        AddScore(_devS);
+    }
+#endif
     public void AddScore(int val)
     {
         Score += val;
-        LeanTween.size(scoreEntity.,new Vector2(2,2),1f).setOnComplete(()=>scoreEntity.)
+        var anim = LeanTween.scale(scoreEntity.rectTransform, new Vector2(2, 2), 1f);
+        anim.setEase(scoreAnim).setOnComplete(() => LeanTween.scale(scoreEntity.rectTransform, new Vector2(1, 1), 1f));
     }
 
 
