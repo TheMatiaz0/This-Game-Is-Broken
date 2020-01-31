@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using UnityEngine.SceneManagement;
 
-public  class Wave : AutoInstanceBehaviour<Wave>
+public  class Wave : ActiveElement
 {
     
 
@@ -37,12 +38,13 @@ public  class Wave : AutoInstanceBehaviour<Wave>
     protected virtual void FixedUpdate()
     {      
         float speed = GetSpeedForTime(Time.time);
-
         var change = Direction.ToVector2() * speed;
-        Debug.Log(change.x);
-  
         this.Rgb.MovePosition((Vector2)this.transform.position + change);
 
+    }
+    protected override void OnColidWithPlayer(PlayerController player)
+    {
+        
     }
 
 
