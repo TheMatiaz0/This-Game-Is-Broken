@@ -57,6 +57,7 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     public event EventHandler<SimpleArgs<int>> OnScoreChanged = delegate { };
 #if UNITY_EDITOR
+    [Header("Debug")]
     [StartHorizontal]
     [field:SerializeField]
     [CustomGui("Score")]
