@@ -16,8 +16,9 @@ public class ExplosionElement : MonoBehaviourPlus
         Bug bug;
         if((bug=collision.GetComponent<Bug>())!=null)
         {
-            bug.Rgb.AddForce(this.transform.position - bug.transform.position);
+            bug.Rgb.AddForce((this.transform.position - bug.transform.position).normalized*20);
             LeanTween.alpha(bug.gameObject, 0, 2);
+            Debug.Log("Explode");
         }
     }
     private void LateUpdate()
