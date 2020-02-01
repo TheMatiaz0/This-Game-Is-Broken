@@ -7,8 +7,15 @@ using UnityEngine;
 
 public static class QuaternionExtension
 {
-	public static Quaternion Add (this Quaternion q1, float degrees)
+	public enum Coordinate
 	{
-		return Quaternion.Euler(0,0, q1.eulerAngles.z + degrees);
+		X = 1,
+		Y = 2,
+		Z = 3
+	}
+
+	public static Quaternion Add (this Quaternion q1, Vector3 degrees)
+	{
+		return Quaternion.Euler(q1.eulerAngles.x + degrees.x, q1.eulerAngles.y + degrees.y, q1.eulerAngles.z + degrees.z);
 	}
 }
