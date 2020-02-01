@@ -41,13 +41,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public Transform StartRespPoint => startRespPoint;
 
-
-
     private float move;
     private bool hasJumped = false;
 
     void Start()
     {
+        IsDeath = false;
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
@@ -55,6 +54,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
+        if (IsDeath)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -113,7 +117,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     private IEnumerator DeathProcess()
     {
-        Destroy( this.gameObject);
+        // Destroy(this.Rgb);
+        // Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
