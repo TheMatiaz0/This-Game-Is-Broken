@@ -12,6 +12,7 @@ using UnityEngine.Events;
 
 public abstract class ActiveElement : MonoBehaviourPlus
 {
+    public abstract bool IsBad { get; }
     [SerializeField]
     private bool fakeDestroy;
     protected const string EventFold = "Events";

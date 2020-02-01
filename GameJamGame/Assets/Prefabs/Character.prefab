@@ -173,7 +173,7 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   minimalYSurvival: {fileID: 769460122}
   maximumYSurvival: {fileID: 1890441792}
-  deathParticle: {fileID: 7990820457959614184, guid: 86a9be61194c20d48807ead8364f7f0f,
+  deathParticle: {fileID: 7990820457959614184, guid: 37271fb0f32c4d34ba25074efc33aaac,
     type: 3}
 --- !u!50 &996109581129873839
 Rigidbody2D:
