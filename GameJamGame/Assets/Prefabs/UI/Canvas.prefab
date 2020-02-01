@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0ee2d89bf4b4e418f22c90b7edc9cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statisticsText: {fileID: 225023792}
 --- !u!1 &335314857
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: 0, y: -161.3}
+  m_AnchoredPosition: {x: 0, y: -161.30002}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &5772620825702429339
