@@ -15,6 +15,7 @@ public class Bug : Collectable
 	protected override void OnCollect()
 	{
 		PlayerController.Instance.PushBugs((GlitchEffect)Activator.CreateInstance(specialGlitchEffect));
+
 	}
 
 }

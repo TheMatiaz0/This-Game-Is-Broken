@@ -17,6 +17,7 @@ public abstract class ActiveElement : MonoBehaviourPlus
 
     [Auto]
     public Rigidbody2D Rgb { get; protected set; }
+    public bool IsKilled { get; private set; }
 
     [SerializeField]
     
@@ -46,6 +47,9 @@ public abstract class ActiveElement : MonoBehaviourPlus
    
     public void DestroyWithEffect()
     {
+        if (IsKilled)
+            return;
+        IsKilled = true;
         OnKill();
         if (onKillPrefab != null)
             Instantiate(onKillPrefab).transform.position = this.transform.position;
