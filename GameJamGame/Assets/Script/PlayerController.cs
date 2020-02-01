@@ -137,8 +137,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
