@@ -298,7 +298,7 @@ TextureImporter:
         serializedVersion: 2
         x: 228
         y: 44
-        width: 24
+        width: 28
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -443,9 +443,9 @@ TextureImporter:
       name: GlitchWallSymbols_16
       rect:
         serializedVersion: 2
-        x: 193
+        x: 192
         y: 4
-        width: 27
+        width: 28
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}

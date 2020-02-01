@@ -1,4 +1,5 @@
 ﻿using Cyberevolver.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
-
+    public bool IsDeath { get; private set; }
     public enum AnimState
     {
         Idle = 0,
@@ -14,6 +15,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Faling = 2,
         Jumping = 3
     }
+    public KeyCode JumpKey { get; set; } = KeyCode.Space;
+    public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
+    public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
     private static readonly string AnimtorValueName = "Pose";
@@ -44,7 +48,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     void Start()
     {
-        gameOverManager.EnableMenuWithPause(false);
+        if (gameOverManager != null)
+            gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
     }
 
@@ -55,9 +60,26 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-
+        foreach(var item in currentGlitches)
+        {
+            item.Update();
+        }
+      
+        if(Input.GetKey(LeftKey))
+        {
+            move = -1;
+        }
+        else if(Input.GetKey(RightKey))
+        {
+            move = 1;
+        }
+        else
+        {
+            move = 0;
+        }
+        move *= MovementSpeed;
         this.Sprite.flipX = (move < 0);
-        move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+
 
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
@@ -68,10 +90,28 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     }
-
+    public void PushBugs(GlitchEffect effect)
+    {
+        currentGlitches.Add(effect);
+        effect.WhenCollect();
+    }
     public void Death ()
     {
-        gameOverManager.EnableMenuWithPause(true);
+        if(IsDeath==false)
+        {
+            IsDeath = true;
+            StartCoroutine(DeathProcess());
+           
+            
+        }
+
+    }
+    private IEnumerator DeathProcess()
+    {
+        Destroy( this.Rgb);
+        yield return Async.Wait(TimeSpan.FromSeconds(1));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -86,7 +126,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Move();
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(JumpKey))
         {
             Jump();
 

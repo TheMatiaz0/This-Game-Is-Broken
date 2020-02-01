@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GlitchEffect
+public abstract class GlitchEffect
 {
+    protected abstract string Description { get; }
+    public virtual void WhenCollect() { }
+    public virtual  void Update() { }
+
+   
 }

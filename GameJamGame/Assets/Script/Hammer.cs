@@ -11,8 +11,20 @@ using Cyberevolver.Unity;
 
 public class Hammer : Collectable
 {
+    [SerializeField]
+    private Gradient gradient;
+    [Auto]
+    public SpriteRenderer Sprite { get; protected set; }
+    [SerializeField]
+    [Range(0,100)]
+    private float speed = 2;
     protected override void OnCollect()
     {
         ExplodeManager.Instance.Explode(this.transform.position);
+        
+    }
+    private void Update()
+    {
+        Sprite.color = gradient.Evaluate(((Time.time*100)%100) /100);
     }
 }
