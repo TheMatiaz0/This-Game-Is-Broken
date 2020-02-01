@@ -481,16 +481,20 @@ MonoBehaviour:
       type: 3}
     howOften:
       _Value: 0.8309999704360962
-  blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
-    type: 3}
   chanceForBlankBlock:
     _Value: 0.07000000029802322
+  blockInOneShoot: 10
+  howFastGenerate: 9
+  whenRemove: 6
+  howOftenCanHaveItem: 2
+  blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
+    type: 3}
+  edges:
+  - {fileID: 21300000, guid: ab45dc26c5d21a34f8922aa9f41b7211, type: 3}
+  - {fileID: 21300000, guid: 21d3127cebfa44e4795342344227674c, type: 3}
   startRespPoint: {fileID: 487744617}
   maxUp: {fileID: 350355289}
   minUp: {fileID: 346092413}
-  howFastGenerate: 9
-  blockInOneShoot: 10
-  whenRemove: 6
 --- !u!1 &1746972258
 GameObject:
   m_ObjectHideFlags: 0
