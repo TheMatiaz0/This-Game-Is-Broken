@@ -599,7 +599,7 @@ MonoBehaviour:
   - prefab: {fileID: 6935800402712673812, guid: af22efd29a1b0bb489fbd3de63b1f1ca,
       type: 3}
     howOften:
-      _Value: 0.20000000298023224
+      _Value: 0.5
   - prefab: {fileID: 5538117781444494137, guid: f6ff06f676987134f8e607a598426026,
       type: 3}
     howOften:
@@ -711,6 +711,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2439395374753690980, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2439395374753690981, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
       propertyPath: m_LookAt
@@ -721,6 +726,21 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1750498851}
+    - target: {fileID: 2439395375529822848, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375529822848, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375529822848, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: orthographic size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2439395375529822851, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
       propertyPath: m_LocalPosition.x
