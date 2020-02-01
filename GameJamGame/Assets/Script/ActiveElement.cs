@@ -30,6 +30,7 @@ public abstract class ActiveElement : MonoBehaviourPlus
     protected virtual void OnKill() { }
     protected virtual void Start()
     {
+        
         Rgb.bodyType = RigidbodyType2D.Kinematic;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

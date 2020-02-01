@@ -14,8 +14,7 @@ public  class Wave : ActiveElement
 {
     
 
-   [Auto]
-   public Rigidbody2D Rgb { get; private set; }
+   
     [field: SerializeField]
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
@@ -24,10 +23,6 @@ public  class Wave : ActiveElement
     [field: SerializeField]
     [field: MinMaxRange(0.09f, 1)]
     public float TimeDivider { get; private set; } = 0.3f;
-
-
-
-
     public float GetSpeedForTime(float time)
     {
         const float minRange = 3f / 4;

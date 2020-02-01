@@ -3,26 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cyberevolver.Unity;
 
-public class PlayerController : AutoInstanceBehaviour<PlayerController>
+public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
-    public List<GlitchEffect> CurrentGlitches { get; set; } = new List<GlitchEffect>();
 
+    public enum AnimState
+    {
+        Idle=0,
+        Walking=1,
+        Faling=2,
+    }
+    [Auto]
+    public SpriteRenderer Sprite { get; private set; }
+    private static readonly string AnimtorValueName = "Pose";
+    [Auto]
+    public Animator Animator { get; private set; }
+    [Auto]
+    public Rigidbody2D Rgb { get; set; }
+    private readonly List<GlitchEffect> currentGlitches  = new List<GlitchEffect>();   
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
     public float MovementSpeed { get; private set; } = 0.11f;
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
     public float JumpMultiple { get; private set; }
 
-    [Auto]
-    public Rigidbody2D Rb2D { get; set; }
+    
 
     private float move;
     private bool hasJumped = false;
 
-    protected void Update()
+    private void Update()
     {
+        this.Sprite.flipX = (move < 0);
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
-      
+        if (this.Rgb.velocity.y < 0)
+            Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
+        else if (move != 0)
+            Animator.SetInteger(AnimtorValueName, (int)AnimState.Walking);
+        else
+            Animator.SetInteger(AnimtorValueName, (int)AnimState.Idle);
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,7 +53,7 @@ public class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
     }
 
-    protected void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
 
@@ -49,13 +69,12 @@ public class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-
-        Rb2D.velocity = new Vector2(Rb2D.velocity.x, Vector3.up.y * JumpMultiple);
+        Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
         hasJumped = true;
     }
 
     private void Move ()
     {
-        Rb2D.velocity = new Vector2(move * Vector2.right.x, Rb2D.velocity.y);
+        Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
     }
 }
