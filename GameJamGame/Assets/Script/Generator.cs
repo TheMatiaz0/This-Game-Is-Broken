@@ -118,8 +118,7 @@ public class Generator : MonoBehaviour
             if (UnityEngine.Random.Range(0, 3) == 0)
             {
                 int lenght = UnityEngine.Random.Range(2, 6);
-                GenerateOneLine(fromX,lenght,y,dontPutActiveItems);
-                
+                GenerateOneLine(fromX,lenght,y,dontPutActiveItems);    
                 y += lenght;
             }
         }
