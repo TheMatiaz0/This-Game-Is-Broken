@@ -132,7 +132,7 @@ public class Generator : MonoBehaviour
         if(PlayerController.Instance.transform.position.x>(lastX)-howFastGenerate)
         {
            
-            while(blocksPacks.Count>= whenRemove)
+            if(blocksPacks.Count>= whenRemove)
             {
                foreach(var item in  blocksPacks.Dequeue())
                 {
