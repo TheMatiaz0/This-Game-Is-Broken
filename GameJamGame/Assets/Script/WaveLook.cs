@@ -38,7 +38,7 @@ public class WaveLook : MonoBehaviourPlus
             {
                 var obj = Instantiate(prefab, (Vector2)this.transform.position + new Vector2(x, y), Quaternion.identity);
 
-                elements[i]
+               // elements[i]
 
             }
     }
