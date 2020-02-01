@@ -219,7 +219,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         Move();
 
-        if (Input.GetKeyDown(JumpKey))
+        if (Input.GetKeyDown(JumpKey) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
 
