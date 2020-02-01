@@ -14,6 +14,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Walking = 1,
         Faling = 2,
     }
+    public KeyCode JumpKey { get; set; } = KeyCode.Space;
+    public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
+    public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
     private static readonly string AnimtorValueName = "Pose";
@@ -56,9 +59,25 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-
+        foreach(var item in currentGlitches)
+        {
+            item.Update();
+        }
+      
+        if(Input.GetKey(LeftKey))
+        {
+            move = -1;
+        }
+        if(Input.GetKey(RightKey))
+        {
+            move = 1;
+        }
+        else
+        {
+            move = 0;
+        }move *= MovementSpeed;
         this.Sprite.flipX = (move < 0);
-        move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
         else if (move != 0)
@@ -68,13 +87,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     }
-
+    public void PushBugs(GlitchEffect effect)
+    {
+        currentGlitches.Add(effect);
+        effect.WhenCollect();
+    }
     public void Death ()
     {
         if(IsDeath==false)
         {
             IsDeath = true;
-         
+            StartCoroutine(DeathProcess());
            
             
         }
@@ -82,7 +105,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     private IEnumerator DeathProcess()
     {
-        this.Rgb.Sleep();
+        Destroy( this.Rgb);
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -100,7 +123,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Move();
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(JumpKey))
         {
             Jump();
         }

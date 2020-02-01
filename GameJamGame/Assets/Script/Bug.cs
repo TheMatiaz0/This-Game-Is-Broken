@@ -13,7 +13,7 @@ public class Bug : Collectable
 
 	protected override void OnCollect()
 	{
-		//PlayerController.Instance.CurrentGlitches.Add((GlitchEffect)Activator.CreateInstance(specialGlitchEffect));
+		PlayerController.Instance.PushBugs((GlitchEffect)Activator.CreateInstance(specialGlitchEffect));
 	}
 
 }

@@ -53,12 +53,12 @@ public class Generator : MonoBehaviour
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
     private float lastX = 0;
 
-    public float GenerateOneLine(float fromX,float blocks,float y)
+    public float GenerateOneLine(float fromX,float blocks,float y,bool dontPutActiveItems=false)
     {
         GameObject[] objs = new GameObject[10];
         for (int x = 0; x < blocks; x++)
         {
-            objs[x] = PutBlock(new Vector2(fromX + x, y));
+            objs[x] = PutBlock(new Vector2(fromX + x, y),dontPutActiveItems);
 
         }
         blocksPacks.Enqueue(objs);
@@ -90,13 +90,13 @@ public class Generator : MonoBehaviour
         return UnityEngine.Random.Range(0, 1f + 0.01f) <= percent.AsFloatValue;
     }
 
-    public GameObject PutBlock(Vector2 pos)
+    public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false)
     {
         
 
         var block = Instantiate(blockPrefab);
         block.transform.position = pos;
-        if (UnityEngine.Random.Range(0, 4) == 0)
+        if (dontPutActiveItems==false&&UnityEngine.Random.Range(0, 4) == 0)
         {
             var prefab = GetRandomStuff();
             if (prefab != null)
@@ -108,14 +108,14 @@ public class Generator : MonoBehaviour
         }
         return block;
     }
-    public float GenerateChunk(float fromX, Range range)
+    public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false)
     {
         float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
         for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
         {
-            if (UnityEngine.Random.Range(0, 3) == 0)
+            if (dontPutActiveItems&&UnityEngine.Random.Range(0, 3) == 0)
             {
                 int lenght = UnityEngine.Random.Range(2, 6);
                 GenerateOneLine(fromX,lenght,y);
@@ -129,8 +129,8 @@ public class Generator : MonoBehaviour
     private void Start()
     {
 
-        lastX = GenerateOneLine(startRespPoint.position.x, blockInOneShoot, startRespPoint.position.y);
-        lastX = GenerateChunk(lastX, YRange);
+        lastX = GenerateOneLine(startRespPoint.position.x, blockInOneShoot, startRespPoint.position.y,true);
+        lastX = GenerateChunk(lastX, YRange,true);
 
     }
     private void Update()
