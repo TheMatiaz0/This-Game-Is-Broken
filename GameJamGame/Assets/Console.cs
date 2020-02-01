@@ -10,7 +10,7 @@ public class Console : AutoInstanceBehaviour<Console>
 
 	public void UpdateConsole (string newText)
 	{
-		outputText.text = newText;
+		outputText.text += $"{newText}\n";
 	}
 
 }
