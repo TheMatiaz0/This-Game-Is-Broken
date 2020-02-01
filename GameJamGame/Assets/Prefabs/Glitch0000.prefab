@@ -135,7 +135,11 @@ MonoBehaviour:
       m_Calls: []
   bulletSpeed: 0.33
   shootSpeed: 0.22
+<<<<<<< HEAD
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
+=======
+  bulletPrefab: {fileID: 6355196367672478939, guid: 3c249b8bdc82cd7438c52148602c753c,
+>>>>>>> parent of 2035b84... Merge branch 'master' of https://github.com/TheMatiaz0/Unnamed-Global-Game-Jam-Project
     type: 3}
   shootPoint: {fileID: 8300620370876285727}
 --- !u!95 &8300620371891373755

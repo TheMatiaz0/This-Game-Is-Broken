@@ -21,9 +21,13 @@ public class Bullet : ActiveElement
     }
     protected override void OnColidWithPlayer(PlayerController player)
     {
-
-        PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect());
-        DestroyWithEffect();
+        //addEffect
     }
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.GetComponent<PlayerController>()==false)
+        {
+            DestroyWithEffect();
+        }
+    }
 }
