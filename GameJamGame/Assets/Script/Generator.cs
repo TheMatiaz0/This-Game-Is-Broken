@@ -53,12 +53,12 @@ public class Generator : MonoBehaviour
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
     private float lastX = 0;
 
-    public float GenerateOneLine(float fromX)
+    public float GenerateOneLine(float fromX,float blocks,float y)
     {
         GameObject[] objs = new GameObject[10];
-        for (int x = 0; x < blockInOneShoot; x++)
+        for (int x = 0; x < blocks; x++)
         {
-            objs[x] = PutBlock(new Vector2(fromX + x, startRespPoint.position.y));
+            objs[x] = PutBlock(new Vector2(fromX + x, y));
 
         }
         blocksPacks.Enqueue(objs);
@@ -92,11 +92,7 @@ public class Generator : MonoBehaviour
 
     public GameObject PutBlock(Vector2 pos)
     {
-        if (Chance(chanceForBlankBlock) == false)
-        {
-            // puts blank block with another one underneath
-            return PutBlock(new Vector2(pos.x, minUp.position.y));
-        }
+        
 
         var block = Instantiate(blockPrefab);
         block.transform.position = pos;
@@ -114,25 +110,16 @@ public class Generator : MonoBehaviour
     }
     public float GenerateChunk(float fromX, Range range)
     {
-        float result = GenerateOneLine(fromX);
+        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
         for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
         {
             if (UnityEngine.Random.Range(0, 3) == 0)
             {
-                int lenght = UnityEngine.Random.Range(1, 6);
-                for (float x = fromX; x < fromX + lenght; x++)
-                {
-                    Vector2 pos = new Vector2(x, y);
-                    if (busy.Contains(pos))
-                        break;
-                    else
-                    {
-                        blocks.Add(PutBlock(pos));
-                        busy.Add(pos);
-                    }
-                }
+                int lenght = UnityEngine.Random.Range(2, 6);
+                GenerateOneLine(fromX,lenght,y);
+                
                 y += lenght;
             }
         }
@@ -142,7 +129,7 @@ public class Generator : MonoBehaviour
     private void Start()
     {
 
-        lastX = GenerateOneLine(startRespPoint.position.x);
+        lastX = GenerateOneLine(startRespPoint.position.x, blockInOneShoot, startRespPoint.position.y);
         lastX = GenerateChunk(lastX, YRange);
 
     }
@@ -151,7 +138,7 @@ public class Generator : MonoBehaviour
         if (PlayerController.Instance.transform.position.x > (lastX) - howFastGenerate)
         {
 
-            if (blocksPacks.Count >= whenRemove)
+           while (blocksPacks.Count >= whenRemove*2)
             {
                 foreach (var item in blocksPacks.Dequeue())
                 {
