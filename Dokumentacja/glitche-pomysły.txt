@@ -1,5 +1,5 @@
 1. Odwrócenie sterowania lewo-prawo // DONE
-2. Odwrócenie ekranu  // obrót ekranu
+2. Odwrócenie ekranu  // DONE
 3. Przesunięcie colliderów
 4. Spadające platformy 
 5. Połowa ekranu zmienia się w losowe symbole (pac-man)
