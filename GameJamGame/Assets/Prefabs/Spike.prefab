@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fe919bc38b3684c94d1d370b5fe4de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDestroy: 1
   onKillPrefab: {fileID: 0}
   onKilled:
     m_PersistentCalls:
