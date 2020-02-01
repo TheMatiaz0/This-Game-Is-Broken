@@ -14,7 +14,7 @@ public class BugShooter : ActiveElement
     public override bool IsBad => true;
 
     [SerializeField]
-    [Range(0.2f, 10)]
+    [Range(0.0f, 10)]
     private float bulletSpeed = 1;
     [SerializeField]
     [Range(0.1f, 10)]
