@@ -12,6 +12,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Idle = 0,
         Walking = 1,
         Faling = 2,
+        Jumping = 3
     }
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
@@ -57,6 +58,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         this.Sprite.flipX = (move < 0);
         move = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
         else if (move != 0)
@@ -87,6 +89,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+
         }
     }
 
@@ -96,6 +99,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
+        Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
         hasJumped = true;
     }
