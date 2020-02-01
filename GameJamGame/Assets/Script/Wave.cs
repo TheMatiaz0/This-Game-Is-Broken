@@ -12,15 +12,20 @@ using UnityEngine.SceneManagement;
 
 public class Wave : ActiveElement
 {
-    public static Wave Instance { get; protected set; }
     [field: SerializeField]
+  
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
-    [field: MinMaxRange(0.1f, 10)]
-    public float LimitedSpeed { get; private set; } = 1f;
-    [field: SerializeField]
-    [field: MinMaxRange(0.09f, 1)]
-    public float TimeDivider { get; private set; } = 0.3f;
+    [field: BoxGroup(SpeedName)]
+    [field: MinMaxSlider(1, 100)]
+    public Range MinMaxSpeed { get; private set; } = new Range(1, 8);
+    private const string SpeedName = "Speed";
+    public static Wave Instance { get; protected set; }
+    [field: BoxGroup(SpeedName)]
+    [field:SerializeField]
+    public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; }
+    = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
+
     public bool End { get; private set; }
 
     protected override void Awake()
@@ -30,10 +35,9 @@ public class Wave : ActiveElement
     }
     public float GetSpeedForTime(float time)
     {
-        const float minRange = 3f / 4;
-        const float maxRange = 1f;
-        float raw = (float)(Math.Tanh(time / TimeDivider));
-        return LimitedSpeed * (minRange + raw * (maxRange - minRange));
+        float percent =(float) Math.Min(time / (float)WhenSpeedWillBeMax.TimeSpan.TotalSeconds,1);
+        return (MinMaxSpeed.Max*percent)+MinMaxSpeed.Min;
+
     }
     protected virtual void FixedUpdate()
     {
@@ -41,7 +45,7 @@ public class Wave : ActiveElement
             return;
         float speed = GetSpeedForTime(Time.time);
         var change = Direction.ToVector2() * speed;
-        this.Rgb.MovePosition((Vector2)this.transform.position + change);
+        this.Rgb.velocity = change;
 
     }
     protected override void OnColidWithPlayer(PlayerController player)

@@ -69,7 +69,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             move = -1;
         }
-        if(Input.GetKey(RightKey))
+        else if(Input.GetKey(RightKey))
         {
             move = 1;
         }

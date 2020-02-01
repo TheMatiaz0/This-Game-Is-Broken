@@ -104,6 +104,8 @@ MonoBehaviour:
   onCollect:
     m_PersistentCalls:
       m_Calls: []
+  specialGlitchEffect:
+    _classRef: KeybordRevert, Assembly-CSharp
 --- !u!61 &5538117781444494133
 BoxCollider2D:
   m_ObjectHideFlags: 0
