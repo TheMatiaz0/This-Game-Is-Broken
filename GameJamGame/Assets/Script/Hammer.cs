@@ -21,7 +21,7 @@ public class Hammer : Collectable
     protected override void OnCollect()
     {
         ExplodeManager.Instance.Explode(this.transform.position);
-        PlayerController.Instance.ClearRandomEffect();
+        PlayerController.Instance.HammerUsage();
     }
     private void Update()
     {

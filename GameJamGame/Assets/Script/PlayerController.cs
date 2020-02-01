@@ -65,6 +65,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private AudioClip walkSound;
 
+    [SerializeField]
+    private AudioClip glitchSound;
+
+    [SerializeField]
+    private AudioClip repairSound;
+
+    [SerializeField]
+    private AudioSource musicSource;
+
 
     private float move;
     
@@ -129,25 +138,30 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     public void PushBugs(GlitchEffect effect)
     {
+        Source.PlayOneShot(glitchSound);
         currentGlitches.Add(effect);
         global::Console.Instance.GetWriter().WriteLine(effect.Description);
         effect.WhenCollect();
+    }
+
+    public void HammerUsage()
+    {
+        Source.PlayOneShot(repairSound);
+        ClearRandomEffect();
     }
 
     public void Death()
     {
         if (IsDeath == false)
         {
-
+            musicSource.Stop();
+            Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());
-
-
         }
 
     }
     private IEnumerator DeathProcess()
     {
-
         IsDeath = true;
         OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
@@ -193,13 +207,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-        Source.Play();
+        Source.PlayOneShot(jumpSound);
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
 
     private void Move()
     {
+        // Source.PlayOneShot(walkSound);
         Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
     }
 }

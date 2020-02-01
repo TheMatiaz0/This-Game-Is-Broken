@@ -791,19 +791,19 @@ PrefabInstance:
       objectReference: {fileID: 487744617}
     - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
-      propertyPath: jumpSound
+      propertyPath: glitchSound
       value: 
-      objectReference: {fileID: 8300000, guid: b86327326db598444896396f1e2055c2, type: 3}
+      objectReference: {fileID: 8300000, guid: d26e306dcd4636f40865f6baa7ca5362, type: 3}
     - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
-      propertyPath: gameOverSound
+      propertyPath: repairSound
       value: 
-      objectReference: {fileID: 8300000, guid: 8d7dac82730c4d841b3b867914312b51, type: 3}
+      objectReference: {fileID: 8300000, guid: c7473607e9b8544499961b45e76d50d3, type: 3}
     - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
-      propertyPath: walkSound
+      propertyPath: musicSource
       value: 
-      objectReference: {fileID: 8300000, guid: c9a3b391e5659b14b94ddd4ffade8c67, type: 3}
+      objectReference: {fileID: 1980602040}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Name
@@ -896,7 +896,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c45a13056013acf489fb4a8b9f5b479c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
