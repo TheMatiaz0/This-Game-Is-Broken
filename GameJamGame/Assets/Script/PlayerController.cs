@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cyberevolver.Unity;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
@@ -15,6 +16,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Faling = 2,
         Jumping = 3
     }
+    private bool isWalkSound = false;
     public KeyCode JumpKey { get; set; } = KeyCode.Space;
     public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
     public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
@@ -214,7 +216,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Move()
     {
-        // Source.PlayOneShot(walkSound);
         Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
+        /*
+        isWalkSound = true;
+        base.Invoke(
+            () =>
+            {
+                isWalkSound = false;
+                Source.PlayOneShot(walkSound);
+                //
+            }, 1);
+            */
+        
     }
 }
