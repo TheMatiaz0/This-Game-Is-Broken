@@ -6,7 +6,7 @@ public class Rotation180Screen : GlitchEffect
 {
 	public override string Description => "Screen_Out_Of_Index_Exception";
 
-	protected override void OnCancel()
+	public override void Cancel()
 	{
 		WhenCollect();
 	}
@@ -15,7 +15,7 @@ public class Rotation180Screen : GlitchEffect
 	{
 
         Camera main = Camera.main;
-        Cinemachine.CinemachineVirtualCamera cinema = main.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        Cinemachine.CinemachineVirtualCamera cinema = main.GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
         var beforeLookAt = cinema.LookAt;
         cinema.LookAt = null;
 
