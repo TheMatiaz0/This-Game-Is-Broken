@@ -53,7 +53,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public event EventHandler OnPlayerDeath = delegate { };
 
+    [Auto]
+    public AudioSource Source { get; private set; }
 
+    [SerializeField]
+    private AudioClip jumpSound;
+
+    [SerializeField]
+    private AudioClip gameOverSound;
+
+    [SerializeField]
+    private AudioClip walkSound;
 
 
     private float move;
@@ -124,11 +134,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         effect.WhenCollect();
     }
 
-    public void RemoveBugs()
-    {
-        currentGlitches.Clear();
-    }
-
     public void Death()
     {
         if (IsDeath == false)
@@ -188,6 +193,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
+        Source.Play();
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
