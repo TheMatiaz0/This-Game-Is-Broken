@@ -23,16 +23,20 @@ namespace Cyberevolver.Unity
 			if (Input.GetKeyDown(keyCodeActive))
 			{
 				IsHidden = !IsHidden;
+				HideUI(IsHidden);
+			}
+		}
 
-				if (IsHidden)
-				{
-					Camera.main.cullingMask = ~(0);
-				}
+		public void HideUI (bool areUSure)
+		{
+			if (areUSure)
+			{
+				Camera.main.cullingMask = ~(0);
+			}
 
-				else
-				{
-					Camera.main.cullingMask = ~(1 << 5);
-				}
+			else
+			{
+				Camera.main.cullingMask = ~(1 << 5);
 			}
 		}
 	}
