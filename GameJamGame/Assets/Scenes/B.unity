@@ -484,15 +484,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c343450df06c74e82a00c729a299df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalSize: 10
+  finalSize: 1.5
   time:
     miliseconds: 0
-    seconds: 0
+    seconds: 1
     minutes: 0
     hour: 0
     day: 0
-    precision: 0
-  explodePrefab: {fileID: 0}
+    precision: 2
+  explodePrefab: {fileID: 7695489052781741261, guid: 469aadff78453334ba5d4e7549a504e9,
+    type: 3}
 --- !u!114 &1200579320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +747,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225023791, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2945081381710195697, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1195,17 +1200,27 @@ PrefabInstance:
     - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: <MinMaxSpeed>k__BackingField.val.y
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: <MinMaxSpeed>k__BackingField.val.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: <WhenSpeedWillBeMax>k__BackingField.seconds
-      value: 32
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.precision
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.minutes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}

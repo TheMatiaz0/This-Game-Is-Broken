@@ -14,6 +14,5 @@ public class Rotation180Screen : GlitchEffect
 	public override void WhenCollect()
 	{
 		LeanTween.rotate(Camera.main.gameObject, Camera.main.transform.rotation.eulerAngles + new Vector3(0, 180, 180), 2f);
-		// Camera.main.transform.rotation = Camera.main.transform.rotation.Add(new Vector3(0, 180, 180));
 	}
 }
