@@ -41,13 +41,21 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public Transform StartRespPoint => startRespPoint;
 
+    
+
+ 
+
 
 
     private float move;
     private bool hasJumped = false;
+    [SerializeField]
+   
+    private GameObject deathParticle;
 
-    void Start()
+    private void Start()
     {
+        
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
@@ -55,6 +63,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
+        if (IsDeath)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -83,6 +96,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
+
+        else if (hasJumped == true)
+            Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
+        
         else if (move != 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Walking);
         else
@@ -93,13 +110,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         currentGlitches.Add(effect);
+        global::Console.Instance.UpdateConsole(effect.Description);
         effect.WhenCollect();
     }
     public void Death ()
     {
         if(IsDeath==false)
         {
-            IsDeath = true;
+          
             StartCoroutine(DeathProcess());
            
             
@@ -108,9 +126,18 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     private IEnumerator DeathProcess()
     {
-        Destroy( this.Rgb);
+
+        IsDeath = true;
+        Destroy(this.Rgb);
+        if (deathParticle != null)
+        {
+            Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+        }
+        this.Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
 
     }
 
@@ -139,7 +166,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-        Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
         hasJumped = true;
     }
