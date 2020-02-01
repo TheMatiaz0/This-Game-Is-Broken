@@ -43,7 +43,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     void Start()
     {
-        gameOverManager.EnableMenuWithPause(false);
+        if (gameOverManager != null)
+            gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
     }
 
