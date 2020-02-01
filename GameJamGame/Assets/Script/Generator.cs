@@ -5,12 +5,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+public enum BlockMode
+{
+    Left,
+    Right,
+    Center
+}
 
 public class Generator : MonoBehaviour
 {
 
 
 
+  
+
+    private const string Raw = "Values";
+    private const string ChanceName = "Chance";
+    private const string PrefabsName = "Prefabs";
+    private const string Transform = "Transform";
 
     [ShowCyberInspector]
     [Serializable]
@@ -26,51 +38,69 @@ public class Generator : MonoBehaviour
     [WindowArray]
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
-    [SerializeField]
-    private GameObject blockPrefab;
-    [SerializeField]
+
+    [SerializeField,BoxGroup(ChanceName)]
     private Percent chanceForBlankBlock = 0.15f;
+    [BoxGroup(Raw)]
     [SerializeField]
-    private Transform startRespPoint;
-    [SerializeField]
-    private Transform maxUp;
-
-    [SerializeField]
-    private Transform minUp;
-
+    [Range(1, 100)]
+    private int blockInOneShoot = 10;
+    [BoxGroup(Raw)]
     [SerializeField]
     [Range(0, 9)]
     private int howFastGenerate = 3;
     [SerializeField]
-    [Range(1, 100)]
-
-    private int blockInOneShoot = 10;
-    [SerializeField]
+    [BoxGroup(Raw)]
     [Range(1, 10)]
     private int whenRemove = 3;
+    [BoxGroup(Raw)]
+    [SerializeField]
+    [Range(1, 100)]
+    private int howOftenCanHaveItem = 2;
+    [SerializeField]
+    [BoxGroup(PrefabsName)]
+    [RequiresAny]
+    private GameObject blockPrefab;
+    [SerializeField]
+    [BoxGroup(PrefabsName)]
+    [ArrayAsField("LeftEdge", "RightEdge")]
+    private Sprite[] edges;
+    [SerializeField]
+    [BoxGroup(Transform)]
+    private Transform startRespPoint;
+    [SerializeField]
+    [BoxGroup(Transform)]
+    private Transform maxUp;
+    [SerializeField]
+    [BoxGroup(Transform)]
+    private Transform minUp;
 
+    public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
     private float lastX = 0;
 
-    public float GenerateOneLine(float fromX,float blocks,float y,bool dontPutActiveItems=false)
+    public float GenerateOneLine(float fromX, float blocks, float y, bool dontPutActiveItems = false)
     {
         GameObject[] objs = new GameObject[10];
         for (int x = 0; x < blocks; x++)
         {
-            objs[x] = PutBlock(new Vector2(fromX + x, y),dontPutActiveItems);
+            
+            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPutActiveItems);
 
         }
         blocksPacks.Enqueue(objs);
-        return fromX + blockInOneShoot;
-
+        return fromX + blockInOneShoot;  
     }
+
     public GameObject GetRandomStuff()
     {
-        if (findablePrefabs.Count == 0)
+
+        PutedBlocksQuanity++;
+        if(findablePrefabs.Count == 0 ||PutedBlocksQuanity %howOftenCanHaveItem!=0)
+        {
             return null;
-
-
+        }      
         int x = UnityEngine.Random.Range(0, findablePrefabs.Count);
         Debug.Log(x);
         if (Chance(findablePrefabs[x].howOften))
@@ -79,10 +109,6 @@ public class Generator : MonoBehaviour
         }
         else
             return null;
-
-
-        
-
     }
 
     private bool Chance (Percent percent)
@@ -90,7 +116,7 @@ public class Generator : MonoBehaviour
         return UnityEngine.Random.Range(0, 1f + 0.01f) <= percent.AsFloatValue;
     }
 
-    public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false)
+    public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
     {
         
 
@@ -101,8 +127,14 @@ public class Generator : MonoBehaviour
             var prefab = GetRandomStuff();
             if (prefab != null)
             {
-                GameObject item = Instantiate(prefab);
-                item.transform.position = (Vector2)block.transform.position + Vector2.up;
+                GameObject gameObj = Instantiate(prefab);
+                gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
+                switch (mode)
+                {
+                    case BlockMode.Left:
+                        gameObj
+                }
+                
             }
 
         }
