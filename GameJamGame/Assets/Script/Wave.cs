@@ -16,11 +16,12 @@ public class Wave : ActiveElement
     [field: SerializeField]
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
-    [field: MinMaxRange(0.1f, 10)]
-    public float LimitedSpeed { get; private set; } = 1f;
-    [field: SerializeField]
-    [field: MinMaxRange(0.09f, 1)]
-    public float TimeDivider { get; private set; } = 0.3f;
+    [field: MinMaxSlider(1, 100)]
+    public Range MinMaxSpeed { get; private set; } = new Range(1, 8);
+    [field:SerializeField]
+    public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; }
+    = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
+
     public bool End { get; private set; }
 
     protected override void Awake()
@@ -30,10 +31,9 @@ public class Wave : ActiveElement
     }
     public float GetSpeedForTime(float time)
     {
-        const float minRange = 3f / 4;
-        const float maxRange = 1f;
-        float raw = (float)(Math.Tanh(time / TimeDivider));
-        return LimitedSpeed * (minRange + raw * (maxRange - minRange));
+        Percent percent= time / (float)WhenSpeedWillBeMax.TimeSpan.TotalSeconds;
+        return (MinMaxSpeed.Max*percent.AsFloatValue)+MinMaxSpeed.Min;
+
     }
     protected virtual void FixedUpdate()
     {
