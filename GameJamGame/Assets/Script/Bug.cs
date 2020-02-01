@@ -8,13 +8,16 @@ using UnityEngine;
 
 public class Bug : Collectable
 {
+	/*
 	[ClassExtends(typeof(GlitchEffect))]
     [SerializeField]
 	ClassTypeReference specialGlitchEffect = new ClassTypeReference();
+	*/
 
 	protected override void OnCollect()
 	{
-		PlayerController.Instance.PushBugs((GlitchEffect)Activator.CreateInstance(specialGlitchEffect));
+		int rndNumber = UnityEngine.Random.Range(0, (GlitchEffect.allGlitchEffects.Length));
+		PlayerController.Instance.PushBugs(GlitchEffect.allGlitchEffects[rndNumber]);
 
 	}
 
