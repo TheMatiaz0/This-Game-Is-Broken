@@ -29,7 +29,7 @@ namespace Cyberevolver.Unity
 
 		public void HideUI (bool areUSure)
 		{
-			if (areUSure)
+			if (!areUSure)
 			{
 				Camera.main.cullingMask = ~(0);
 			}

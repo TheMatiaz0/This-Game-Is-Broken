@@ -177,7 +177,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (IsDeath == false)
         {
             UIHider hider = Camera.main.GetComponent<UIHider>();
-            hider.HideUI(true);
+            hider.HideUI(false);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());
