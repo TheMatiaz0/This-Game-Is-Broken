@@ -641,11 +641,11 @@ MonoBehaviour:
   - prefab: {fileID: 6935800402712673812, guid: af22efd29a1b0bb489fbd3de63b1f1ca,
       type: 3}
     howOften:
-      _Value: 0.3499999940395355
+      _Value: 0.20000000298023224
   - prefab: {fileID: 5538117781444494137, guid: f6ff06f676987134f8e607a598426026,
       type: 3}
     howOften:
-      _Value: 0.7020000219345093
+      _Value: 0.6000000238418579
   blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
     type: 3}
   chanceForBlankBlock:
@@ -1106,6 +1106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}
