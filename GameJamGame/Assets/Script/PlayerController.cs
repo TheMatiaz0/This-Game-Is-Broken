@@ -97,6 +97,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private AudioSource musicSource;
 
+    [SerializeField]
+    private Transform minimalYSurvival;
+
 
     private float move;
     
@@ -116,6 +119,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
+        if (transform.position.y <= minimalYSurvival.transform.position.y)
+        {
+            Death();
+            return;
+        }
+
         if (IsDeath)
         {
             return;

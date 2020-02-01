@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &769460121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769460122}
+  m_Layer: 9
+  m_Name: MinYPlayerPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &769460122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769460121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 996109581129873838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996109581129873835
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +63,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.14, y: -2.23, z: 0.47427607}
   m_LocalScale: {x: 1, y: 1, z: 11}
-  m_Children: []
+  m_Children:
+  - {fileID: 769460122}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,6 +137,10 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: b86327326db598444896396f1e2055c2, type: 3}
   gameOverSound: {fileID: 8300000, guid: 8d7dac82730c4d841b3b867914312b51, type: 3}
   walkSound: {fileID: 8300000, guid: c9a3b391e5659b14b94ddd4ffade8c67, type: 3}
+  glitchSound: {fileID: 8300000, guid: d26e306dcd4636f40865f6baa7ca5362, type: 3}
+  repairSound: {fileID: 8300000, guid: c7473607e9b8544499961b45e76d50d3, type: 3}
+  musicSource: {fileID: 0}
+  minimalYSurvival: {fileID: 769460122}
   deathParticle: {fileID: 7990820457959614184, guid: 86a9be61194c20d48807ead8364f7f0f,
     type: 3}
 --- !u!50 &996109581129873839

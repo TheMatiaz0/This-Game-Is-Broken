@@ -21,7 +21,7 @@ public class StatisticsInfo : MonoBehaviourPlus
 		timer = new Stopwatch();
 		timer.Start();
 	}
-    private void OnDisable()
+    private void Start()
     {
         startX = this.transform.position.x;
     }
