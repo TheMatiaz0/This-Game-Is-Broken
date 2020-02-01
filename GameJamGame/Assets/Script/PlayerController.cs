@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Cyberevolver.Unity;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
