@@ -47,12 +47,14 @@ public class BugShooter : ActiveElement
             Shoot((Direction)(Vector2)(PlayerController.Instance.transform.position- this.transform.position));
         }
     }
-    protected override void OnKill()
-    {
-        Animator.SetTrigger("isDead");
-    }
+  
     protected override void OnColidWithPlayer(PlayerController player)
     {
         PlayerController.Instance.Kill();
+    }
+    public override void OnExplode()
+    {
+        Animator.SetTrigger("isDeath");
+  
     }
 }
