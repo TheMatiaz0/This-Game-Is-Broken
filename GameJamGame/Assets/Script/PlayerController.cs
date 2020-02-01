@@ -20,7 +20,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
-    private static readonly string AnimtorValueName = "Pose";
+    private static readonly string AnimatorValueName = "Pose";
     [Auto]
     public Animator Animator { get; private set; }
     [Auto]
@@ -48,10 +48,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     private float move;
-    private bool hasJumped = false;
+    
     [SerializeField]
 
     private GameObject deathParticle;
+    private bool canJump;
 
     private void Start()
     {
@@ -96,12 +97,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         this.Sprite.flipX = (move < 0);
 
 
-        if (Math.Abs(this.Rgb.velocity.y) > 1)
-            Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
-        else if (move != 0)
-            Animator.SetInteger(AnimtorValueName, (int)AnimState.Walking);
+
+        if (this.Rgb.velocity.y < -1.3f)
+            Animator.SetInteger(AnimatorValueName, (int)AnimState.Faling);
+
+        else if (move == 0)
+            Animator.SetInteger(AnimatorValueName, (int)AnimState.Idle);
         else
-            Animator.SetInteger(AnimtorValueName, (int)AnimState.Idle);
+            Animator.SetInteger(AnimatorValueName, (int)AnimState.Walking);
 
 
     }
@@ -138,21 +141,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Ground")
         {
-            hasJumped = false;
+            canJump = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Ground")
-        {
-            hasJumped = true;
-        }
-    }
 
 
     private void FixedUpdate()
@@ -173,10 +169,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Jump()
     {
-        if (hasJumped == true)
+        if (canJump==false)
         {
             return;
         }
+        canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
 

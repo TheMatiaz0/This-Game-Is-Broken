@@ -14,11 +14,6 @@ public enum BlockMode
 
 public class Generator : MonoBehaviour
 {
-
-
-
-  
-
     private const string Raw = "Values";
     private const string ChanceName = "Chance";
     private const string PrefabsName = "Prefabs";
@@ -156,13 +151,12 @@ public class Generator : MonoBehaviour
                 gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
                 
             }
-
         }
         return block;
     }
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false)
     {
-        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y);
+        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
         for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
@@ -179,9 +173,6 @@ public class Generator : MonoBehaviour
     }
     private void Start()
     {
-
-
-
         PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
         lastX = GenerateOneLine(startRespPoint.position.x+1, blockInOneShoot, startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:true);
         lastX = GenerateChunk(lastX, YRange,true);
