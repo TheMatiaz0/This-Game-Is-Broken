@@ -12,6 +12,12 @@ using Cyberevolver.Unity;
 public class KeybordRevert : GlitchEffect
 {
     public override string Description => "LoadKeyboardException";
+
+    public override void Cancel()
+    {
+        WhenCollect();
+    }
+
     public override void WhenCollect()
     {
         var temp = PlayerController.Instance.LeftKey;
