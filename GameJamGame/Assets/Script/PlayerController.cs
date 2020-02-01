@@ -20,6 +20,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
+
+    public void ClearRandomEffect()
+    {
+        if (currentGlitches.Count!=0)
+        {
+            currentGlitches.RemoveAt(UnityEngine.Random.Range(0, currentGlitches.Count));
+        }
+    }
+
     private static readonly string AnimatorValueName = "Pose";
     [Auto]
     public Animator Animator { get; private set; }
@@ -44,7 +53,26 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public event EventHandler OnPlayerDeath = delegate { };
 
+    [Auto]
+    public AudioSource Source { get; private set; }
 
+    [SerializeField]
+    private AudioClip jumpSound;
+
+    [SerializeField]
+    private AudioClip gameOverSound;
+
+    [SerializeField]
+    private AudioClip walkSound;
+
+    [SerializeField]
+    private AudioClip glitchSound;
+
+    [SerializeField]
+    private AudioClip repairSound;
+
+    [SerializeField]
+    private AudioSource musicSource;
 
 
     private float move;
@@ -110,24 +138,30 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     public void PushBugs(GlitchEffect effect)
     {
+        Source.PlayOneShot(glitchSound);
         currentGlitches.Add(effect);
-        global::Console.Instance.UpdateConsole(effect.Description);
+        global::Console.Instance.GetWriter().WriteLine(effect.Description);
         effect.WhenCollect();
     }
+
+    public void HammerUsage()
+    {
+        Source.PlayOneShot(repairSound);
+        ClearRandomEffect();
+    }
+
     public void Death()
     {
         if (IsDeath == false)
         {
-
+            musicSource.Stop();
+            Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());
-
-
         }
 
     }
     private IEnumerator DeathProcess()
     {
-
         IsDeath = true;
         OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
@@ -173,12 +207,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
+        Source.PlayOneShot(jumpSound);
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
 
     private void Move()
     {
+        // Source.PlayOneShot(walkSound);
         Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
     }
 }

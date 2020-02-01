@@ -108,7 +108,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   specialGlitchEffect:
-    _classRef: KeybordRevert, Assembly-CSharp
+    _classRef: Rotation180Screen, Assembly-CSharp
 --- !u!61 &5538117781444494133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.65384614, y: 0.6923077}
+    oldSize: {x: 0.60714287, y: 0.64285713}
     newSize: {x: 10.93, y: 10.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
