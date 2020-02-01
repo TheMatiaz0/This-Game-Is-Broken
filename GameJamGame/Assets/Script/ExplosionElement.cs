@@ -27,7 +27,6 @@ public class ExplosionElement : MonoBehaviourPlus
             LeanTween.alpha(bug.gameObject, 0, 2).setOnComplete(() => Destroy(bug.gameObject));
 
             shouldStartBeDestroyed = true;
-            Debug.Log("Explode");
         }
     }
     private void Update()
