@@ -42,7 +42,7 @@ public class WaveSymbol : MonoBehaviourPlus
     }
     private void Update()
     {
-        this.Render.color = Gradient.Evaluate((((moverValue+ Time.time) * 100) % 100) / 100);
+        this.Render.color = Gradient.Evaluate((((moverValue+ PlayerController.Instance.SceneTime) * 100) % 100) / 100);
     }
 
 

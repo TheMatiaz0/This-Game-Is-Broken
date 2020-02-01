@@ -25,6 +25,6 @@ public class Hammer : Collectable
     }
     private void Update()
     {
-        Sprite.color = gradient.Evaluate(((Time.time*100)%100) /100);
+        Sprite.color = gradient.Evaluate(((PlayerController.Instance.SceneTime * 100)%100) /100);
     }
 }

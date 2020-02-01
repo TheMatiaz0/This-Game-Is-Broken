@@ -54,6 +54,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     public event EventHandler OnPlayerDeath = delegate { };
+    private float timeOnStart;
+
+
 
     [Auto]
     public AudioSource Source { get; private set; }
@@ -84,9 +87,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private GameObject deathParticle;
     private bool canJump;
 
+    public float SceneTime => Time.time - timeOnStart;
     private void Start()
     {
-
+        timeOnStart = Time.time;
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
