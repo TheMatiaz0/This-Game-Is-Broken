@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeDestroy: 1
-  onKillPrefab: {fileID: 0}
+  onKillPrefab: {fileID: 7990820457959614184, guid: 86a9be61194c20d48807ead8364f7f0f,
+    type: 3}
   onKilled:
     m_PersistentCalls:
       m_Calls: []
