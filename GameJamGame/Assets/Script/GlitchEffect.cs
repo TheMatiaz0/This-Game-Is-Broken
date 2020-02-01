@@ -7,6 +7,7 @@ using UnityEngine;
 
 public abstract class GlitchEffect
 {
+    protected abstract string Description { get; }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }
 

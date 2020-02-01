@@ -13,6 +13,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Idle = 0,
         Walking = 1,
         Faling = 2,
+        Jumping = 3
     }
     public KeyCode JumpKey { get; set; } = KeyCode.Space;
     public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
@@ -75,8 +76,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         else
         {
             move = 0;
-        }move *= MovementSpeed;
+        }
+        move *= MovementSpeed;
         this.Sprite.flipX = (move < 0);
+
 
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
@@ -126,6 +129,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (Input.GetKeyDown(JumpKey))
         {
             Jump();
+
         }
     }
 
@@ -135,6 +139,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
+        Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
         hasJumped = true;
     }

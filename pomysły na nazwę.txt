@@ -1,9 +1,8 @@
 This Game Is Broken
-ThiisGme__iS Brokn
-diz gam iz brokne
-thhis__gAme-is+Brokn
 
-Glitch Walker
-Gleech WalkR
-GlichWalkker
-glii_chWalk-R
+Infinite walker, where you have to repair broken game using hammer. Be careful for spikes, traps, bugs and other glitchy things.
+
+
+
+
+
