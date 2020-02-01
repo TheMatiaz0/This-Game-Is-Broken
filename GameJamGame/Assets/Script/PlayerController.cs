@@ -109,7 +109,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (transform.position.y <= minimalYSurvival.transform.position.y || transform.position.y >= maximumYSurvival.transform.position.y)
         {
-            Death();
+            Kill();
             return;
         }
 
@@ -172,7 +172,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     }
 
-    public void Death()
+    public void Kill()
     {
         if (IsDeath == false)
         {

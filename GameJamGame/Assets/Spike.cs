@@ -6,6 +6,6 @@ public class Spike : Collectable
 {
 	protected override void OnCollect()
 	{
-		PlayerController.Instance.Death();
+		PlayerController.Instance.Kill();
 	}
 }

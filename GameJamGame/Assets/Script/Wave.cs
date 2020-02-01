@@ -51,7 +51,7 @@ public class Wave : ActiveElement
     protected override void OnColidWithPlayer(PlayerController player)
     {
         
-        player.Death();
+        player.Kill();
     }
    
 
