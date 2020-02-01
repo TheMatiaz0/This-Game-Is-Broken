@@ -10,7 +10,12 @@ public abstract class GlitchEffect
     public static GlitchEffect[] allGlitchEffects;
 
     public abstract string Description { get; }
-    public abstract void Cancel();
+    protected abstract void OnCancel();
+    public void Cancel()
+    {
+        OnCancel();
+        global::Console.Instance.GetWriter().WriteLine($"<color=green>{Description} has been repaired succesfully. The game is now a little less broken.</color>");
+    }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }
 
