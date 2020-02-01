@@ -133,7 +133,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             Instantiate(deathParticle, this.transform.position, Quaternion.identity);
         }
-    
+        this.Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 

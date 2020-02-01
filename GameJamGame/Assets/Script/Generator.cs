@@ -115,11 +115,10 @@ public class Generator : MonoBehaviour
         List<GameObject> blocks = new List<GameObject>();
         for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
         {
-            if (dontPutActiveItems&&UnityEngine.Random.Range(0, 3) == 0)
+            if (UnityEngine.Random.Range(0, 3) == 0)
             {
                 int lenght = UnityEngine.Random.Range(2, 6);
-                GenerateOneLine(fromX,lenght,y);
-                
+                GenerateOneLine(fromX,lenght,y,dontPutActiveItems);    
                 y += lenght;
             }
         }
