@@ -195,7 +195,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
         this.Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(3));
-
+        GameObject go = GameObject.FindGameObjectWithTag("GameOverObject");
+        go.transform.GetChild(0).gameObject.SetActive(true);
 
     }
 
