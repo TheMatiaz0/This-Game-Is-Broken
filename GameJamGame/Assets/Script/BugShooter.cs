@@ -11,7 +11,7 @@ using Cyberevolver.Unity;
 
 public class BugShooter : ActiveElement
 {
-   
+    public override bool IsBad => true;
 
     [SerializeField]
     [Range(0.2f, 10)]
@@ -44,7 +44,7 @@ public class BugShooter : ActiveElement
         {
             yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
             Animator.SetTrigger("shoot");
-            Shoot((Direction)(Vector2)(this.transform.position - PlayerController.Instance.transform.position));
+            Shoot((Direction)(Vector2)(PlayerController.Instance.transform.position- this.transform.position));
         }
     }
     protected override void OnKill()

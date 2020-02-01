@@ -10,7 +10,7 @@ using Cyberevolver;
 using Cyberevolver.Unity;
 using UnityEngine.Events;
 
-public class Collectable : ActiveElement
+public abstract class Collectable : ActiveElement
 {
 
 

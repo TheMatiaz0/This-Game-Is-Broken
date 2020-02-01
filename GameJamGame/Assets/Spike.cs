@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : Collectable
+public class Spike : ActiveElement
 {
-	protected override void OnCollect()
-	{
-		PlayerController.Instance.Kill();
-	}
+    public override bool IsBad =>true;
+    protected override void OnColidWithPlayer(PlayerController player)
+    {
+        PlayerController.Instance.Kill();
+    }
+   
 }
