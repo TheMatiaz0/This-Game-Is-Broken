@@ -11,6 +11,7 @@ using Cyberevolver.Unity;
 
 public class Hammer : Collectable
 {
+    public override bool IsBad => false;
     [SerializeField]
     private Gradient gradient;
     [Auto]

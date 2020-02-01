@@ -9,13 +9,18 @@ using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
 
-public class Bullet : MonoBehaviourPlus
+public class Bullet : ActiveElement
 {
+    public override bool IsBad => false;
     public Direction Dir { get; set; }
     public float Speed { get; set; }
     private void Update()
     {
         this.transform.position += (Vector3)Dir.ToVector2() * Speed;
 
+    }
+    protected override void OnColidWithPlayer(PlayerController player)
+    {
+        player.Kill();
     }
 }

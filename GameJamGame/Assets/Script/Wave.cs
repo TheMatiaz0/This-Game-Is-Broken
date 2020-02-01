@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class Wave : ActiveElement
 {
+    public override bool IsBad => false;
     [field: SerializeField]
   
     public Direction Direction { get; private set; } = Direction.Right;
