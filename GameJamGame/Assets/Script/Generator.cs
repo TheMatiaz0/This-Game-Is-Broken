@@ -80,13 +80,28 @@ public class Generator : MonoBehaviour
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
     private float lastX = 0;
 
-    public float GenerateOneLine(float fromX, float blocks, float y, bool dontPutActiveItems = false)
+    public float GenerateOneLine(float fromX, float blocks, float y, 
+        bool dontPutActiveItems = false,bool dontMakeEdge=false)
     {
         GameObject[] objs = new GameObject[10];
         for (int x = 0; x < blocks; x++)
         {
-            
-            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPutActiveItems);
+
+            BlockMode mode = BlockMode.Center;
+            if(dontMakeEdge==false)
+            {
+                if (x == 0)
+                {
+                    mode = BlockMode.Left;
+                }
+                else if (x == blocks - 1)
+                {
+                    mode = BlockMode.Right;
+                }
+            }
+          
+           
+            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPutActiveItems,mode);
 
         }
         blocksPacks.Enqueue(objs);
@@ -118,10 +133,20 @@ public class Generator : MonoBehaviour
 
     public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
     {
-        
-
         var block = Instantiate(blockPrefab);
         block.transform.position = pos;
+        SpriteRenderer render = block.GetComponent<SpriteRenderer>();
+        switch (mode)
+        {
+            case BlockMode.Left:
+                render.sprite = edges[0] ?? render.sprite;
+                break;
+            case BlockMode.Right:
+                render.sprite = edges[1] ?? render.sprite;
+                break;
+            default: break;
+        }
+
         if (dontPutActiveItems==false&&UnityEngine.Random.Range(0, 4) == 0)
         {
             var prefab = GetRandomStuff();
@@ -129,11 +154,6 @@ public class Generator : MonoBehaviour
             {
                 GameObject gameObj = Instantiate(prefab);
                 gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
-                switch (mode)
-                {
-                    case BlockMode.Left:
-                        gameObj
-                }
                 
             }
 
@@ -160,7 +180,10 @@ public class Generator : MonoBehaviour
     private void Start()
     {
 
-        lastX = GenerateOneLine(startRespPoint.position.x, blockInOneShoot, startRespPoint.position.y,true);
+
+
+        PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
+        lastX = GenerateOneLine(startRespPoint.position.x+1, blockInOneShoot, startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:true);
         lastX = GenerateChunk(lastX, YRange,true);
 
     }
