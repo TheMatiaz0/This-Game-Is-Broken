@@ -20,6 +20,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
     [Auto]
     public SpriteRenderer Sprite { get; private set; }
+
+    public void ClearRandomEffect()
+    {
+        if (currentGlitches.Count!=0)
+        {
+            currentGlitches.RemoveAt(UnityEngine.Random.Range(0, currentGlitches.Count));
+        }
+    }
+
     private static readonly string AnimatorValueName = "Pose";
     [Auto]
     public Animator Animator { get; private set; }
@@ -111,7 +120,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         currentGlitches.Add(effect);
-        global::Console.Instance.UpdateConsole(effect.Description);
+        global::Console.Instance.GetWriter().WriteLine(effect.Description);
         effect.WhenCollect();
     }
 

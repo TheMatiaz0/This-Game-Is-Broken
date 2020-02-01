@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1418867098297791869}
   - component: {fileID: 3750709790419372926}
   - component: {fileID: 870570462090411371}
-  - component: {fileID: -5999853769146080306}
   - component: {fileID: 1565002264028896821}
+  - component: {fileID: 6663049895702305964}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -105,32 +105,6 @@ MonoBehaviour:
   onCollect:
     m_PersistentCalls:
       m_Calls: []
---- !u!61 &-5999853769146080306
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375590924283750840}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0004611835, y: -0.3678332}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48381218, y: 0.7219943}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  serializedVersion: 2
-  m_Size: {x: 0.35182172, y: 0.5707791}
-  m_EdgeRadius: 0
 --- !u!50 &1565002264028896821
 Rigidbody2D:
   serializedVersion: 4
@@ -152,3 +126,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &6663049895702305964
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375590924283750840}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.48381218, y: 0.7219943}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.21652591, y: -0.601632}
+      - {x: -0.21127819, y: -0.5994716}
+      - {x: 0.005809453, y: 0.00042775384}
