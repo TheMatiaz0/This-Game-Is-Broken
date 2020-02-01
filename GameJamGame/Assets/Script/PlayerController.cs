@@ -31,10 +31,21 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private FreezeMenu gameOverManager = null;
 
+    [SerializeField]
+    private Transform startRespPoint;
+
+    public Transform StartRespPoint => startRespPoint;
+
 
 
     private float move;
     private bool hasJumped = false;
+
+    void Start()
+    {
+        gameOverManager.EnableMenuWithPause(false);
+        transform.position = StartRespPoint.position;
+    }
 
     private void Update()
     {

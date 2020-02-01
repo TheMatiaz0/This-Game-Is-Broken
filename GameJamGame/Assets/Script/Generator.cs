@@ -70,45 +70,24 @@ public class Generator : MonoBehaviour
         if (findablePrefabs.Count == 0)
             return null;
 
-        /*
-        foreach (var item in findablePrefabs)
+
+        int x = UnityEngine.Random.Range(0, findablePrefabs.Count);
+        Debug.Log(x);
+        if (Chance(findablePrefabs[x].howOften))
         {
-            if (Chance(item.howOften))
-            {
-                return item.prefab;
-            }
+            return findablePrefabs[x].prefab;
         }
-        */
+        else
+            return null;
+
 
         
-
-        float max = findablePrefabs.Sum(item => item.howOften.AsFloatValue);
-        float val = UnityEngine.Random.Range(0, max);
-        float full = 0;
-        for (int x = 0; x <= val; x++)
-        {
-            if (full <= val)
-                return findablePrefabs[x].prefab;
-            full += findablePrefabs[x].howOften.AsFloatValue;
-        }
-        return null;
 
     }
 
     private bool Chance (Percent percent)
     {
-        byte target = percent.AsProcentValue;
-        int rndValue = UnityEngine.Random.Range(1, 101);
-
-        if ((rndValue >= 1 && rndValue <= target))
-        {
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
+        return UnityEngine.Random.Range(0, 1f + 0.01f) <= percent.AsFloatValue;
     }
 
     public GameObject PutBlock(Vector2 pos)
@@ -116,7 +95,7 @@ public class Generator : MonoBehaviour
         if (Chance(chanceForBlankBlock) == false)
         {
             // puts blank block with another one underneath
-            return PutBlock(new Vector2(pos.x, minUp.position.y - pos.y));
+            return PutBlock(new Vector2(pos.x, minUp.position.y));
         }
 
         var block = Instantiate(blockPrefab);
