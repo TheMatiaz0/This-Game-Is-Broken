@@ -113,7 +113,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     }
     private IEnumerator DeathProcess()
     {
-        Destroy( this.Rgb);
+        Destroy( this.gameObject);
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
