@@ -29,8 +29,6 @@ public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
 
     public void Explode(Vector2 pos)
     {
-
-
         GameObject g = Instantiate(explodePrefab).gameObject;
         g.transform.position = pos;
 
