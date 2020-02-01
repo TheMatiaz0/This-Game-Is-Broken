@@ -12,7 +12,6 @@ using UnityEngine;
 public class ExplosionElement : MonoBehaviourPlus
 {
 
-
     private bool shouldStartBeDestroyed;
 
 
