@@ -502,13 +502,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0473fdf61b456f746971cd682393a618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  findablePrefabs:
+  - prefab: {fileID: 6935800402712673812, guid: af22efd29a1b0bb489fbd3de63b1f1ca,
+      type: 3}
+    howOften:
+      _Value: 0.5
   blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
     type: 3}
   startRespPoint: {fileID: 487744617}
   maxUp: {fileID: 350355289}
   howFastGenerate: 9
   blockInOneShoot: 10
-  whenRemove: 4
+  whenRemove: 6
 --- !u!1 &1746972258
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +758,7 @@ PrefabInstance:
     - target: {fileID: 996109581129873833, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
@@ -768,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 996109581129873836, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 996109581129873836, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 996109581129873836, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
@@ -848,17 +853,22 @@ PrefabInstance:
     - target: {fileID: 996109581129873838, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 996109581129873838, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 996109581129873838, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 996109581129873839, guid: 983defc5ed3481e48a10926d5054a703,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7337ff9958d707245a7da1bdc4738449, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
