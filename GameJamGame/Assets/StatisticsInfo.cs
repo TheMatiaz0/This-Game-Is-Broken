@@ -1,4 +1,5 @@
 ﻿using Cyberevolver.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,15 +12,22 @@ public class StatisticsInfo : MonoBehaviour
 	public Text statisticsText { get; private set; }
 
 	private Stopwatch timer;
+    private float metres = 0;
+    private float startX;
 
 	protected void Awake()
 	{
 		timer = new Stopwatch();
 		timer.Start();
 	}
+    private void OnDisable()
+    {
+        startX = this.transform.position.x;
+    }
 
-	protected void Update ()
+    protected void Update ()
 	{
-		statisticsText.text = $"<color=red>{timer.Elapsed.TotalHours}h, {timer.Elapsed.TotalMinutes}m, {timer.Elapsed.TotalSeconds}s</color> | <color=yellow>900 meters</color>";
+        metres = Math.Max(metres, PlayerController.Instance.transform.position.x - startX);
+		statisticsText.text = $"<color=red>{timer.Elapsed.TotalHours}h, {timer.Elapsed.TotalMinutes}m, {timer.Elapsed.TotalSeconds}s</color> | <color=yellow>{metres} meters</color>";
 	}
 }
