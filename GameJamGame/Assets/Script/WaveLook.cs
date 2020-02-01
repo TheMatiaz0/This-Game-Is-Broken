@@ -31,10 +31,14 @@ public class WaveLook : MonoBehaviourPlus
 
     private void Generate()
     {
-        for(int x=0;x<elements.x;x++)
-            for(int y=0;y<elements.y;y++)
+        elements = new SpriteRenderer[elementsQuanity.x * elementsQuanity.y];
+
+        for(int x=0,i=0;x< elementsQuanity.x;x++)
+            for(int y=0;y< elementsQuanity.y;y++,i++)
             {
                 var obj = Instantiate(prefab, (Vector2)this.transform.position + new Vector2(x, y), Quaternion.identity);
+
+                elements[i]
 
             }
     }
