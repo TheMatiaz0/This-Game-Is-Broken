@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public sealed class PlayerController : ActiveElement
+public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
     public bool IsDeath { get; private set; }
     public enum AnimState
@@ -41,19 +41,21 @@ public sealed class PlayerController : ActiveElement
 
     public Transform StartRespPoint => startRespPoint;
 
-    public static PlayerController Instance { get; private set; }
+    
 
-    protected override void Awake()
-    {
-        Instance = this;
-    }
+ 
+
+
 
     private float move;
     private bool hasJumped = false;
+    [SerializeField]
+   
+    private GameObject deathParticle;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
+        
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
@@ -61,6 +63,11 @@ public sealed class PlayerController : ActiveElement
 
     private void Update()
     {
+        if (IsDeath)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -110,7 +117,7 @@ public sealed class PlayerController : ActiveElement
     {
         if(IsDeath==false)
         {
-            IsDeath = true;
+          
             StartCoroutine(DeathProcess());
            
             
@@ -119,9 +126,14 @@ public sealed class PlayerController : ActiveElement
     }
     private IEnumerator DeathProcess()
     {
-        Destroy( this.gameObject);
+
+        IsDeath = true;
+        Destroy(this.Rgb);
+        Instantiate(deathParticle,this.transform.position,Quaternion.identity);
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
 
     }
 
