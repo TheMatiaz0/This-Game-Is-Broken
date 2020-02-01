@@ -183,10 +183,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 1.0563025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.7804956
+      objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_Name
       value: Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: elementsQuanity.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: elementsQuanity.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}
@@ -525,18 +545,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1894440653}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1586163354 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2855770757916798269, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
-    type: 3}
-  m_PrefabInstance: {fileID: 1894440653}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586163353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888b54d84de43e84eb5d9a315834fa1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1746972258
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 1795915858, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1586163354}
+      objectReference: {fileID: 0}
     - target: {fileID: 1795915858, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
