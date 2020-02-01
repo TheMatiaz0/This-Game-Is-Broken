@@ -252,7 +252,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 316321567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 538881154}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &316321567 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1759815449, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
@@ -545,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c343450df06c74e82a00c729a299df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalSize: 1.5
+  finalSize: 10
   time:
     miliseconds: 0
     seconds: 1
