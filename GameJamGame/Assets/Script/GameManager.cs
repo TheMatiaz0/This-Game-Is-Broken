@@ -12,13 +12,10 @@ using Cyberevolver.Unity;
 
 public class GameManager : AutoInstanceBehaviour<GameManager>
 {
-
-   
     [SerializeField]
     private Text scoreEntity;
     private int _Score;
-    [SerializeField]
-    private LeanTweenType scoreAnim = LeanTweenType.easeInOutBounce;
+
     public int Score
     {
         get => _Score;

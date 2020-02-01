@@ -21,4 +21,6 @@ public static class BaseCommands
 		return $"This is a test! Args are: {builder.ToString()}";
 	}
 
+
+
 }
