@@ -33,7 +33,7 @@ public class StatisticsInfo : MonoBehaviourPlus
 	
 		if (timer != null && timer.IsRunning)
 		{
-			statisticsText.text = $"<color=red>{timer.Elapsed.Hours}h, {timer.Elapsed.Minutes}m, {timer.Elapsed.Seconds}s</color> | <color=yellow>{metres} meters</color>";
+			statisticsText.text = $"<color=red>{timer.Elapsed.Hours}h, {timer.Elapsed.Minutes}m, {timer.Elapsed.Seconds}s</color>\n<color=yellow>{metres} meters</color>";
 		}
 
 	}

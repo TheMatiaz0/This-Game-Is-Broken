@@ -17,8 +17,7 @@ public class Bug : Collectable
 
     protected override void OnCollect()
 	{
-		int rndNumber = UnityEngine.Random.Range(0, (GlitchEffect.allGlitchEffects.Length));
-		PlayerController.Instance.PushBugs(GlitchEffect.allGlitchEffects[rndNumber]);
+		PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect());
 
 	}
 

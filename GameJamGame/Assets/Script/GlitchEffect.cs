@@ -9,6 +9,11 @@ public abstract class GlitchEffect
 {
     public static GlitchEffect[] allGlitchEffects;
 
+    public static GlitchEffect GetRandomGlitchEffect ()
+    {
+        return GlitchEffect.allGlitchEffects[UnityEngine.Random.Range(0, GlitchEffect.allGlitchEffects.Length)];
+    }
+
     public abstract string Description { get; }
     protected abstract void OnCancel();
     public void Cancel()
