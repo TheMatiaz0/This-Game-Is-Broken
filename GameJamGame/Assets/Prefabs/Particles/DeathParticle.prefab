@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2644786036321142610}
   - component: {fileID: 3350161828682818532}
   m_Layer: 0
-  m_Name: HammerParticle
+  m_Name: DeathParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7990820457959614184}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 45beacdbf835c344fb72cc06ea412200, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: a5590f7ef55ad084cbbbc8fd62778deb, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0

@@ -129,7 +129,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         IsDeath = true;
         Destroy(this.Rgb);
-        Instantiate(deathParticle,this.transform.position,Quaternion.identity);
+        if (deathParticle != null)
+        {
+            Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+        }
+    
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
