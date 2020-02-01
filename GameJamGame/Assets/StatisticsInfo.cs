@@ -6,7 +6,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatisticsInfo : MonoBehaviour
+public class StatisticsInfo : MonoBehaviourPlus
 {
 	[Auto]
 	public Text statisticsText { get; private set; }
@@ -15,8 +15,9 @@ public class StatisticsInfo : MonoBehaviour
     private float metres = 0;
     private float startX;
 
-	protected void Awake()
+	protected new void Awake()
 	{
+		base.Awake();
 		timer = new Stopwatch();
 		timer.Start();
 	}
@@ -27,7 +28,13 @@ public class StatisticsInfo : MonoBehaviour
 
     protected void Update ()
 	{
+
         metres = Math.Max(metres, PlayerController.Instance.transform.position.x - startX);
-		statisticsText.text = $"<color=red>{timer.Elapsed.TotalHours}h, {timer.Elapsed.TotalMinutes}m, {timer.Elapsed.TotalSeconds}s</color> | <color=yellow>{metres} meters</color>";
+	
+		if (timer != null && timer.IsRunning)
+		{
+			statisticsText.text = $"<color=red>{timer.Elapsed.Hours}h, {timer.Elapsed.Minutes}m, {timer.Elapsed.Seconds}s</color> | <color=yellow>{metres} meters</color>";
+		}
+
 	}
 }
