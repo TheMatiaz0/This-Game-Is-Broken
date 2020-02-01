@@ -114,6 +114,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         global::Console.Instance.UpdateConsole(effect.Description);
         effect.WhenCollect();
     }
+
+    public void RemoveBugs()
+    {
+        currentGlitches.Clear();
+    }
+
     public void Death()
     {
         if (IsDeath == false)

@@ -112,7 +112,7 @@ public class Generator : MonoBehaviour
             return null;
         }      
         int x = UnityEngine.Random.Range(0, findablePrefabs.Count);
-        Debug.Log(x);
+        // Debug.Log(x);
         if (Chance(findablePrefabs[x].howOften))
         {
             return findablePrefabs[x].prefab;
