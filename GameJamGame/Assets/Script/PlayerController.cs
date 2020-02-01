@@ -123,6 +123,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         global::Console.Instance.GetWriter().WriteLine(effect.Description);
         effect.WhenCollect();
     }
+
+    public void RemoveBugs()
+    {
+        currentGlitches.Clear();
+    }
+
     public void Death()
     {
         if (IsDeath == false)

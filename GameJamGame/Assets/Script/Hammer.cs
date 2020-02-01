@@ -22,7 +22,6 @@ public class Hammer : Collectable
     {
         ExplodeManager.Instance.Explode(this.transform.position);
         PlayerController.Instance.ClearRandomEffect();
-
     }
     private void Update()
     {
