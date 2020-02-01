@@ -83,6 +83,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         if (this.Rgb.velocity.y < 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
+
+        else if (hasJumped == true)
+            Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
+        
         else if (move != 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Walking);
         else
@@ -139,7 +143,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-        Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
         hasJumped = true;
     }
