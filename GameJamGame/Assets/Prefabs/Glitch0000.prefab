@@ -133,8 +133,8 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
-  bulletSpeed: 1
-  shootSpeed: 1
+  bulletSpeed: 0.33
+  shootSpeed: 0.22
   bulletPrefab: {fileID: 6355196367672478939, guid: 3c249b8bdc82cd7438c52148602c753c,
     type: 3}
   shootPoint: {fileID: 8300620370876285727}
