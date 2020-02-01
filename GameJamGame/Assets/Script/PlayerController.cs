@@ -43,19 +43,19 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     public event EventHandler OnPlayerDeath = delegate { };
- 
+
 
 
 
     private float move;
     private bool hasJumped = false;
     [SerializeField]
-   
+
     private GameObject deathParticle;
 
     private void Start()
     {
-        
+
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
@@ -73,33 +73,31 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        foreach(var item in currentGlitches)
+        foreach (var item in currentGlitches)
         {
             item.Update();
         }
-      
-        if(Input.GetKey(LeftKey))
+
+        if (Input.GetKey(LeftKey))
         {
             move = -1;
         }
-        else if(Input.GetKey(RightKey))
+        else if (Input.GetKey(RightKey))
         {
             move = 1;
         }
+
         else
         {
             move = 0;
         }
+
         move *= MovementSpeed;
         this.Sprite.flipX = (move < 0);
 
 
-        if (this.Rgb.velocity.y < 0)
+        if (Math.Abs(this.Rgb.velocity.y) > 1)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Faling);
-
-        else if (hasJumped == true)
-            Animator.SetInteger(AnimtorValueName, (int)AnimState.Jumping);
-        
         else if (move != 0)
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Walking);
         else
@@ -113,14 +111,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         global::Console.Instance.UpdateConsole(effect.Description);
         effect.WhenCollect();
     }
-    public void Death ()
+    public void Death()
     {
-        if(IsDeath==false)
+        if (IsDeath == false)
         {
-          
+
             StartCoroutine(DeathProcess());
-           
-            
+
+
         }
 
     }
@@ -140,21 +138,22 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.tag == "Ground")
         {
             hasJumped = false;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.tag == "Ground")
         {
             hasJumped = true;
         }
     }
+
 
     private void FixedUpdate()
     {
