@@ -11,5 +11,10 @@ using Cyberevolver.Unity;
 
 public class WaveSymbol : MonoBehaviourPlus
 {
+    private void Start()
+    {
+        
+    }
+   
 
 }
