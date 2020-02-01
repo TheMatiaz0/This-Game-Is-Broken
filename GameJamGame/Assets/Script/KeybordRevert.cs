@@ -13,7 +13,7 @@ public class KeybordRevert : GlitchEffect
 {
     public override string Description => "LoadKeyboardException";
 
-    protected override void OnCancel()
+    public override void Cancel()
     {
         WhenCollect();
     }

@@ -260,30 +260,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 1.0563025
-      objectReference: {fileID: 0}
-    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.7804956
-      objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_Name
       value: Wave
-      objectReference: {fileID: 0}
-    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
-        type: 3}
-      propertyPath: elementsQuanity.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
-        type: 3}
-      propertyPath: elementsQuanity.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}
@@ -707,7 +687,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1894440653}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!114 &1586163354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2855770757916798269, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
@@ -915,8 +894,6 @@ CanvasRenderer:
   m_CullTransparentMesh: 0
 =======
 >>>>>>> 8f21499844fd670d473c68454f249a638b411bc7
-=======
->>>>>>> 1f7590e320b3a7454ddcd42a324b1d0b2e7859f1
 --- !u!1 &1746972258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 1795915858, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1586163354}
     - target: {fileID: 1795915858, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit

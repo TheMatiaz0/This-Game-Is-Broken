@@ -6,7 +6,7 @@ public class Rotation180Screen : GlitchEffect
 {
 	public override string Description => "Screen_Out_Of_Index_Exception";
 
-	protected override void OnCancel()
+	public override void Cancel()
 	{
 		WhenCollect();
 	}
