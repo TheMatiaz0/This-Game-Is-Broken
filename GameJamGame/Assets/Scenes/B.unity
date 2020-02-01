@@ -928,6 +928,11 @@ PrefabInstance:
       propertyPath: gameOverManager
       value: 
       objectReference: {fileID: 619043654}
+    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
+        type: 3}
+      propertyPath: startRespPoint
+      value: 
+      objectReference: {fileID: 487744617}
     - target: {fileID: 996109581129873833, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Sprite
@@ -1127,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}
