@@ -17,8 +17,8 @@ public class ExplosionElement : MonoBehaviourPlus
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Bug bug;
-        if ((bug = collision.GetComponent<Bug>()) != null)
+        ActiveElement bug;
+        if ((bug = collision.GetComponent<ActiveElement>()) != null&&bug.IsBad)
         {
             bug.Rgb.bodyType = RigidbodyType2D.Dynamic;
             bug.GetComponent<Collider2D>().enabled = false;
