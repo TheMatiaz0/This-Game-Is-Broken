@@ -3,6 +3,4 @@ This Game Is Broken
 Infinite walker, where you have to repair broken game using hammer. Be careful for spikes, traps, bugs and other glitchy things.
 
 
-
-
-
+Infinite walking platformer, where you have to run from the Deadly Wall Of Bugs. The game will not make it easy for you, because it's broken! But don't worry, you can repair it.
