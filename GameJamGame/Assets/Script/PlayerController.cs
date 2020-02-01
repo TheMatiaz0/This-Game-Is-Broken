@@ -26,7 +26,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (currentGlitches.Count!=0)
         {
-            currentGlitches.RemoveAt(UnityEngine.Random.Range(0, currentGlitches.Count));
+            var index = UnityEngine.Random.Range(0, currentGlitches.Count);
+            currentGlitches[index].Cancel();
+            currentGlitches.RemoveAt(index);
+          
+
         }
     }
 
@@ -153,6 +157,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Source.PlayOneShot(repairSound);
         ClearRandomEffect();
+
     }
 
     public void Death()
