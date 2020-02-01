@@ -30,7 +30,7 @@ public class WaveLook : AutoInstanceBehaviour<WaveLook>
 
 
 
-    private Sprite GetRandomSprite()
+    public Sprite GetRandomSprite()
     {
         if (sprites.Length == 0)
             return null;
@@ -47,7 +47,7 @@ public class WaveLook : AutoInstanceBehaviour<WaveLook>
             {
                 var obj = Instantiate(prefab, (Vector2)this.transform.position + new Vector2(x, y), Quaternion.identity);
 
-                obj.sprite = GetRandomSprite();
+                obj.gameObject.AddComponent<WaveSymbol>();
                 elements[i] = obj;
 
 
