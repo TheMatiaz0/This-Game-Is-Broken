@@ -9,7 +9,7 @@ using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
 
-public class WaveLook : MonoBehaviourPlus
+public class WaveLook : AutoInstanceBehaviour<WaveLook>
 {
 
     [SerializeField]
@@ -29,6 +29,15 @@ public class WaveLook : MonoBehaviourPlus
     private SpriteRenderer[] elements;
 
 
+
+    private Sprite GetRandomSprite()
+    {
+        if (sprites.Length == 0)
+            return null;
+        else
+            return sprites[UnityEngine.Random.Range(0, sprites.Length)];
+    }
+
     private void Generate()
     {
         elements = new SpriteRenderer[elementsQuanity.x * elementsQuanity.y];
@@ -38,15 +47,22 @@ public class WaveLook : MonoBehaviourPlus
             {
                 var obj = Instantiate(prefab, (Vector2)this.transform.position + new Vector2(x, y), Quaternion.identity);
 
-               // elements[i]
+                obj.sprite = GetRandomSprite();
+                elements[i] = obj;
+
 
             }
+    }
+    private void Start()
+    {
+        Generate();
+
     }
     protected override void OnGUI()
     {
         base.OnGUI();
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(this.transform.position, elements * elementSize);
+        Gizmos.DrawCube(this.transform.position, elementsQuanity * elementSize);
 
     }
 }
