@@ -19,11 +19,17 @@ public class Collectable : ActiveElement
     [SerializeField]
     [Foldout(EventFold)]
     private UnityEvent onCollect;
-
+    private bool wasCollect;
     protected sealed override void OnColidWithPlayer(PlayerController player)
     {
+        if(wasCollect)
+        {
+            return;
+        }
+        wasCollect = true;
         GameManager.Instance.AddScore(score);
         onCollect.Invoke();
+   
         OnCollect();
         DestroyWithEffect();
        

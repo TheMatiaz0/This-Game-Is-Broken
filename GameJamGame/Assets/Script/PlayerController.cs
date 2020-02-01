@@ -97,6 +97,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         currentGlitches.Add(effect);
+        global::Console.Instance.UpdateConsole(effect.Description);
         effect.WhenCollect();
     }
     public void Death ()

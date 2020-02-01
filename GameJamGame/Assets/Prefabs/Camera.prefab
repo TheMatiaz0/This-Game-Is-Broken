@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookaheadTime: 0
+  m_LookaheadTime: 0.1
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_ScreenX: 0.3
   m_ScreenY: 0.67
   m_CameraDistance: 5
-  m_DeadZoneWidth: 0.22
+  m_DeadZoneWidth: 0.14
   m_DeadZoneHeight: 0.17
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
