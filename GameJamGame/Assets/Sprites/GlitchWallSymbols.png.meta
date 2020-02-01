@@ -1,0 +1,499 @@
+fileFormatVersion: 2
+guid: 742a977518c2564478aebfaa71415b32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6016753568982655055
+    second: GlitchWallSymbols_0
+  - first:
+      213: -8457321512729611563
+    second: GlitchWallSymbols_1
+  - first:
+      213: 5426228629222143413
+    second: GlitchWallSymbols_2
+  - first:
+      213: 4954973673416384799
+    second: GlitchWallSymbols_3
+  - first:
+      213: 6975255312887109877
+    second: GlitchWallSymbols_4
+  - first:
+      213: 4041917157467556537
+    second: GlitchWallSymbols_5
+  - first:
+      213: -8889641095500195262
+    second: GlitchWallSymbols_6
+  - first:
+      213: 5382776810158441414
+    second: GlitchWallSymbols_7
+  - first:
+      213: -1835920617202656314
+    second: GlitchWallSymbols_8
+  - first:
+      213: 915141001696227415
+    second: GlitchWallSymbols_9
+  - first:
+      213: -2570666885961893467
+    second: GlitchWallSymbols_10
+  - first:
+      213: -1030047432260138378
+    second: GlitchWallSymbols_11
+  - first:
+      213: 237304824443390303
+    second: GlitchWallSymbols_12
+  - first:
+      213: 1147064592066043435
+    second: GlitchWallSymbols_13
+  - first:
+      213: -8354486311206226812
+    second: GlitchWallSymbols_14
+  - first:
+      213: -6064736269533852844
+    second: GlitchWallSymbols_15
+  - first:
+      213: 8662907451472583364
+    second: GlitchWallSymbols_16
+  - first:
+      213: 5881112765733894611
+    second: GlitchWallSymbols_17
+  - first:
+      213: 8047176342527579777
+    second: GlitchWallSymbols_18
+  - first:
+      213: -5947712963257991928
+    second: GlitchWallSymbols_19
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GlitchWallSymbols_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40664c2e7dcf7350800000000000000
+      internalID: 6016753568982655055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d27b7a94ee81aa80800000000000000
+      internalID: -8457321512729611563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b537da5036dd4b40800000000000000
+      internalID: 5426228629222143413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11656bad4a93c440800000000000000
+      internalID: 4954973673416384799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8da4620c51dc060800000000000000
+      internalID: 6975255312887109877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ba096e5d36c71830800000000000000
+      internalID: 4041917157467556537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 44
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a1ff1e586a1a480800000000000000
+      internalID: -8889641095500195262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_7
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 44
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c344ba5df673ba40800000000000000
+      internalID: 5382776810158441414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9b1625618235cd0800000000000000
+      internalID: -2570666885961893467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ac45a515984b1f0800000000000000
+      internalID: -1030047432260138378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f594f640b731b4300800000000000000
+      internalID: 237304824443390303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e56884b213bef00800000000000000
+      internalID: 1147064592066043435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48470b3c6f6ee0c80800000000000000
+      internalID: -8354486311206226812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_15
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45bc106ce7ab5dba0800000000000000
+      internalID: -6064736269533852844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_16
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 4
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca9b17dd64d83870800000000000000
+      internalID: 8662907451472583364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlitchWallSymbols_17
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d97595a6e8ed9150800000000000000
+      internalID: 5881112765733894611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
