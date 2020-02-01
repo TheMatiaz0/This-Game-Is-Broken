@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Rotation180Screen : GlitchEffect
 {
-	public override string Description => "ScreenOutOfIndexException";
+	public override string Description => "Screen_Out_Of_Index_Exception";
+
+	public override void Cancel()
+	{
+		WhenCollect();
+	}
 
 	public override void WhenCollect()
 	{
-		Camera.main.transform.rotation = Camera.main.transform.rotation.Add(180);
+		LeanTween.rotate(Camera.main.gameObject, Camera.main.transform.rotation.eulerAngles + new Vector3(0, 180, 180), 2f);
+		// Camera.main.transform.rotation = Camera.main.transform.rotation.Add(new Vector3(0, 180, 180));
 	}
 }

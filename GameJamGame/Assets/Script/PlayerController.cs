@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cyberevolver.Unity;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
@@ -15,6 +16,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Faling = 2,
         Jumping = 3
     }
+    private bool isWalkSound = false;
     public KeyCode JumpKey { get; set; } = KeyCode.Space;
     public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
     public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
@@ -52,6 +54,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     public event EventHandler OnPlayerDeath = delegate { };
+    private float timeOnStart;
+
+
 
     [Auto]
     public AudioSource Source { get; private set; }
@@ -82,9 +87,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private GameObject deathParticle;
     private bool canJump;
 
+    public float SceneTime => Time.time - timeOnStart;
     private void Start()
     {
-
+        timeOnStart = Time.time;
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
@@ -214,7 +220,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Move()
     {
-        // Source.PlayOneShot(walkSound);
         Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
+        /*
+        isWalkSound = true;
+        base.Invoke(
+            () =>
+            {
+                isWalkSound = false;
+                Source.PlayOneShot(walkSound);
+                //
+            }, 1);
+            */
+        
     }
 }
