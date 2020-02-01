@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class Wave : ActiveElement
 {
+    public static Wave Instance { get; protected set; }
     [field: SerializeField]
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
@@ -20,6 +21,13 @@ public class Wave : ActiveElement
     [field: SerializeField]
     [field: MinMaxRange(0.09f, 1)]
     public float TimeDivider { get; private set; } = 0.3f;
+    public bool End { get; private set; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Instance = this;
+    }
     public float GetSpeedForTime(float time)
     {
         const float minRange = 3f / 4;
@@ -29,6 +37,8 @@ public class Wave : ActiveElement
     }
     protected virtual void FixedUpdate()
     {
+        if (End)
+            return;
         float speed = GetSpeedForTime(Time.time);
         var change = Direction.ToVector2() * speed;
         this.Rgb.MovePosition((Vector2)this.transform.position + change);
@@ -36,8 +46,10 @@ public class Wave : ActiveElement
     }
     protected override void OnColidWithPlayer(PlayerController player)
     {
+        
         player.Death();
     }
+   
 
 
 
