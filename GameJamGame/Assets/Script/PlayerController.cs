@@ -2,26 +2,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
-
-    private class TypeComparer<T> : IEqualityComparer<T>
-    {
-        public bool Equals(T x, T y)
-        {
-            return x.GetType().Equals(y.GetType());
-        }
-
-        public int GetHashCode(T obj)
-        {
-            return obj.GetType().GetHashCode();
-        }
-    }
-
     public bool IsDeath { get; private set; }
     public enum AnimState
     {
@@ -42,9 +27,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (currentGlitches.Count!=0)
         {
             var index = UnityEngine.Random.Range(0, currentGlitches.Count);
-            GlitchEffect effects = currentGlitches.Skip(index).First();
-            effects.Cancel();
-            currentGlitches.Remove(effects);
+            currentGlitches[index].Cancel();
+            currentGlitches.RemoveAt(index);
           
 
         }
@@ -55,7 +39,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public Animator Animator { get; private set; }
     [Auto]
     public Rigidbody2D Rgb { get; set; }
-    private readonly HashSet<GlitchEffect> currentGlitches = new HashSet<GlitchEffect>(new TypeComparer<GlitchEffect>());
+    private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
+
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
     public float MovementSpeed { get; private set; } = 0.11f;
 
@@ -163,13 +148,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         Source.PlayOneShot(glitchSound);
-        if(currentGlitches.Contains(effect)==false)
-        {
-            currentGlitches.Add(effect);
-            global::Console.Instance.GetWriter().WriteLine(effect.Description);
-            effect.WhenCollect();
-        }
-        
+        currentGlitches.Add(effect);
+        global::Console.Instance.GetWriter().WriteLine(effect.Description);
+        effect.WhenCollect();
     }
 
     public void HammerUsage()

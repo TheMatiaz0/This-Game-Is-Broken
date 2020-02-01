@@ -12,7 +12,6 @@ using Cyberevolver.Unity;
 
 
 
-
 public class GameManager : AutoInstanceBehaviour<GameManager>
 {
     [SerializeField]
