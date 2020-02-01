@@ -7,13 +7,7 @@ public class Spike : ActiveElement
     public override bool IsBad =>true;
     protected override void OnColidWithPlayer(PlayerController player)
     {
-
         PlayerController.Instance.Kill();
     }
-    public override void OnExplode()
-    {
-        base.OnExplode();
-        SpawnDeathParticles();
-
-    }
+   
 }
