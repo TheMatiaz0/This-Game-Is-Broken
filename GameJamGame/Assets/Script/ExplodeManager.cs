@@ -32,6 +32,9 @@ public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
         GameObject g = Instantiate(explodePrefab).gameObject;
         g.transform.position = pos;
 
+
+      
+
         LeanTween.scale(g, new Vector2(finalSize, finalSize), (float)time.TimeSpan.TotalSeconds)
             .setOnComplete(() => Destroy(g));
 

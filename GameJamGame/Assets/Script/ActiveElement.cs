@@ -12,6 +12,8 @@ using UnityEngine.Events;
 
 public abstract class ActiveElement : MonoBehaviourPlus
 {
+    
+
     public abstract bool IsBad { get; }
     [SerializeField]
     private bool fakeDestroy;
@@ -43,7 +45,10 @@ public abstract class ActiveElement : MonoBehaviourPlus
             OnColidWithPlayer(player);
         }
     }
-   
+    public virtual void OnExplode()
+    {
+         
+    }
     public void DestroyWithEffect()
     {
         if (IsKilled)
