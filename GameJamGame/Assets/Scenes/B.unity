@@ -1047,5 +1047,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.seconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.precision
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}

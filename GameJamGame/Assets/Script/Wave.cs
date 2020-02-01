@@ -12,12 +12,16 @@ using UnityEngine.SceneManagement;
 
 public class Wave : ActiveElement
 {
-    public static Wave Instance { get; protected set; }
     [field: SerializeField]
+  
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
+    [field: BoxGroup(SpeedName)]
     [field: MinMaxSlider(1, 100)]
     public Range MinMaxSpeed { get; private set; } = new Range(1, 8);
+    private const string SpeedName = "Speed";
+    public static Wave Instance { get; protected set; }
+    [field: BoxGroup(SpeedName)]
     [field:SerializeField]
     public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; }
     = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
@@ -31,8 +35,8 @@ public class Wave : ActiveElement
     }
     public float GetSpeedForTime(float time)
     {
-        Percent percent= time / (float)WhenSpeedWillBeMax.TimeSpan.TotalSeconds;
-        return (MinMaxSpeed.Max*percent.AsFloatValue)+MinMaxSpeed.Min;
+        float percent =(float) Math.Min(time / (float)WhenSpeedWillBeMax.TimeSpan.TotalSeconds,1);
+        return (MinMaxSpeed.Max*percent)+MinMaxSpeed.Min;
 
     }
     protected virtual void FixedUpdate()
@@ -41,7 +45,7 @@ public class Wave : ActiveElement
             return;
         float speed = GetSpeedForTime(Time.time);
         var change = Direction.ToVector2() * speed;
-        this.Rgb.MovePosition((Vector2)this.transform.position + change);
+        this.Rgb.velocity = change;
 
     }
     protected override void OnColidWithPlayer(PlayerController player)
