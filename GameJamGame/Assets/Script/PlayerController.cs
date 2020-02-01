@@ -1,4 +1,5 @@
 ﻿using Cyberevolver.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
-
+    public bool IsDeath { get; private set; }
     public enum AnimState
     {
         Idle = 0,
@@ -70,7 +71,21 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void Death ()
     {
-        gameOverManager.EnableMenuWithPause(true);
+        if(IsDeath==false)
+        {
+            IsDeath = true;
+         
+           
+            
+        }
+
+    }
+    private IEnumerator DeathProcess()
+    {
+        this.Rgb.Sleep();
+        yield return Async.Wait(TimeSpan.FromSeconds(1));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
