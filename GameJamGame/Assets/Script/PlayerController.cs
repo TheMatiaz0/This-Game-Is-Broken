@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
+public sealed class PlayerController : ActiveElement
 {
     public bool IsDeath { get; private set; }
     public enum AnimState
@@ -41,13 +41,19 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public Transform StartRespPoint => startRespPoint;
 
+    public static PlayerController Instance { get; private set; }
 
+    protected override void Awake()
+    {
+        Instance = this;
+    }
 
     private float move;
     private bool hasJumped = false;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
