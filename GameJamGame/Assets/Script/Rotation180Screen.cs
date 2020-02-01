@@ -19,6 +19,7 @@ public class Rotation180Screen : GlitchEffect
         var beforeLookAt = cinema.LookAt;
         cinema.LookAt = null;
 
+
         LeanTween.rotate(main.gameObject, main. transform.rotation.eulerAngles + new Vector3(0, 180, 180), 2f)
             .setOnComplete(()=>cinema.LookAt=beforeLookAt);
 
