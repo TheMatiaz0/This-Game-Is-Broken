@@ -14,7 +14,7 @@ public class Obstacle : MonoBehaviourPlus
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet;
-        if((bullet= collision.GetComponent<Bullet>())!=null)
+        if ((bullet = collision.GetComponent<Bullet>()) != null)
         {
             bullet.DestroyWithEffect();
         }
