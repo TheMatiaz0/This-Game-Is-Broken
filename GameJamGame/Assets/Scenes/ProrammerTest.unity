@@ -151,7 +151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c343450df06c74e82a00c729a299df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  finalSize: 10
+  time:
+    miliseconds: 0
+    seconds: 0
+    minutes: 0
+    hour: 0
+    day: 0
+    precision: 0
+  explodePrefab: {fileID: 0}
 --- !u!114 &34595062
 MonoBehaviour:
   m_ObjectHideFlags: 0
