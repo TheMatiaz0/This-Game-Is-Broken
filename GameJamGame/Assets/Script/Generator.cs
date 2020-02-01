@@ -1,11 +1,31 @@
-﻿using Cyberevolver.Unity;
+﻿using Cyberevolver;
+using Cyberevolver.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-  
+
+
+
+
+    [ShowCyberInspector]
+    [Serializable]
+    public struct FindableItemInfo
+    {
+        [field: SerializeField]
+        [field: AssetOnly]
+        public GameObject prefab; 
+        [field: SerializeField]
+        public Percent howOften; 
+    }
+    [SerializeField]
+    [WindowArray]
+    private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
+
     [SerializeField]
     private GameObject blockPrefab;
     [SerializeField] 
@@ -27,26 +47,50 @@ public class Generator : MonoBehaviour
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
     private float lastX=0;
     public float GenerateOneLine( float fromX)
-    {
-        
-        GameObject[] objs = new GameObject[10];
-        
+    {       
+        GameObject[] objs = new GameObject[10];       
         for(int x=0;x< blockInOneShoot; x++)
-        {
-          
-          
+        {   
             objs[x] = PutBlock(new Vector2( fromX + x, startRespPoint.position.y)) ;
 
         }
-
         blocksPacks.Enqueue(objs);
         return fromX + blockInOneShoot;
 
     }
+    public GameObject GetRandomStuff()
+    {
+        if (findablePrefabs.Count == 0)
+            return null;
+        float max = findablePrefabs.Sum(item => item.howOften.AsFloatValue);
+        float val= UnityEngine.Random.Range(0, max);
+        float full = 0;
+        for(int x=0;x<=val;x++)
+        {
+            if (full <= val)
+                return findablePrefabs[x].prefab;
+            full += findablePrefabs[x].howOften.AsFloatValue;
+        }
+        return null;
+
+    }
     public GameObject PutBlock(Vector2 pos)
     {
+
+      
+
         var block = Instantiate(blockPrefab);
         block.transform.position = pos;
+        if (UnityEngine.Random.Range(0, 4) == 0)
+        {
+            var prefab = GetRandomStuff();
+            if(prefab!=null)
+            {
+                GameObject item = Instantiate(prefab);
+                item.transform.position = (Vector2)block.transform.position + Vector2.up;
+            }
+            
+        }
         return block;
 }
     public float GenerateChunk(float fromX,Range range)
@@ -54,7 +98,7 @@ public class Generator : MonoBehaviour
         float result= GenerateOneLine(fromX);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
-        for(float y=range.Min+1;y<range.Max;y++)
+        for(float y=range.Min+2/*No in basic line and no one cube over basic line*/;y<range.Max;y++)
         {
             if(UnityEngine.Random.Range(0,3)==0)
             {
@@ -66,10 +110,11 @@ public class Generator : MonoBehaviour
                         break;
                     else
                     {
-                       blocks.Add( PutBlock(pos));
+                        blocks.Add(PutBlock(pos));
                         busy.Add(pos);
                     }
                 }
+                y += lenght;
             }
         }
         blocksPacks.Enqueue(blocks.ToArray());
@@ -77,8 +122,8 @@ public class Generator : MonoBehaviour
     }
     private void Start()
     {
-        GenerateChunk(startRespPoint.position.x-blockInOneShoot, YRange);
-        lastX = startRespPoint.position.x;
+      
+        lastX = GenerateOneLine(startRespPoint.position.x);
         lastX = GenerateChunk(lastX, YRange); ;
         
     }
@@ -86,14 +131,15 @@ public class Generator : MonoBehaviour
     {
         if(PlayerController.Instance.transform.position.x>(lastX)-howFastGenerate)
         {
-            lastX= GenerateChunk(lastX, YRange);
-            if(blocksPacks.Count>= whenRemove)
+           
+            while(blocksPacks.Count>= whenRemove)
             {
                foreach(var item in  blocksPacks.Dequeue())
                 {
                     Destroy(item.gameObject);
                 }
             }
+            lastX = GenerateChunk(lastX, YRange);
         }
     }
 
