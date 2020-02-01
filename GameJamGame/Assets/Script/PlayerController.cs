@@ -21,11 +21,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [Auto]
     public Rigidbody2D Rgb { get; set; }
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
+
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
     public float MovementSpeed { get; private set; } = 0.11f;
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
     public float JumpMultiple { get; private set; }
+
+    [SerializeField]
+    private FreezeMenu gameOverManager = null;
 
 
 
@@ -50,6 +54,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Animator.SetInteger(AnimtorValueName, (int)AnimState.Idle);
 
 
+    }
+
+    public void Death ()
+    {
+        gameOverManager.EnableMenuWithPause(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

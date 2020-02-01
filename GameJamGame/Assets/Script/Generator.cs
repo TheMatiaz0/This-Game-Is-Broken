@@ -70,6 +70,7 @@ public class Generator : MonoBehaviour
         if (findablePrefabs.Count == 0)
             return null;
 
+        /*
         foreach (var item in findablePrefabs)
         {
             if (Chance(item.howOften))
@@ -77,20 +78,19 @@ public class Generator : MonoBehaviour
                 return item.prefab;
             }
         }
+        */
 
         
 
-        // float max = findablePrefabs.Sum(item => item.howOften.AsFloatValue);
-        // float val = UnityEngine.Random.Range(0, max);
-        // float full = 0;
-        /*
+        float max = findablePrefabs.Sum(item => item.howOften.AsFloatValue);
+        float val = UnityEngine.Random.Range(0, max);
+        float full = 0;
         for (int x = 0; x <= val; x++)
         {
             if (full <= val)
                 return findablePrefabs[x].prefab;
             full += findablePrefabs[x].howOften.AsFloatValue;
         }
-        */
         return null;
 
     }

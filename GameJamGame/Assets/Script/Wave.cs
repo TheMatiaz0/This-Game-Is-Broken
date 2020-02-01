@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Cyberevolver;
+using Cyberevolver.Unity;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Cyberevolver;
-using Cyberevolver.Unity;
 using UnityEngine.SceneManagement;
 
-public  class Wave : ActiveElement
+public class Wave : ActiveElement
 {
-    
-
-   
     [field: SerializeField]
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
@@ -27,11 +24,11 @@ public  class Wave : ActiveElement
     {
         const float minRange = 3f / 4;
         const float maxRange = 1f;
-        float raw = (float)(Math.Tanh(time/ TimeDivider));
-        return LimitedSpeed* (minRange + raw * (maxRange - minRange));
+        float raw = (float)(Math.Tanh(time / TimeDivider));
+        return LimitedSpeed * (minRange + raw * (maxRange - minRange));
     }
     protected virtual void FixedUpdate()
-    {      
+    {
         float speed = GetSpeedForTime(Time.time);
         var change = Direction.ToVector2() * speed;
         this.Rgb.MovePosition((Vector2)this.transform.position + change);
@@ -39,7 +36,7 @@ public  class Wave : ActiveElement
     }
     protected override void OnColidWithPlayer(PlayerController player)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        player.Death();
     }
 
 

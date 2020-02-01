@@ -19,7 +19,7 @@ namespace Cyberevolver.Unity
 		[SerializeField] private FreezeMenu[] blockOtherFreezes = null;
 		[SerializeField] private bool isInitialization = true;
 
-		[SerializeField] private Transform parent = null;
+		[SerializeField, EnableWhen(nameof(isInitialization), Equaler.Equal, true)] private Transform parent = null;
 		public bool IsPaused { get; private set; } = false;
 
 		[SerializeField] private UnityEvent afterBeingPaused = null;
@@ -75,14 +75,17 @@ namespace Cyberevolver.Unity
 				{
 					Destroy(tempChild);
 				}
+
 			}
 
 			else
 			{
+				tempChild = objectToOpen;
 				tempChild.SetActive(to);
 				TimeManipulate(to);
 			}
 
+			// LeanTween.alpha(tempChild, 1f, 25f);
 		}
 
 		private bool TimeManipulate(bool isTrue)
@@ -94,7 +97,7 @@ namespace Cyberevolver.Unity
 
 			else
 			{
-				GlobalTime.Current.AddLockers(o);
+				GlobalTime.Current.RemoveLocker(o);
 			}
 
 			return isTrue;
