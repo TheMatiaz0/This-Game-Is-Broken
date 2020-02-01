@@ -85,6 +85,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private Transform minimalYSurvival;
 
+    [SerializeField]
+    private Transform maximumYSurvival;
+
 
     private float move;
     
@@ -104,7 +107,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
-        if (transform.position.y <= minimalYSurvival.transform.position.y)
+        if (transform.position.y <= minimalYSurvival.transform.position.y || transform.position.y >= maximumYSurvival.transform.position.y)
         {
             Death();
             return;
@@ -173,6 +176,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (IsDeath == false)
         {
+            UIHider hider = Camera.main.GetComponent<UIHider>();
+            hider.HideUI(true);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());
@@ -189,8 +194,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Instantiate(deathParticle, this.transform.position, Quaternion.identity);
         }
         this.Sprite.enabled = false;
-        yield return Async.Wait(TimeSpan.FromSeconds(1));
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return Async.Wait(TimeSpan.FromSeconds(3));
+
 
     }
 
