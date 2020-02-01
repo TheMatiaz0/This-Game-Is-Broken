@@ -12,7 +12,8 @@ using UnityEngine.Events;
 
 public abstract class ActiveElement : MonoBehaviourPlus
 {
-
+    [SerializeField]
+    private bool fakeDestroy;
     protected const string EventFold = "Events";
 
     [Auto]
@@ -31,7 +32,6 @@ public abstract class ActiveElement : MonoBehaviourPlus
     protected virtual void OnKill() { }
     protected virtual void Start()
     {
-        
         Rgb.bodyType = RigidbodyType2D.Kinematic;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -40,8 +40,6 @@ public abstract class ActiveElement : MonoBehaviourPlus
         if((player= collision.GetComponent<PlayerController>())!=null)
         {
             OnColidWithPlayer(player);
-           
-           
         }
     }
    
@@ -54,7 +52,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
         if (onKillPrefab != null)
             Instantiate(onKillPrefab).transform.position = this.transform.position;
         onKilled.Invoke();
-        Destroy(this.gameObject);
+        if (fakeDestroy == false)
+            Destroy(this.gameObject);
         
     }
 }

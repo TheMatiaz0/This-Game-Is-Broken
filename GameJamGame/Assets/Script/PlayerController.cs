@@ -41,8 +41,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public Transform StartRespPoint => startRespPoint;
 
-    
 
+    public event EventHandler OnPlayerDeath = delegate { };
  
 
 
@@ -128,6 +128,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
 
         IsDeath = true;
+        OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
         if (deathParticle != null)
         {
@@ -136,8 +137,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         this.Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(1));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-
 
     }
 
@@ -149,8 +148,21 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            hasJumped = true;
+        }
+    }
+
     private void FixedUpdate()
     {
+        if (IsDeath == true)
+        {
+            return;
+        }
+
         Move();
 
         if (Input.GetKeyDown(JumpKey))
@@ -167,7 +179,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             return;
         }
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
-        hasJumped = true;
     }
 
     private void Move()
