@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class Wave : ActiveElement
 {
     [field: SerializeField]
-    [field: BoxGroup(SpeedName)]
+  
     public Direction Direction { get; private set; } = Direction.Right;
     [field: SerializeField]
     [field: BoxGroup(SpeedName)]
@@ -21,7 +21,7 @@ public class Wave : ActiveElement
     public Range MinMaxSpeed { get; private set; } = new Range(1, 8);
     private const string SpeedName = "Speed";
     public static Wave Instance { get; protected set; }
-   
+    [field: BoxGroup(SpeedName)]
     [field:SerializeField]
     public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; }
     = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
