@@ -8,9 +8,14 @@ public class Console : AutoInstanceBehaviour<Console>
 {
 	[SerializeField] private Text outputText = null;
 
-	public void UpdateConsole (string newText)
+	public void UpdateConsole (string addText)
 	{
-		outputText.text += $"{newText}\n";
+		outputText.text += $"{addText}\n";
+	}
+
+	public void ReplaceTextConsole (string newText)
+	{
+		outputText.text = newText;
 	}
 
 }
