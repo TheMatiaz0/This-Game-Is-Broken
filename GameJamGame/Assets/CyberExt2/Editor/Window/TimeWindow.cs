@@ -34,6 +34,7 @@ namespace Cyberevolver.EditorUnity
            
             scrol = EditorGUILayout.BeginScrollView(scrol,false,true);
             Time.timeScale = EditorGUILayout.FloatField("Time Scale", Time.timeScale);
+            Application.targetFrameRate = EditorGUILayout.IntField("Max Frame Rate", Application.targetFrameRate);
             GUI.enabled=false;
             MakeField("Time", Time.time);
             MakeField("Unscaled Time", Time.unscaledTime);

@@ -12,7 +12,8 @@ using Cyberevolver.Unity;
 public class BugShooter : ActiveElement
 {
     public override bool IsBad => true;
-
+    [SerializeField]
+    private Collider2D headCollider;
     [SerializeField]
     [Range(0.1f, 45)]
     public float seeLenght = 3f;
@@ -31,6 +32,9 @@ public class BugShooter : ActiveElement
     public SpriteRenderer Renderer { get; private set; }
     [Auto]
     public Animator Animator { get; private set; }
+
+    private Collider2D heroCollider;
+
     public void Shoot(Direction dir)
     {
         var bullet= Instantiate(bulletPrefab, this.shootPoint.transform.position, Quaternion.identity);
@@ -40,6 +44,7 @@ public class BugShooter : ActiveElement
     protected override void Start()
     {
         base.Start();
+        heroCollider= PlayerController.Instance.GetComponent<Collider2D>();
         StartCoroutine(Shooting());
     }
     private IEnumerator Shooting()
@@ -53,10 +58,8 @@ public class BugShooter : ActiveElement
             {
                 Animator.SetTrigger("shoot");
                 Shoot((Direction)difference);
+                
             }
-
-
-              
         }
     }
   
@@ -64,9 +67,22 @@ public class BugShooter : ActiveElement
     {
         PlayerController.Instance.Kill();
     }
+
     public override void OnExplode()
     {
         Animator.SetTrigger("isDead");
   
+    }
+    protected override void OnKill()
+    {
+        Animator.SetTrigger("isDead"); 
+    }
+    private void Update()
+    {
+        if(headCollider.IsTouching(heroCollider))
+        {
+            this.DestroyWithEffect();
+            this.GetComponent<Collider2D>().enabled = false;
+        }
     }
 }

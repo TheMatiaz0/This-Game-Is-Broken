@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeDestroy: 0
-  onKillPrefab: {fileID: 0}
+  onKillPrefab: {fileID: 7959714611182668746, guid: e82840950b6135f478cc190ee235d609,
+    type: 3}
   onKilled:
     m_PersistentCalls:
       m_Calls: []
@@ -107,8 +108,6 @@ MonoBehaviour:
   onCollect:
     m_PersistentCalls:
       m_Calls: []
-  specialGlitchEffect:
-    _classRef: Rotation180Screen, Assembly-CSharp
 --- !u!61 &5538117781444494133
 BoxCollider2D:
   m_ObjectHideFlags: 0
