@@ -193,10 +193,13 @@ MonoBehaviour:
       _Value: 0.9539999961853027
   chanceForBlankBlock:
     _Value: 0.07000000029802322
+  chanceForUpperPlatform:
+    _Value: 0.25
   blockInOneShoot: 10
   howFastGenerate: 9
   whenRemove: 6
   howOftenCanHaveItem: 2
+  platformsSize: {x: 2, y: 6}
   blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
     type: 3}
   edges:
