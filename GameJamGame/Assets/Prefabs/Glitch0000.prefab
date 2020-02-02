@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06525993, y: 0.33182436}
@@ -191,7 +191,7 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
-  headCollider: {fileID: 0}
+  headCollider: {fileID: 2772545428694721470}
   seeLenght: 7
   BounceForce: 700
   bulletSpeed: 5
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0037384033, y: -0.2417928}
+  m_Offset: {x: 0.0037384033, y: -0.12755811}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36417007, y: 0.4071076}
+  m_Size: {x: 0.36417007, y: 0.63557696}
   m_EdgeRadius: 0
 --- !u!50 &8300620371891373756
 Rigidbody2D:
