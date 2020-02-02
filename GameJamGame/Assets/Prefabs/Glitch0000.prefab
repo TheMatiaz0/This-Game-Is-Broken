@@ -193,7 +193,8 @@ MonoBehaviour:
       m_Calls: []
   headCollider: {fileID: 2772545428694721470}
   seeLenght: 7
-  BounceForce: 700
+  bounceForce: 350
+  scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.3
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
