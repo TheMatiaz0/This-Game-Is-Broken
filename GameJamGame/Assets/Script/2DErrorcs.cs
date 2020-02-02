@@ -17,13 +17,12 @@ public class _2DErrorcs : GlitchEffect
 
     protected override void OnCancel()
     {
-        PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 0, 0);
+        PlayerController.Instance.Cam.transform.rotation = PlayerController.Instance.Cam.transform.rotation.Add(new Vector3(0, -40, 0));
     }
 
    
     public override void WhenCollect()
     {
-        PlayerController.Instance.RestoreRotate();
-        PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 30, 0);
+        PlayerController.Instance.Cam.transform.rotation= PlayerController.Instance.Cam.transform.rotation.Add(new Vector3(0, 40, 0));
     }
 }

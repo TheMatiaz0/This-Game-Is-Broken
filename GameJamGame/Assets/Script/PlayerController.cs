@@ -65,10 +65,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     [SerializeField]
     private Camera cam;
+    public Camera Cam => cam;
 
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera virtualCam;
-    public Vector3 PrefferedCameraRotate { get; set; }
+    public Cinemachine.CinemachineVirtualCamera Virtual => virtualCam;
+
     public float PrefferedCameraZoom { get; set; }
     [Auto]
     public AudioSource Source { get; private set; }
@@ -247,9 +249,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
 
-        if (AsInt(cam.transform.rotation.eulerAngles) != AsInt(PrefferedCameraRotate))
-            for (int x = 0; x < 4; x++)
-                cam.transform.rotation = cam.transform.rotation.Add((PrefferedCameraRotate - cam.transform.rotation.eulerAngles).normalized);
         if ((int)(virtualCam.m_Lens.FieldOfView) != (int)(PrefferedCameraZoom))
             virtualCam.m_Lens.FieldOfView += (PrefferedCameraZoom - virtualCam.m_Lens.FieldOfView) / 3;
 
@@ -261,11 +260,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Jump();
         }
     }
-
     public void RestoreRotate()
     {
         virtualCam.transform.rotation = Quaternion.Euler(PrefferedCameraRotate);
     }
+    
     private void Jump()
     {
         if (canJump == false)
