@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 8495895908473120969}
   m_Layer: 5
   m_Name: Points
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1108,7 +1108,7 @@ GameObject:
   - component: {fileID: 7108790881299862056}
   m_Layer: 5
   m_Name: Console
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

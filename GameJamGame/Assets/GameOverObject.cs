@@ -12,16 +12,16 @@ public class GameOverObject : MonoBehaviour
 	protected void OnEnable()
 	{
 		ownFreezeMenu.EnableMenuWithPause(true);
-	}
+		}
 
 
-	public void Retry ()
+	public void Retry()
 	{
 		// freeze or not freeze?
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	public void Quit ()
+	public void Quit()
 	{
 		Application.Quit(0);
 	}
