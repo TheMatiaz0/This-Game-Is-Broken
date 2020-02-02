@@ -11,7 +11,7 @@ using Cyberevolver.Unity;
 
 public class SpriteFlip : GlitchEffect
 {
-    public override string Description => "Error during trying drawing pictures: \"char$cter.wav\"";
+    public override string Description => "Error trying to draw pictures: \"char$cter.wav\"";
 
     protected override void OnCancel()
     {

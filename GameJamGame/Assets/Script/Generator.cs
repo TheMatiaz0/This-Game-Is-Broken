@@ -176,7 +176,7 @@ public class Generator : MonoBehaviour
     }
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
     {
-        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true);
+        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:dontPutActiveItems);
         GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+5, dontPutActiveItems:true,dontMakeEdge: true,flip:true);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
