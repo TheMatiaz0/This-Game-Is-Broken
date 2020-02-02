@@ -83,7 +83,7 @@ public class Generator : MonoBehaviour
     private float lastX = 0;
 
     public float GenerateOneLine(float fromX, float blocks, float y, 
-        bool dontPutActiveItems = false,bool dontMakeEdge=false)
+        bool dontPutActiveItems = false,bool dontMakeEdge=false,bool flip=false)
     {
         GameObject[] objs = new GameObject[10];
         for (int x = 0; x < blocks; x++)
@@ -107,9 +107,16 @@ public class Generator : MonoBehaviour
                     dontPut = true;
                 }
             }
-          
-           
-            objs[x] = PutBlock(new Vector2(fromX + x, y),dontPut, mode);
+
+            GameObject block;
+            objs[x] = block = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
+            if (flip)
+            {
+                block.GetComponent<SpriteRenderer>().flipY = true;
+            }
+
+
+
 
         }
         blocksPacks.Enqueue(objs);
@@ -173,7 +180,7 @@ public class Generator : MonoBehaviour
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
     {
         float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true);
-        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+4, dontPutActiveItems:true,dontMakeEdge: true);
+        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+4, dontPutActiveItems:true,dontMakeEdge: true,flip:true);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
         if (dontPutUpperPlatform == false)

@@ -44,9 +44,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05169773, y: 0.17418516}
+  m_Offset: {x: -0.048978567, y: 0.111628056}
   serializedVersion: 2
-  m_Radius: 0.2033006
+  m_Radius: 0.28485894
 --- !u!1 &8300620370876285726
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
       m_Calls: []
   headCollider: {fileID: 716024349360703819}
   seeLenght: 7
+  BounceForce: 600
   bulletSpeed: 5
   shootSpeed: 0.3
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,

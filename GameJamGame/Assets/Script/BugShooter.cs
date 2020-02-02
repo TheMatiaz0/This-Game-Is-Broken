@@ -16,8 +16,9 @@ public class BugShooter : ActiveElement
     private Collider2D headCollider;
     [SerializeField]
     [Range(0.1f, 45)]
-    public float seeLenght = 3f;
-
+    private float seeLenght = 3f;
+    [SerializeField]
+    private int BounceForce = 350;
     [SerializeField]
     [Range(0.01f, 10)]
     private float bulletSpeed = 1;
@@ -73,16 +74,27 @@ public class BugShooter : ActiveElement
         Animator.SetTrigger("isDead");
   
     }
-    protected override void OnKill()
+    bool end = false;
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Animator.SetTrigger("isDead"); 
-    }
-    private void Update()
-    {
-        if(headCollider.IsTouching(heroCollider))
+        if (end)
+            return;
+
+        if (headCollider.IsTouching(heroCollider)&&collision.GetComponent<PlayerController>())
         {
-            this.DestroyWithEffect();
-            this.GetComponent<Collider2D>().enabled = false;
+
+            end = true;
+            StopAllCoroutines();
+            OnExplode();
+            Destroy(this.GetComponent<Collider2D>());
+            Invoke(() => DestroyWithEffect(), 0.55f);
+            PlayerController.Instance.Rgb.AddForce(Vector2.up * BounceForce);
         }
+        else
+        {
+            base.OnTriggerEnter2D(collision);
+        }
+      
+        
     }
 }
