@@ -24,6 +24,6 @@ public class Obstacle : ActiveElement
     }
     private void Update()
     {
-        Rgb.velocity = Vector2.zero;
+       Rgb.velocity = Vector2.zero;
     }
 }

@@ -133,6 +133,7 @@ public class Generator : MonoBehaviour
 
     public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
     {
+       
         var block = Instantiate(blockPrefab);
         block.transform.position = pos;
         SpriteRenderer render = block.GetComponent<SpriteRenderer>();
@@ -180,7 +181,8 @@ public class Generator : MonoBehaviour
     }
     private void Start()
     {
-        PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
+        lastX = startRespPoint.position.x;
+        PutBlock(Vector2.zero, dontPutActiveItems: true, BlockMode.Left);
         lastX = GenerateOneLine(startRespPoint.position.x+1, blockInOneShoot, startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:true);
         lastX = GenerateChunk(lastX, YRange,true);
 
