@@ -11,6 +11,10 @@ using Cyberevolver.Unity;
 
 public class BugShooter : ActiveElement
 {
+
+    [SerializeField]
+    private AudioClip shootSound;
+
     public override bool IsBad => true;
     [SerializeField]
     private Collider2D headCollider;
@@ -42,6 +46,8 @@ public class BugShooter : ActiveElement
 
     public void Shoot(Direction dir)
     {
+
+        FastAudio.PlayAtPoint(this.transform.position, shootSound);
         var bullet= Instantiate(bulletPrefab, this.shootPoint.transform.position, Quaternion.identity);
         bullet.Dir = dir;
         bullet.Speed = bulletSpeed;
@@ -56,15 +62,16 @@ public class BugShooter : ActiveElement
     {
         while(true)
         {
-            yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
-         
             Vector2 difference = (Vector2)(PlayerController.Instance.transform.position - this.transform.position);
-            if(difference.magnitude<=seeLenght)
+            if (difference.magnitude <= seeLenght)
             {
                 Animator.SetTrigger("shoot");
                 Shoot((Direction)difference);
-                
+
             }
+            yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
+         
+           
         }
     }
   
