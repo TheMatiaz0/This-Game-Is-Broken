@@ -10,3 +10,4 @@
 10. Główny level zmienia się w same popsute klocki
 11. Ekran przewraca się o 90st // obrót ekranu
 12. Pojawiają się mordercze glicze // NIE
+13. Przyspieszenie gracza // Michał working on it
