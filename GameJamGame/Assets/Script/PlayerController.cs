@@ -173,7 +173,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     }
   
-  
+
     public void PushBugs(GlitchEffect effect)
     {
         if (effect == null)
@@ -261,7 +261,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Jump();
         }
     }
-
+   public
+        void RestoreRotate()
+    {
+        virtualCam.transform.rotation = Quaternion.Euler( PrefferedCameraRotate);
+    }
     private void Jump()
     {
         if (canJump==false)
