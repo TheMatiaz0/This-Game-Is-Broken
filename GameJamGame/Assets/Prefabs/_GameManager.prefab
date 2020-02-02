@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1588700691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588700692}
+  m_Layer: 9
+  m_Name: DmgPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1588700692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588700691}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7, y: -7, z: 0.47427607}
+  m_LocalScale: {x: 1, y: 1, z: 11}
+  m_Children: []
+  m_Father: {fileID: 6093236110085131788}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6093236108724445062
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6093236108851153042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -2.19, z: 0}
+  m_LocalPosition: {x: -6, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6093236110085131788}
@@ -123,6 +153,7 @@ Transform:
   - {fileID: 6093236108851153043}
   - {fileID: 6093236108728701859}
   - {fileID: 6093236108724445063}
+  - {fileID: 1588700692}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,7 +209,7 @@ MonoBehaviour:
   - prefab: {fileID: 6935800402712673812, guid: af22efd29a1b0bb489fbd3de63b1f1ca,
       type: 3}
     howOften:
-      _Value: 1
+      _Value: 0.30000001192092896
   - prefab: {fileID: 5538117781444494137, guid: f6ff06f676987134f8e607a598426026,
       type: 3}
     howOften:
@@ -198,7 +229,7 @@ MonoBehaviour:
   chanceForAnyActiveItems:
     _Value: 0.33000001311302185
   blockInOneShoot: 10
-  howFastGenerate: 9
+  howFastGenerate: 12
   whenRemove: 6
   howOftenCanHaveItem: 2
   platformsSize: {x: 3, y: 10}
