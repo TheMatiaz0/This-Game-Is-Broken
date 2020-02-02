@@ -109,7 +109,7 @@ public class Generator : MonoBehaviour
             }
           
            
-            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
+            objs[x] = PutBlock(new Vector2(fromX + x, y),dontPut, mode);
 
         }
         blocksPacks.Enqueue(objs);
