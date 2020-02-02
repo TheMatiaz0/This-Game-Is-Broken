@@ -73,16 +73,26 @@ public class BugShooter : ActiveElement
         Animator.SetTrigger("isDead");
   
     }
-    protected override void OnKill()
+    bool end = false;
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Animator.SetTrigger("isDead"); 
-    }
-    private void Update()
-    {
-        if(headCollider.IsTouching(heroCollider))
+        if (end)
+            return;
+
+        if (headCollider.IsTouching(heroCollider)&&collision.GetComponent<PlayerController>())
         {
-            this.DestroyWithEffect();
-            this.GetComponent<Collider2D>().enabled = false;
+
+            end = true;
+            StopAllCoroutines();
+            OnExplode();
+            Destroy(this.GetComponent<Collider2D>());
+            Invoke(() => DestroyWithEffect(), 0.55f);
         }
+        else
+        {
+            base.OnTriggerEnter2D(collision);
+        }
+      
+        
     }
 }
