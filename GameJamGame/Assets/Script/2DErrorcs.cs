@@ -23,6 +23,7 @@ public class _2DErrorcs : GlitchEffect
    
     public override void WhenCollect()
     {
+        PlayerController.Instance.RestoreRotate();
         PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 30, 0);
     }
 }
