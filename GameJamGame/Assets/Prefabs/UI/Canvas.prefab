@@ -1591,7 +1591,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3fc54a5e049f31b42a2b635b26cc144e, type: 3}
-    m_FontSize: 21
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1692,6 +1692,7 @@ GameObject:
   - component: {fileID: 5843553931464245270}
   - component: {fileID: 5076451131529849396}
   - component: {fileID: 8950750795771320524}
+  - component: {fileID: 28722156}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1781,3 +1782,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &28722156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811414341844469517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fda12fac62fd5c4689692e39975edca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

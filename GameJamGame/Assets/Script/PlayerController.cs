@@ -176,7 +176,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if(currentGlitches.Any(item=>TheReflection.Is(item.GetType(),effect.GetType()))==false)
         {
             currentGlitches.Add(effect);
-            global::Console.Instance.GetWriter().WriteLine(effect.Description);
+            global::Console.Instance.GetWriter().WriteLine($"<color=#FF3107>ERROR:: <color=#FFCD00>{effect.Description}</color></color>");
             effect.WhenCollect();
         }
     }
