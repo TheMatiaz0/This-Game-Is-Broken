@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8100395914022238944
 Transform:
@@ -48,7 +48,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2404895514149777920
 Transform:
@@ -173,7 +173,7 @@ MonoBehaviour:
   - {fileID: 5881112765733894611, guid: 742a977518c2564478aebfaa71415b32, type: 3}
   - {fileID: 0}
   elementSize: {x: 0.35, y: 0.35}
-  elementsQuanity: {x: 16, y: 32}
+  elementsQuanity: {x: 10, y: 25}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
