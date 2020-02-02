@@ -14,7 +14,7 @@ public class BugShooter : ActiveElement
     public override bool IsBad => true;
 
     [SerializeField]
-    [Range(0.1f, 5)]
+    [Range(0.1f, 45)]
     public float seeLenght = 3f;
 
     [SerializeField]
