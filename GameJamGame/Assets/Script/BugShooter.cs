@@ -16,8 +16,9 @@ public class BugShooter : ActiveElement
     private Collider2D headCollider;
     [SerializeField]
     [Range(0.1f, 45)]
-    public float seeLenght = 3f;
-
+    private float seeLenght = 3f;
+    [SerializeField]
+    private int BounceForce = 350;
     [SerializeField]
     [Range(0.01f, 10)]
     private float bulletSpeed = 1;
@@ -87,7 +88,7 @@ public class BugShooter : ActiveElement
             OnExplode();
             Destroy(this.GetComponent<Collider2D>());
             Invoke(() => DestroyWithEffect(), 0.55f);
-            PlayerController.Instance.Rgb.AddForce(Vector2.up * 350);
+            PlayerController.Instance.Rgb.AddForce(Vector2.up * BounceForce);
         }
         else
         {
