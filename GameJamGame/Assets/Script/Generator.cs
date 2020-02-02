@@ -46,7 +46,7 @@ public class Generator : MonoBehaviour
     private int blockInOneShoot = 10;
     [BoxGroup(Raw)]
     [SerializeField]
-    [Range(0, 9)]
+    [Range(0, 99)]
     private int howFastGenerate = 3;
     [SerializeField]
     [BoxGroup(Raw)]

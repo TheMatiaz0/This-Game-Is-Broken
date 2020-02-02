@@ -227,8 +227,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         if (collision.tag == "Ground")
         {
             canJump = true;
@@ -260,7 +258,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (Input.GetKeyDown(JumpKey) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
-
         }
     }
   
