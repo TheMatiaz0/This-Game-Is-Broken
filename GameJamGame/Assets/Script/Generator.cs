@@ -182,7 +182,7 @@ public class Generator : MonoBehaviour
     private void Start()
     {
         lastX = startRespPoint.position.x;
-        PutBlock(Vector2.zero, dontPutActiveItems: true, BlockMode.Left);
+        PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
         lastX = GenerateOneLine(startRespPoint.position.x+1, blockInOneShoot, startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:true);
         lastX = GenerateChunk(lastX, YRange,true);
 
