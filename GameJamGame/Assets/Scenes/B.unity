@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1500352599660172464, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -187,6 +192,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: elementsQuanity.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: elementsQuanity.x
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}
@@ -392,9 +412,39 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1894440653}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1588700692 stripped
+--- !u!1 &1588700691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588700692}
+  m_Layer: 9
+  m_Name: DmgPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1588700692
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1588700692, guid: 2638a76687e68444c967ef0523df2019,
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588700691}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7, y: -7, z: 0.47427607}
+  m_LocalScale: {x: 1, y: 1, z: 11}
+  m_Children: []
+  m_Father: {fileID: 1612658123}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1612658123 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
     type: 3}
   m_PrefabInstance: {fileID: 6093236109070462202}
   m_PrefabAsset: {fileID: 0}
@@ -626,14 +676,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 538881156}
-    - target: {fileID: 335314857, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 335314859, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2945081381710195697, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1085,9 +1127,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1588700691, guid: 2638a76687e68444c967ef0523df2019, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
+    - target: {fileID: 6093236108851153043, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: findablePrefabs.Array.data[0].howOften._Value
+      value: 0.30000001192092896
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: howFastGenerate
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: chanceForUpperPlatform._Value
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
