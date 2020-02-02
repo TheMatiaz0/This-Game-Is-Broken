@@ -87,6 +87,7 @@ public class BugShooter : ActiveElement
             OnExplode();
             Destroy(this.GetComponent<Collider2D>());
             Invoke(() => DestroyWithEffect(), 0.55f);
+            PlayerController.Instance.Rgb.AddForce(Vector2.up * 350);
         }
         else
         {
