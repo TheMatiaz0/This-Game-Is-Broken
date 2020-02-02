@@ -170,20 +170,22 @@ public class Generator : MonoBehaviour
         block.isStatic = true;
         return block;
     }
-    public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false)
+    public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
     {
         float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true);
+        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+4, dontPutActiveItems:true,dontMakeEdge: true);
         List<Vector2> busy = new List<Vector2>();
         List<GameObject> blocks = new List<GameObject>();
-        for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
-        {
-            if (Chance(chanceForUpperPlatform))
+        if (dontPutUpperPlatform == false)
+            for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
             {
-                int lenght = UnityEngine.Random.Range(platformsSize.x, platformsSize.y);
-                GenerateOneLine(fromX,lenght,y,dontPutActiveItems);    
-                y += lenght;
+                if (Chance(chanceForUpperPlatform))
+                {
+                    int lenght = UnityEngine.Random.Range(platformsSize.x, platformsSize.y);
+                    GenerateOneLine(fromX, lenght, y, dontPutActiveItems,dontMakeEdge);
+                    y += lenght;
+                }
             }
-        }
         blocksPacks.Enqueue(blocks.ToArray());
         return result;
     }
@@ -191,8 +193,8 @@ public class Generator : MonoBehaviour
     {
         lastX = startRespPoint.position.x;
         PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
-        lastX = GenerateOneLine(startRespPoint.position.x+1, blockInOneShoot, startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:true);
-        lastX = GenerateChunk(lastX, YRange,true);
+        lastX = GenerateChunk(startRespPoint.position.x+1, YRange, dontPutActiveItems:true,dontPutUpperPlatform:true,dontMakeEdge:true);
+    
 
     }
     private void Update()

@@ -181,6 +181,7 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
+  headCollider: {fileID: 716024349360703819}
   seeLenght: 7
   bulletSpeed: 5
   shootSpeed: 0.3
