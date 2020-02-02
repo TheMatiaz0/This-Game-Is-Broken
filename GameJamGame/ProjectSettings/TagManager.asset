@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - GameOverObject
-  - Wave
   layers:
   - Default
   - TransparentFX
