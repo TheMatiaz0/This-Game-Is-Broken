@@ -15,7 +15,7 @@ public class Rotation180Screen : GlitchEffect
     {
 
         PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 180, 180);
-     
 
 	}
+    
 }

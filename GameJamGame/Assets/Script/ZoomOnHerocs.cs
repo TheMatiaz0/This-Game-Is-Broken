@@ -22,6 +22,6 @@ public class ZoomOnHerocs : GlitchEffect
     public override void WhenCollect()
     {
         before = PlayerController.Instance.PrefferedCameraZoom;
-        PlayerController.Instance.PrefferedCameraZoom =30;
+        PlayerController.Instance.PrefferedCameraZoom /=1.2f;
     }
 }
