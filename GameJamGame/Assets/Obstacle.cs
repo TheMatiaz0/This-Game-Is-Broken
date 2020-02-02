@@ -9,10 +9,13 @@ using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
 
-public class Obstacle : MonoBehaviourPlus
+public class Obstacle : ActiveElement
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override bool IsBad => false;
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         Bullet bullet;
         if((bullet= collision.GetComponent<Bullet>())!=null)
         {

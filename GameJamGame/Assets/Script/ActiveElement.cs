@@ -44,6 +44,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
         {
             OnColidWithPlayer(player);
         }
+        if (collision.GetComponent<Wave>())
+            DestroyWithEffect();
     }
     public virtual void OnExplode()
     {
@@ -66,4 +68,5 @@ public abstract class ActiveElement : MonoBehaviourPlus
         if (onKillPrefab != null)
             Instantiate(onKillPrefab).transform.position = this.transform.position;
     }
+    
 }

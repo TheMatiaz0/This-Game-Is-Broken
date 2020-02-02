@@ -148,6 +148,7 @@ public class Generator : MonoBehaviour
             if (prefab != null)
             {
                 GameObject gameObj = Instantiate(prefab);
+                gameObj.transform.SetParent(block.transform);
                 gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
                 
             }
