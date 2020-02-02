@@ -9,7 +9,7 @@ using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
 
-public class Bullet : ActiveElement
+public class Bullet : Collectable
 {
     public override bool IsBad => true;
     public Direction Dir { get; set; }
@@ -24,12 +24,9 @@ public class Bullet : ActiveElement
         }
 
     }
-    protected override void OnColidWithPlayer(PlayerController player)
+    protected override void OnCollect()
     {
-
-        PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect());
-        DestroyWithEffect();
-
+        PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect()); 
     }
-   
+
 }
