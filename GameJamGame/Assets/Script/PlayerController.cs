@@ -36,7 +36,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         }
     }
-
+  
     private static readonly string AnimatorValueName = "Pose";
     [Auto]
     public Animator Animator { get; private set; }
