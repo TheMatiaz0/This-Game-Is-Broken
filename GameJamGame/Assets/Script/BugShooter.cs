@@ -18,7 +18,11 @@ public class BugShooter : ActiveElement
     [Range(0.1f, 45)]
     private float seeLenght = 3f;
     [SerializeField]
-    private int BounceForce = 350;
+    [Range(0,1000)]
+    private int bounceForce = 350;
+    [SerializeField]
+    [Min(0)]
+    private int scoreReward = 10;
     [SerializeField]
     [Range(0.01f, 10)]
     private float bulletSpeed = 1;
@@ -75,6 +79,17 @@ public class BugShooter : ActiveElement
   
     }
     bool end = false;
+    public void WhenPlayerJumped()
+    {
+
+        end = true;
+        StopAllCoroutines();
+        OnExplode();
+        Destroy(this.GetComponent<Collider2D>());
+        Invoke(() => DestroyWithEffect(), 0.55f);
+        PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
+        GameManager.Instance.AddScore(scoreReward);
+    }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (end)
@@ -83,12 +98,7 @@ public class BugShooter : ActiveElement
         if (headCollider.IsTouching(heroCollider)&&collision.GetComponent<PlayerController>())
         {
 
-            end = true;
-            StopAllCoroutines();
-            OnExplode();
-            Destroy(this.GetComponent<Collider2D>());
-            Invoke(() => DestroyWithEffect(), 0.55f);
-            PlayerController.Instance.Rgb.AddForce(Vector2.up * BounceForce);
+            WhenPlayerJumped();
         }
         else
         {

@@ -29,6 +29,7 @@ public class Bullet : ActiveElement
 
         PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect());
         DestroyWithEffect();
+
     }
    
 }
