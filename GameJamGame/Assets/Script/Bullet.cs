@@ -11,7 +11,7 @@ using Cyberevolver.Unity;
 
 public class Bullet : ActiveElement
 {
-    public override bool IsBad => false;
+    public override bool IsBad => true;
     public Direction Dir { get; set; }
     public float Speed { get; set; }
     private void Update()
