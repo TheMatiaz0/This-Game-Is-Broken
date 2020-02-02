@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06525993, y: 0.33182436}
@@ -191,7 +191,7 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
-  headCollider: {fileID: 0}
+  headCollider: {fileID: 2772545428694721470}
   seeLenght: 7
   BounceForce: 700
   bulletSpeed: 5
