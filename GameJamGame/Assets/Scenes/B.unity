@@ -334,6 +334,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200267093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2439395374753690981, guid: 35b033de6040fb048ac9bfba2a0d5790,
+    type: 3}
+  m_PrefabInstance: {fileID: 1867139044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586163353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1586163353, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
@@ -728,6 +740,11 @@ PrefabInstance:
       propertyPath: deathYPoint
       value: 
       objectReference: {fileID: 1588700692}
+    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
+        type: 3}
+      propertyPath: virtualCam
+      value: 
+      objectReference: {fileID: 1200267093}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Name
