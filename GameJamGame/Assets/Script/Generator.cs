@@ -75,8 +75,6 @@ public class Generator : MonoBehaviour
     [SerializeField]
     [BoxGroup(Transform)]
     private Transform minUp;
-
-
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
     private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();

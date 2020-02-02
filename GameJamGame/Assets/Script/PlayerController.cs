@@ -1,7 +1,9 @@
-﻿using Cyberevolver.Unity;
+﻿using Cyberevolver;
+using Cyberevolver.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,7 +64,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     [SerializeField]
     private Camera cam;
+
+    [SerializeField]
+    private Cinemachine.CinemachineVirtualCamera virtualCam;
     public Vector3 PrefferedCameraRotate { get; set; }
+    public float PrefferedCameraZoom { get; set; }
     [Auto]
     public AudioSource Source { get; private set; }
 
@@ -102,6 +108,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public float SceneTime => Time.time - timeOnStart;
     private void Start()
     {
+
+        PrefferedCameraZoom = virtualCam.m_Lens.FieldOfView;
         timeOnStart = Time.time;
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
@@ -170,9 +178,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         Source.PlayOneShot(glitchSound);
-        currentGlitches.Add(effect);
-        global::Console.Instance.GetWriter().WriteLine(effect.Description);
-        effect.WhenCollect();
+        if(currentGlitches.Any(item=>TheReflection.Is(item.GetType(),effect.GetType()))==false)
+        {
+            currentGlitches.Add(effect);
+            global::Console.Instance.GetWriter().WriteLine(effect.Description);
+            effect.WhenCollect();
+        }
     }
 
     public void HammerUsage()
@@ -239,6 +250,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (AsInt(cam.transform.rotation.eulerAngles) != AsInt(PrefferedCameraRotate))
             for (int x = 0; x < 4; x++)
                 cam.transform.rotation = cam.transform.rotation.Add((PrefferedCameraRotate - cam.transform.rotation.eulerAngles).normalized);
+        if ((int)(virtualCam.m_Lens.FieldOfView) != (int)(PrefferedCameraZoom))
+            virtualCam.m_Lens.FieldOfView += (PrefferedCameraZoom - virtualCam.m_Lens.FieldOfView) / 3;
 
 
         Move();
