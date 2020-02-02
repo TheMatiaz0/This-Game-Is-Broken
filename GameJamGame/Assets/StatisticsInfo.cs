@@ -23,7 +23,7 @@ public class StatisticsInfo : MonoBehaviourPlus
 	}
     private void Start()
     {
-        startX = this.transform.position.x;
+        startX = PlayerController.Instance.transform.position.x;
     }
 
     protected void Update ()
@@ -31,10 +31,9 @@ public class StatisticsInfo : MonoBehaviourPlus
 
         metres = Math.Max(metres, PlayerController.Instance.transform.position.x - startX);
 	
-		if (timer != null && timer.IsRunning)
-		{
+		
 			statisticsText.text = $"<color=red>{timer.Elapsed.Hours}h, {timer.Elapsed.Minutes}m, {timer.Elapsed.Seconds}s</color>\n<color=yellow>{metres} meters</color>";
-		}
+		
 
 	}
 }
