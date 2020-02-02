@@ -128,11 +128,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-        if (transform.position.y <= minimalYSurvival.transform.position.y || transform.position.y >= maximumYSurvival.transform.position.y)
-        {
-            Kill();
-            return;
-        }
 
 
 
