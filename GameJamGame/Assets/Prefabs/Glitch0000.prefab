@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06525993, y: 0.33182436}
+  m_Offset: {x: -0.003374219, y: 0.33182436}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6301937, y: 0.042605042}
+  m_Size: {x: 1.227596, y: 0.042605042}
   m_EdgeRadius: 0
 --- !u!1 &8300620370876285726
 GameObject:
@@ -191,9 +191,11 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
+  shootSound: {fileID: 8300000, guid: f45611278e8e1104a9ab46c281c4364b, type: 3}
   headCollider: {fileID: 2772545428694721470}
   seeLenght: 7
-  BounceForce: 700
+  bounceForce: 753
+  scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.3
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,

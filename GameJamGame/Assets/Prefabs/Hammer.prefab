@@ -96,12 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7ed67f3ade9ac4cb0158bff813ae38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDestroy: 0
   onKillPrefab: {fileID: 7990820457959614184, guid: 8561cfe9a66401a4ca463d3804840437,
     type: 3}
   onKilled:
     m_PersistentCalls:
       m_Calls: []
-  score: 5
+  score: 25
   onCollect:
     m_PersistentCalls:
       m_Calls: []

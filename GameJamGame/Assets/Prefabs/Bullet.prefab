@@ -150,6 +150,10 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
+  score: -3
+  onCollect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &8711424465050126265
 Rigidbody2D:
   serializedVersion: 4

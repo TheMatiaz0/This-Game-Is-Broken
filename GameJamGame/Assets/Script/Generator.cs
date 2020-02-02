@@ -115,9 +115,6 @@ public class Generator : MonoBehaviour
                 block.GetComponent<SpriteRenderer>().flipY = true;
             }
 
-
-
-
         }
         blocksPacks.Enqueue(objs);
         return fromX + blockInOneShoot;  

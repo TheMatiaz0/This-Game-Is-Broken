@@ -12,8 +12,7 @@ using UnityEngine.Events;
 
 public abstract class ActiveElement : MonoBehaviourPlus
 {
-    
-
+   
     public abstract bool IsBad { get; }
     [SerializeField]
     private bool fakeDestroy;
@@ -22,12 +21,10 @@ public abstract class ActiveElement : MonoBehaviourPlus
     [Auto]
     public Rigidbody2D Rgb { get; protected set; }
     public bool IsKilled { get; private set; }
-
     [SerializeField]
-    
-  
-
     private GameObject onKillPrefab;
+    [SerializeField]
+    private AudioClip destroySound;
     [SerializeField]
     [Foldout(EventFold)]
     private UnityEvent onKilled;
@@ -63,10 +60,16 @@ public abstract class ActiveElement : MonoBehaviourPlus
             Destroy(this.gameObject);
         
     }
+    bool particleWasSpawn;
     public void SpawnDeathParticles()
     {
+        if (particleWasSpawn)
+            return;
+        particleWasSpawn = true;
         if (onKillPrefab != null)
             Instantiate(onKillPrefab).transform.position = this.transform.position;
+        if (destroySound != null)
+            FastAudio.PlayAtPoint(this.transform.position, destroySound);
     }
     
 }

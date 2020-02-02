@@ -11,6 +11,10 @@ using Cyberevolver.Unity;
 
 public class BugShooter : ActiveElement
 {
+
+    [SerializeField]
+    private AudioClip shootSound;
+
     public override bool IsBad => true;
     [SerializeField]
     private Collider2D headCollider;
@@ -18,7 +22,11 @@ public class BugShooter : ActiveElement
     [Range(0.1f, 45)]
     private float seeLenght = 3f;
     [SerializeField]
-    private int BounceForce = 350;
+    [Range(0,1000)]
+    private int bounceForce = 350;
+    [SerializeField]
+    [Min(0)]
+    private int scoreReward = 10;
     [SerializeField]
     [Range(0.01f, 10)]
     private float bulletSpeed = 1;
@@ -38,6 +46,8 @@ public class BugShooter : ActiveElement
 
     public void Shoot(Direction dir)
     {
+
+        FastAudio.PlayAtPoint(this.transform.position, shootSound);
         var bullet= Instantiate(bulletPrefab, this.shootPoint.transform.position, Quaternion.identity);
         bullet.Dir = dir;
         bullet.Speed = bulletSpeed;
@@ -52,15 +62,16 @@ public class BugShooter : ActiveElement
     {
         while(true)
         {
-            yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
-         
             Vector2 difference = (Vector2)(PlayerController.Instance.transform.position - this.transform.position);
-            if(difference.magnitude<=seeLenght)
+            if (difference.magnitude <= seeLenght)
             {
                 Animator.SetTrigger("shoot");
                 Shoot((Direction)difference);
-                
+
             }
+            yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
+         
+           
         }
     }
   
@@ -75,6 +86,17 @@ public class BugShooter : ActiveElement
   
     }
     bool end = false;
+    public void WhenPlayerJumped()
+    {
+
+        end = true;
+        StopAllCoroutines();
+        OnExplode();
+        Destroy(this.GetComponent<Collider2D>());
+        Invoke(() => DestroyWithEffect(), 0.55f);
+        PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
+        GameManager.Instance.AddScore(scoreReward);
+    }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (end)
@@ -83,12 +105,7 @@ public class BugShooter : ActiveElement
         if (headCollider.IsTouching(heroCollider)&&collision.GetComponent<PlayerController>())
         {
 
-            end = true;
-            StopAllCoroutines();
-            OnExplode();
-            Destroy(this.GetComponent<Collider2D>());
-            Invoke(() => DestroyWithEffect(), 0.55f);
-            PlayerController.Instance.Rgb.AddForce(Vector2.up * BounceForce);
+            WhenPlayerJumped();
         }
         else
         {
