@@ -135,7 +135,7 @@ MonoBehaviour:
       m_Calls: []
   seeLenght: 7
   bulletSpeed: 5
-  shootSpeed: 0.3
+  shootSpeed: 1
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
     type: 3}
   shootPoint: {fileID: 8300620370876285727}
