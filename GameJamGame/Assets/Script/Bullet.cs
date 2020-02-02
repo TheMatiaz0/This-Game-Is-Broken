@@ -28,5 +28,4 @@ public class Bullet : Collectable
     {
         PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect()); 
     }
-
 }

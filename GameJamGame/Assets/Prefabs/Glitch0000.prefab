@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031277776, y: 0.33182436}
+  m_Offset: {x: -0.03656292, y: 0.33182436}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.698158, y: 0.042605042}
+  m_Size: {x: 0.96946144, y: 0.042605042}
   m_EdgeRadius: 0
 --- !u!1 &8300620370876285726
 GameObject:
@@ -193,7 +193,9 @@ MonoBehaviour:
       m_Calls: []
   headCollider: {fileID: 2772545428694721470}
   seeLenght: 7
-  bounceForce: 350
+
+  bounceForce: 753
+>>>>>>> e1c982b5dfff2841fe0e670bcc077e6f8a4b02c6
   scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.3
