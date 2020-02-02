@@ -19,7 +19,7 @@ public abstract class GlitchEffect
     public void Cancel()
     {
         OnCancel();
-        global::Console.Instance.GetWriter().WriteLine($"<color=green><color=yellow>{Description}</color> has been repaired succesfully. The game is now a little less broken.</color>");
+        global::Console.Instance.GetWriter().WriteLine($"<color=#00FFD5><color=#FFCD00>{Description}</color> has been repaired succesfully. The game is now a little less broken.</color>");
     }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }
