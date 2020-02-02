@@ -1,12 +1,12 @@
 1. Odwrócenie sterowania lewo-prawo // DONE
-2. Odwrócenie ekranu  // obrót ekranu
-3. Przesunięcie colliderów
-4. Spadające platformy 
-5. Połowa ekranu zmienia się w losowe symbole (pac-man)
-6. Zerowanie punktów // GameManager
-7. Punkty idą na minus // GameManager
-8. Gracz spada do kanałów 
+2. Odwrócenie ekranu  // DONE
+3. Przesunięcie colliderów // NIE
+4. Spadające platformy // NA RAZIE NIE
+5. Połowa ekranu zmienia się w losowe symbole (pac-man) // WAVE JEST ZAMIAST TEGO
+6. Zerowanie punktów // NIE
+7. Punkty idą na minus // NIE
+8. Gracz spada do kanałów // NIE
 9. Zmiana grawitacji // Rigidbody
 10. Główny level zmienia się w same popsute klocki
 11. Ekran przewraca się o 90st // obrót ekranu
-12. Pojawiają się mordercze glicze 
+12. Pojawiają się mordercze glicze // NIE
