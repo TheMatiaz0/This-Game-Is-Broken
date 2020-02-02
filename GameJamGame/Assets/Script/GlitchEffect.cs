@@ -42,6 +42,7 @@ public abstract class GlitchEffect
         allGlitchEffects = Cyberevolver.TheReflection.GetAllType(item => Cyberevolver.TheReflection.Is(item,typeof(GlitchEffect))&& item != typeof(GlitchEffect))
             .Select(item => (GlitchEffect)Activator.CreateInstance(item))
             .ToArray();
+       
     }
 
    

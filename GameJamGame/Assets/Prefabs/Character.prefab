@@ -171,11 +171,12 @@ MonoBehaviour:
   gameOverSound: {fileID: 8300000, guid: 8d7dac82730c4d841b3b867914312b51, type: 3}
   walkSound: {fileID: 8300000, guid: c9a3b391e5659b14b94ddd4ffade8c67, type: 3}
   glitchSound: {fileID: 8300000, guid: d26e306dcd4636f40865f6baa7ca5362, type: 3}
-  repairSound: {fileID: 8300000, guid: c7473607e9b8544499961b45e76d50d3, type: 3}
+  repairSound: []
   musicSource: {fileID: 0}
   minimalYSurvival: {fileID: 769460122}
   maximumYSurvival: {fileID: 1890441792}
   deathYPoint: {fileID: 0}
+  scoreByBugs: -10
   deathParticle: {fileID: 7990820457959614184, guid: 37271fb0f32c4d34ba25074efc33aaac,
     type: 3}
 --- !u!50 &996109581129873839

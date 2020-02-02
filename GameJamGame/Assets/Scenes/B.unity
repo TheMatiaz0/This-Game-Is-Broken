@@ -198,6 +198,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.minutes
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <MinMaxSpeed>k__BackingField.val.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <MinMaxSpeed>k__BackingField.val.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: elementsQuanity.y
@@ -674,7 +689,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 225023790, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 316321566, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
