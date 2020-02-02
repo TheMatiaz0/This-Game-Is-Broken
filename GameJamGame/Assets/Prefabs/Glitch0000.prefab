@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4714905560780225553}
-  - component: {fileID: 716024349360703819}
+  - component: {fileID: 2772545428694721470}
   m_Layer: 0
   m_Name: DeathCol
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   m_Father: {fileID: 8300620371891373754}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &716024349360703819
-CircleCollider2D:
+--- !u!61 &2772545428694721470
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -41,12 +41,22 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.048978567, y: 0.111628056}
+  m_Offset: {x: -0.06525993, y: 0.33182436}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.28485894
+  m_Size: {x: 0.6301937, y: 0.042605042}
+  m_EdgeRadius: 0
 --- !u!1 &8300620370876285726
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,9 +191,9 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls: []
-  headCollider: {fileID: 716024349360703819}
+  headCollider: {fileID: 0}
   seeLenght: 7
-  BounceForce: 600
+  BounceForce: 700
   bulletSpeed: 5
   shootSpeed: 0.3
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
