@@ -90,7 +90,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private Transform maximumYSurvival;
 
-
+    [SerializeField]
+    private Transform deathYPoint;
     private float move;
     
     [SerializeField]
@@ -111,7 +112,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         
        
-
+        if(this.transform.position.y<deathYPoint.position.y)
+        {
+            this.Kill();
+        }
         if (IsDeath)
         {
             return;
