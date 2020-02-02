@@ -55,6 +55,7 @@ public class BugShooter : ActiveElement
     public override void OnExplode()
     {
         Animator.SetTrigger("isDeath");
+     
   
     }
 }
