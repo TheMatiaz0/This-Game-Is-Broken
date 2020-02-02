@@ -26,7 +26,8 @@ public class ExplosionElement : MonoBehaviourPlus
                 + Vector2.up * 150);
             LeanTween.alpha(bug.gameObject, 0, 2).setOnComplete(() => Destroy(bug.gameObject));
             bug.OnExplode();
-            
+            bug.SpawnDeathParticles();
+
         }
     }
     private void Update()
