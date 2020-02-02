@@ -88,7 +88,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private AudioClip glitchSound;
 
     [SerializeField]
-    private AudioClip repairSound;
+    private AudioClip[] repairSound;
 
     [SerializeField]
     private AudioSource musicSource;
@@ -122,7 +122,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         if (this.transform.position.y < deathYPoint.position.y)
         {
@@ -135,10 +138,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+
 
         foreach (var item in currentGlitches)
         {
@@ -191,7 +191,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void HammerUsage()
     {
-        Source.PlayOneShot(repairSound);
+        Source.PlayOneShot(repairSound[UnityEngine.Random.Range(0, repairSound.Length - 1)]);
         ClearRandomEffect();
 
     }
