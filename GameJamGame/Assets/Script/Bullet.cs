@@ -18,6 +18,11 @@ public class Bullet : ActiveElement
     {
         this.transform.position += (Vector3)Dir.ToVector2() * Speed * Time.deltaTime;
 
+        if (Vector2.Distance(this.transform.position, PlayerController.Instance.transform.position) > 10)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
     protected override void OnColidWithPlayer(PlayerController player)
     {

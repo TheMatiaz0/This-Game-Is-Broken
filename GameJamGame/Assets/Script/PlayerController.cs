@@ -3,10 +3,10 @@ using Cyberevolver.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.ObjectModel;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
@@ -27,12 +27,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void ClearRandomEffect()
     {
-        if (currentGlitches.Count!=0)
+        if (currentGlitches.Count != 0)
         {
             var index = UnityEngine.Random.Range(0, currentGlitches.Count);
             currentGlitches[index].Cancel();
             currentGlitches.RemoveAt(index);
-          
+
 
         }
     }
@@ -45,7 +45,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
-    public float MovementSpeed { get;  set; } = 0.11f;
+    public float MovementSpeed { get; set; } = 0.11f;
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
     public float JumpMultiple { get; private set; }
@@ -102,7 +102,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private Transform deathYPoint;
     private float move;
-    
+
     [SerializeField]
 
     private GameObject deathParticle;
@@ -122,9 +122,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
-        
-       
-        if(this.transform.position.y<deathYPoint.position.y)
+
+
+        if (this.transform.position.y < deathYPoint.position.y)
         {
             this.Kill();
         }
@@ -174,16 +174,16 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     }
-  
+
 
     public void PushBugs(GlitchEffect effect)
     {
         if (effect == null)
             return;
         Source.PlayOneShot(glitchSound);
-        if(currentGlitches.Any(item=>item.GetType()==effect.GetType())==false)
+        if (currentGlitches.Any(item => item.GetType() == effect.GetType()) == false)
         {
-            Debug.Log(effect.Description);
+            Source.PlayOneShot(glitchSound);
             currentGlitches.Add(effect);
             global::Console.Instance.GetWriter().WriteLine($"<color=#FF3107>ERROR:: <color=#FFCD00>{effect.Description}</color></color>");
             effect.WhenCollect();
@@ -236,7 +236,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     private void FixedUpdate()
-    
+
     {
 
         if (IsDeath == true)
@@ -260,14 +260,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Jump();
         }
     }
-  
+    
     private void Jump()
     {
-        if (canJump==false)
+        if (canJump == false)
         {
             return;
         }
-        Source.PlayOneShot(jumpSound);
+        // Source.PlayOneShot(jumpSound);
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
@@ -285,6 +285,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
                 //
             }, 1);
             */
-        
+
     }
 }
