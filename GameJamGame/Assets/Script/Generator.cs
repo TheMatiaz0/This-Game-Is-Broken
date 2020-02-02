@@ -90,20 +90,26 @@ public class Generator : MonoBehaviour
         {
 
             BlockMode mode = BlockMode.Center;
-            if(dontMakeEdge==false)
+            bool dontPut = dontPutActiveItems;
+            if (dontMakeEdge==false)
             {
+
+                
+
                 if (x == 0)
                 {
                     mode = BlockMode.Left;
+                    dontPut = true;
                 }
                 else if (x == blocks - 1)
                 {
                     mode = BlockMode.Right;
+                    dontPut = true;
                 }
             }
           
            
-            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPutActiveItems,mode);
+            objs[x] = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
 
         }
         blocksPacks.Enqueue(objs);

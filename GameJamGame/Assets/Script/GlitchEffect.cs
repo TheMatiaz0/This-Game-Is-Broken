@@ -11,7 +11,18 @@ public abstract class GlitchEffect
 
     public static GlitchEffect GetRandomGlitchEffect ()
     {
-        return GlitchEffect.allGlitchEffects[UnityEngine.Random.Range(0, GlitchEffect.allGlitchEffects.Length)];
+        GlitchEffect[] notEqupied =
+             (from item in allGlitchEffects
+             where PlayerController.Instance.CurrentGlithes.Any(elemen => elemen.GetType() == item.GetType()) == false
+             select item).ToArray();
+
+        if (notEqupied.Length == 0)
+            return null;
+
+        return notEqupied[UnityEngine.Random.Range(0, notEqupied.Length)];
+
+
+
     }
 
     public abstract string Description { get; }
@@ -19,7 +30,7 @@ public abstract class GlitchEffect
     public void Cancel()
     {
         OnCancel();
-        global::Console.Instance.GetWriter().WriteLine($"<color=green><color=yellow>{Description}</color> has been repaired succesfully. The game is now a little less broken.</color>");
+        global::Console.Instance.GetWriter().WriteLine($"<color=#00FFD5><color=#FFCD00>{Description}</color> has been repaired succesfully. The game is now a little less broken.</color>");
     }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }
