@@ -73,11 +73,16 @@ public class BugShooter : ActiveElement
         Animator.SetTrigger("isDead");
   
     }
+    protected override void OnKill()
+    {
+        Animator.SetTrigger("isDead"); 
+    }
     private void Update()
     {
         if(headCollider.IsTouching(heroCollider))
         {
             this.DestroyWithEffect();
+            this.GetComponent<Collider2D>().enabled = false;
         }
     }
 }
