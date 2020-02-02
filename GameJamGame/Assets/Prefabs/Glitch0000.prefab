@@ -134,7 +134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   seeLenght: 7
-  bulletSpeed: 0.3
+  bulletSpeed: 0.05
   shootSpeed: 0.3
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
     type: 3}
