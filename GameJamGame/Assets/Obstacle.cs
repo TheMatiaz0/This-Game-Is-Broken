@@ -22,4 +22,8 @@ public class Obstacle : ActiveElement
             bullet.DestroyWithEffect();
         }
     }
+    private void Update()
+    {
+        Rgb.velocity = Vector2.zero;
+    }
 }

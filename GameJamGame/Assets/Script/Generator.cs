@@ -153,6 +153,7 @@ public class Generator : MonoBehaviour
                 
             }
         }
+        block.isStatic = true;
         return block;
     }
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false)
