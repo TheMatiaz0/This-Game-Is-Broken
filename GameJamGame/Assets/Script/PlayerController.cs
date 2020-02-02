@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.ObjectModel;
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
@@ -44,7 +45,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
-    public float MovementSpeed { get; private set; } = 0.11f;
+    public float MovementSpeed { get;  set; } = 0.11f;
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
     public float JumpMultiple { get; private set; }
@@ -104,6 +105,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private GameObject deathParticle;
     private bool canJump;
+    public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
 
     public float SceneTime => Time.time - timeOnStart;
     private void Start()
@@ -170,11 +172,16 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     }
+  
+  
     public void PushBugs(GlitchEffect effect)
     {
+        if (effect == null)
+            return;
         Source.PlayOneShot(glitchSound);
-        if(currentGlitches.Any(item=>TheReflection.Is(item.GetType(),effect.GetType()))==false)
+        if(currentGlitches.Any(item=>item.GetType()==effect.GetType())==false)
         {
+            Debug.Log(effect.Description);
             currentGlitches.Add(effect);
             global::Console.Instance.GetWriter().WriteLine(effect.Description);
             effect.WhenCollect();

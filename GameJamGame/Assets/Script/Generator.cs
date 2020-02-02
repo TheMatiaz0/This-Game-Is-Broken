@@ -92,13 +92,18 @@ public class Generator : MonoBehaviour
             BlockMode mode = BlockMode.Center;
             if(dontMakeEdge==false)
             {
+
+
+
                 if (x == 0)
                 {
                     mode = BlockMode.Left;
+                    dontPutActiveItems = true;
                 }
                 else if (x == blocks - 1)
                 {
                     mode = BlockMode.Right;
+                    dontPutActiveItems = true;
                 }
             }
           

@@ -11,7 +11,18 @@ public abstract class GlitchEffect
 
     public static GlitchEffect GetRandomGlitchEffect ()
     {
-        return GlitchEffect.allGlitchEffects[UnityEngine.Random.Range(0, GlitchEffect.allGlitchEffects.Length)];
+        GlitchEffect[] notEqupied =
+             (from item in allGlitchEffects
+             where PlayerController.Instance.CurrentGlithes.Any(elemen => elemen.GetType() == item.GetType()) == false
+             select item).ToArray();
+
+        if (notEqupied.Length == 0)
+            return null;
+
+        return notEqupied[UnityEngine.Random.Range(0, notEqupied.Length)];
+
+
+
     }
 
     public abstract string Description { get; }
