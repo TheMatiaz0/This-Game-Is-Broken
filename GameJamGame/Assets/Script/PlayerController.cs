@@ -60,7 +60,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private float timeOnStart;
 
 
-
+    [SerializeField]
+    private Camera cam;
+    public Vector3 PrefferedCameraRotate { get; set; }
     [Auto]
     public AudioSource Source { get; private set; }
 
@@ -107,16 +109,20 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
+        
+       
+
+        if (IsDeath)
+        {
+            return;
+        }
         if (transform.position.y <= minimalYSurvival.transform.position.y || transform.position.y >= maximumYSurvival.transform.position.y)
         {
             Kill();
             return;
         }
 
-        if (IsDeath)
-        {
-            return;
-        }
+
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -202,6 +208,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if (collision.tag == "Ground")
         {
             canJump = true;
@@ -211,7 +219,16 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     private void FixedUpdate()
+    
     {
+        Vector3Int AsInt(Vector3 v)
+            => new Vector3Int((int)v.x, (int)v.y, (int)v.z);
+
+
+
+        if (AsInt(cam.transform.rotation.eulerAngles) != AsInt(PrefferedCameraRotate))
+            for (int x = 0; x < 4; x++)
+                cam.transform.rotation = cam.transform.rotation.Add((PrefferedCameraRotate - cam.transform.rotation.eulerAngles).normalized);
         if (IsDeath == true)
         {
             return;
