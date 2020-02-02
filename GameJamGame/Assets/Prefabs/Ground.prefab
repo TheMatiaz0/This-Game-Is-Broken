@@ -11,10 +11,7 @@ GameObject:
   - component: {fileID: 7857634901582839203}
   - component: {fileID: 7857634901582839200}
   - component: {fileID: 7857634901582839202}
-<<<<<<< HEAD
   - component: {fileID: -6987724784214243692}
-=======
->>>>>>> parent of 2035b84... Merge branch 'master' of https://github.com/TheMatiaz0/Unnamed-Global-Game-Jam-Project
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -112,3 +109,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98025084, y: 0.69112444}
   m_EdgeRadius: 0
+--- !u!114 &-6987724784214243692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857634901582839201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9789a413163394fbc8c70907aadeb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

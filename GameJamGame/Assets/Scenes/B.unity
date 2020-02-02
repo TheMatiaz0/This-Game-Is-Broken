@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
@@ -863,6 +863,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: findablePrefabs.Array.data[0].howOften._Value
+      value: 0.30000001192092896
+      objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
       propertyPath: m_LocalPosition.x

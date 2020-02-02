@@ -25,7 +25,7 @@ public class ExplosionElement : MonoBehaviourPlus
             bug.Rgb.AddForce((Vector2)(bug.transform.position - this.transform.position).normalized * 300
                 + Vector2.up * 150);
             LeanTween.alpha(bug.gameObject, 0, 2).setOnComplete(() => Destroy(bug.gameObject));
-
+            bug.OnExplode();
             
         }
     }
