@@ -36,6 +36,8 @@ public class Generator : MonoBehaviour
 
     [SerializeField,BoxGroup(ChanceName)]
     private Percent chanceForBlankBlock = 0.15f;
+    [SerializeField, BoxGroup(ChanceName)]
+    private Percent chanceForUpperPlatform = 0.25f;
     [BoxGroup(Raw)]
     [SerializeField]
     [Range(1, 100)]
@@ -53,6 +55,10 @@ public class Generator : MonoBehaviour
     [Range(1, 100)]
     private int howOftenCanHaveItem = 2;
     [SerializeField]
+    [MinMaxSlider(1, 10)]
+    [BoxGroup(Raw)]
+    private Vector2Int platformsSize = new Vector2Int(2, 6);
+    [SerializeField]
     [BoxGroup(PrefabsName)]
     [RequiresAny]
     private GameObject blockPrefab;
@@ -69,6 +75,7 @@ public class Generator : MonoBehaviour
     [SerializeField]
     [BoxGroup(Transform)]
     private Transform minUp;
+
 
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
@@ -163,9 +170,9 @@ public class Generator : MonoBehaviour
         List<GameObject> blocks = new List<GameObject>();
         for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
         {
-            if (UnityEngine.Random.Range(0, 3) == 0)
+            if (Chance(chanceForUpperPlatform))
             {
-                int lenght = UnityEngine.Random.Range(2, 6);
+                int lenght = UnityEngine.Random.Range(platformsSize.x, platformsSize.y);
                 GenerateOneLine(fromX,lenght,y,dontPutActiveItems);    
                 y += lenght;
             }
