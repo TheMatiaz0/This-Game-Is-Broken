@@ -11,15 +11,15 @@ using Cyberevolver.Unity;
 
 public class SpriteFlip : GlitchEffect
 {
-    public override string Description => throw new NotImplementedException();
+    public override string Description => "Error during trying drawing pictures: \"char$cter.wav\"";
 
     protected override void OnCancel()
     {
-        
+         PlayerController.Instance.Sprite.flipY = false;
     }
     public override void WhenCollect()
     {
-        base.WhenCollect();
+        PlayerController.Instance.Sprite.flipY = true;
 
     }
 }
