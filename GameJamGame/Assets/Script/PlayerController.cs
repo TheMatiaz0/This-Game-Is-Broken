@@ -183,7 +183,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             Debug.Log(effect.Description);
             currentGlitches.Add(effect);
-            global::Console.Instance.GetWriter().WriteLine(effect.Description);
+            global::Console.Instance.GetWriter().WriteLine($"<color=#FF3107>ERROR:: <color=#FFCD00>{effect.Description}</color></color>");
             effect.WhenCollect();
         }
     }
