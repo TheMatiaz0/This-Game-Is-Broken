@@ -85,11 +85,11 @@ MonoBehaviour:
   <Direction>k__BackingField:
     _Value: {x: 1, y: 0}
   <MinMaxSpeed>k__BackingField:
-    val: {x: 2, y: 6}
+    val: {x: 2, y: 8}
   <WhenSpeedWillBeMax>k__BackingField:
     miliseconds: 0
     seconds: 0
-    minutes: 1
+    minutes: 59
     hour: 0
     day: 0
     precision: 3
