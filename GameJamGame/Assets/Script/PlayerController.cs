@@ -221,6 +221,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private void FixedUpdate()
     
     {
+
+        if (IsDeath == true)
+        {
+            return;
+        }
+
         Vector3Int AsInt(Vector3 v)
             => new Vector3Int((int)v.x, (int)v.y, (int)v.z);
 
@@ -229,10 +235,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (AsInt(cam.transform.rotation.eulerAngles) != AsInt(PrefferedCameraRotate))
             for (int x = 0; x < 4; x++)
                 cam.transform.rotation = cam.transform.rotation.Add((PrefferedCameraRotate - cam.transform.rotation.eulerAngles).normalized);
-        if (IsDeath == true)
-        {
-            return;
-        }
+
 
         Move();
 
