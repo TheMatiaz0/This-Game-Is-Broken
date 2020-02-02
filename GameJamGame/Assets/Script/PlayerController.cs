@@ -88,7 +88,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private AudioClip glitchSound;
 
     [SerializeField]
-    private AudioClip[] repairSound;
+    private AudioClip repairSound;
 
     [SerializeField]
     private AudioSource musicSource;
@@ -193,7 +193,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void HammerUsage()
     {
-        Source.PlayOneShot(repairSound[UnityEngine.Random.Range(0, repairSound.Length - 1)]);
+        Source.PlayOneShot(repairSound);
         ClearRandomEffect();
 
     }
