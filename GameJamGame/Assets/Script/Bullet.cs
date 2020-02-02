@@ -16,7 +16,7 @@ public class Bullet : ActiveElement
     public float Speed { get; set; }
     private void Update()
     {
-        this.transform.position += (Vector3)Dir.ToVector2() * Speed;
+        this.transform.position += (Vector3)Dir.ToVector2() * Speed * Time.deltaTime;
 
     }
     protected override void OnColidWithPlayer(PlayerController player)

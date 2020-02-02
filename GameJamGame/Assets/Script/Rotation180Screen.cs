@@ -8,14 +8,14 @@ public class Rotation180Screen : GlitchEffect
 
 	protected override void OnCancel()
 	{
-		WhenCollect();
-	}
+        PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 0, 0);
+    }
 
 
     public override void WhenCollect()
     {
 
-        PlayerController.Instance.PrefferedCameraRotate += new Vector3(0, 180, 180);
+        PlayerController.Instance.PrefferedCameraRotate = new Vector3(0, 180, 180);
      
 
 	}
