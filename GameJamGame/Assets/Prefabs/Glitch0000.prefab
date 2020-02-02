@@ -195,7 +195,7 @@ MonoBehaviour:
   seeLenght: 7
 
   bounceForce: 753
-
+>>>>>>> e1c982b5dfff2841fe0e670bcc077e6f8a4b02c6
   scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.3
