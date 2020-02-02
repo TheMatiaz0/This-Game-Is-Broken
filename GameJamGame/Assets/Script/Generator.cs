@@ -38,6 +38,8 @@ public class Generator : MonoBehaviour
     private Percent chanceForBlankBlock = 0.15f;
     [SerializeField, BoxGroup(ChanceName)]
     private Percent chanceForUpperPlatform = 0.25f;
+    [SerializeField, BoxGroup(ChanceName)]
+    private Percent chanceForAnyActiveItems = 0.33f;
     [BoxGroup(Raw)]
     [SerializeField]
     [Range(1, 100)]
@@ -148,7 +150,7 @@ public class Generator : MonoBehaviour
             default: break;
         }
 
-        if (dontPutActiveItems==false&&UnityEngine.Random.Range(0, 4) == 0)
+        if (dontPutActiveItems==false&&Chance(chanceForAnyActiveItems))
         {
             var prefab = GetRandomStuff();
             if (prefab != null)
