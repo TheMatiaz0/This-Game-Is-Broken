@@ -102,7 +102,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField]
     private Transform deathYPoint;
     private float move;
-
+    [SerializeField]
+    private int scoreByBugs=-15;
     [SerializeField]
 
     private GameObject deathParticle;
@@ -178,6 +179,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void PushBugs(GlitchEffect effect)
     {
+        GameManager.Instance.AddScore(scoreByBugs);
         if (effect == null)
             return;
         Source.PlayOneShot(glitchSound);
