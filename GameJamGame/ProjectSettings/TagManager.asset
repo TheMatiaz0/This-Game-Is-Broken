@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - GameOverObject
   - GameUI
+  - GlitchEnemy
+  - Mixer
   layers:
   - Default
   - TransparentFX
