@@ -183,7 +183,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Source.PlayOneShot(glitchSound);
         if (currentGlitches.Any(item => item.GetType() == effect.GetType()) == false)
         {
-            Debug.Log(effect.Description);
+            Source.PlayOneShot(glitchSound);
             currentGlitches.Add(effect);
             global::Console.Instance.GetWriter().WriteLine($"<color=#FF3107>ERROR:: <color=#FFCD00>{effect.Description}</color></color>");
             effect.WhenCollect();
@@ -260,10 +260,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Jump();
         }
     }
-    public void RestoreRotate()
-    {
-        virtualCam.transform.rotation = Quaternion.Euler(PrefferedCameraRotate);
-    }
     
     private void Jump()
     {
@@ -271,7 +267,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
-        Source.PlayOneShot(jumpSound);
+        // Source.PlayOneShot(jumpSound);
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
