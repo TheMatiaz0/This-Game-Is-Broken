@@ -55,15 +55,11 @@ public abstract class ActiveElement : MonoBehaviourPlus
             return;
         IsKilled = true;
         OnKill();
-        SpawnDeathParticles();
+        if (onKillPrefab != null)
+            Instantiate(onKillPrefab).transform.position = this.transform.position;
         onKilled.Invoke();
         if (fakeDestroy == false)
             Destroy(this.gameObject);
         
-    }
-    public void SpawnDeathParticles()
-    {
-        if (onKillPrefab != null)
-            Instantiate(onKillPrefab).transform.position = this.transform.position;
     }
 }
