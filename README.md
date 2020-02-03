@@ -1,5 +1,7 @@
-# Unnamed-Global-Game-Jam-Project
-Repository for yet unnamed project in Global Game Jam 2020: https://globalgamejam.org
+# This Game Is Broken
+Repository for This Game Is Broken, game created for Global Game Jam 2020: https://globalgamejam.org
+
+Link to the game (executable, etc.): https://globalgamejam.org/2020/games/game-broken-1
 
 ***
 
