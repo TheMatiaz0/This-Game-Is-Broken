@@ -1,12 +1,14 @@
 ﻿
-﻿using System.Collections;
+using Cyberevolver.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject childMainMenu;
+    [SerializeField,RequiresAny]
+    private GameObject childMainMenu = null;
 
     public void StartGame()
     {
@@ -14,7 +16,6 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OpenOptions(GameObject optionsObject) => OptionsActivation(optionsObject, true);
-
     private void OptionsActivation(GameObject optionsObject, bool areYouSure)
     {
         optionsObject.SetActive(areYouSure);

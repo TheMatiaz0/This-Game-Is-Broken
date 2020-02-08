@@ -6,9 +6,8 @@ public class ParallaxBackground : MonoBehaviour
 {
     [SerializeField]
     private Transform cameraTransform = null;
-
     [SerializeField]
-    private Vector2 parallaxMultiple;
+    private Vector2 parallaxMultiple  = new Vector2(1, 1);
 
     private Vector3 startCamPosition;
 

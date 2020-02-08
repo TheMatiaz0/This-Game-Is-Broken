@@ -16,9 +16,8 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 {
     [SerializeField]
     private Text scoreEntity;
+
     private int _Score;
-
-
     public int Score
     {
         get => _Score;

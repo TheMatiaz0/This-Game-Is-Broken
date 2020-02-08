@@ -8,8 +8,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[CustomBackgrounGroup(Value,BackgroundMode.Box)]
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
+
+    #region CONST
+    protected const string Reference = "Reference";
+    protected const string Asset = "Asset";
+    protected const string Value = "Value";
+    #endregion
     public bool IsDeath { get; private set; }
     public enum AnimState
     {
@@ -45,22 +52,21 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
-    public float MovementSpeed { get; set; } = 0.11f;
+    public float MovementSpeed { get; set; }        = 0.11f;
 
     [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
-    public float JumpMultiple { get; private set; }
+    public float JumpMultiple { get; private set; } = 1;
+
+
+    //reference
 
     [SerializeField]
     private FreezeMenu gameOverManager = null;
 
-    [SerializeField]
-    private Transform startRespPoint;
+    [SerializeField,RequiresAny]
+    private Transform startRespPoint   = null;
 
-    public Transform StartRespPoint => startRespPoint;
-
-
-    public event EventHandler OnPlayerDeath = delegate { };
-    private float timeOnStart;
+   
 
 
     [SerializeField]
@@ -75,26 +81,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [Auto]
     public AudioSource Source { get; private set; }
 
-    [SerializeField]
-    private AudioClip jumpSound = null;
+    [SerializeField, Foldout(Asset)]
+    private AudioClip   jumpSound      = null,
+                        gameOverSound  = null,
+                        walkSound      = null,
+                        glitchSound    = null,
+                        repairSound    = null;
 
+    [SerializeField, Foldout(Asset)]
+    private AudioSource musicSource  = null;
     [SerializeField]
-    private AudioClip gameOverSound = null;
-
-    [SerializeField]
-    private AudioClip walkSound = null;
-
-    [SerializeField]
-    private AudioClip glitchSound = null;
-
-    [SerializeField]
-    private AudioClip repairSound = null;
-
-    [SerializeField]
-    private AudioSource musicSource = null;
-
-    [SerializeField]
-    private Transform deathYPoint = null;
+    private Transform   deathYPoint  = null;
     private float move = 0f;
     [SerializeField]
     private int scoreByBugs=-15;
@@ -103,7 +100,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private GameObject deathParticle = null;
     private bool canJump = false;
     public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
+    public Transform StartRespPoint => startRespPoint;
 
+
+    public event EventHandler OnPlayerDeath = delegate { };
+    private float timeOnStart;
     public float SceneTime => Time.time - timeOnStart;
     private void Start()
     {

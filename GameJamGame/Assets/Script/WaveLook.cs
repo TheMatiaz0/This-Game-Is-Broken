@@ -11,33 +11,28 @@ using Cyberevolver.Unity;
 
 public class WaveLook : AutoInstanceBehaviour<WaveLook>
 {
-
+    [SerializeField,RequiresAny]
+    private Transform      upPoint         = null;
+    [SerializeField, RequiresAny] 
+    private SpriteRenderer prefab          = null;  
     [SerializeField]
-    private Transform upPoint;
-
+    private Sprite[]       sprites         = null;
     [SerializeField]
-   
-    private SpriteRenderer prefab;
-    
-
+    private Vector2        elementSize     = new Vector2(0.5f,0.5f);
     [SerializeField]
-    private Sprite[] sprites;
+    private Vector2Int     elementsQuanity = new Vector2Int(10,10);
     [SerializeField]
-    private Vector2 elementSize;
-    [SerializeField]
-    private Vector2Int elementsQuanity;
-
-    [SerializeField]
-    private Gradient gradient;
-    [SerializeField]
-    [Range(0.2f,40)]
-    private float spriteSpeed = 1;
+    private Gradient       gradient        = new Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.yellow, 0), new GradientColorKey(Color.red, 1) } };
+    [SerializeField, Range(0.2f,40)]
+    private float          spriteSpeed     = 1;
 
 
     private SpriteRenderer[] elements;
+    protected virtual void Start()
+    {
+        Generate();
 
-
-
+    }
     public Sprite GetRandomSprite()
     {
         if (sprites.Length == 0)
@@ -64,11 +59,6 @@ public class WaveLook : AutoInstanceBehaviour<WaveLook>
 
             }
     }
-    private void Start()
-    {
-        Generate();
-        
-
-    }
+  
 
 }

@@ -11,25 +11,25 @@ using Cyberevolver.Unity;
 using UnityEngine.Events;
 
 public abstract class ActiveElement : MonoBehaviourPlus
-{
-   
-    public abstract bool IsBad { get; }
-    [SerializeField]
-    private bool fakeDestroy;
+{ 
     protected const string EventFold = "Events";
 
+    [SerializeField]
+    private bool       fakeDestroy  = false;
+    [SerializeField]
+    private GameObject onKillPrefab = null;
+    [SerializeField]
+    private AudioClip  destroySound = null;
+    [SerializeField, Foldout(EventFold)]
+    private UnityEvent onKilled     = null;
+
+
+    bool particleWasSpawn;
     [Auto]
     public Rigidbody2D Rgb { get; protected set; }
     public bool IsKilled { get; private set; }
-    [SerializeField]
-    private GameObject onKillPrefab;
-    [SerializeField]
-    private AudioClip destroySound;
-    [SerializeField]
-    [Foldout(EventFold)]
-    private UnityEvent onKilled;
-    protected virtual void OnColidWithPlayer(PlayerController player) { }
-    protected virtual void OnKill() { }
+    public abstract bool IsBad { get; }
+
     protected virtual void Start()
     {
         Rgb.bodyType = RigidbodyType2D.Kinematic;
@@ -37,17 +37,14 @@ public abstract class ActiveElement : MonoBehaviourPlus
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController player;
-        if((player= collision.GetComponent<PlayerController>())!=null)
+        if ((player = collision.GetComponent<PlayerController>()) != null)
         {
             OnColidWithPlayer(player);
         }
         if (collision.GetComponent<Wave>())
             DestroyWithEffect();
     }
-    public virtual void OnExplode()
-    {
-         
-    }
+ 
     public void DestroyWithEffect()
     {
         if (IsKilled)
@@ -60,7 +57,7 @@ public abstract class ActiveElement : MonoBehaviourPlus
             Destroy(this.gameObject);
         
     }
-    bool particleWasSpawn;
+  
     public void SpawnDeathParticles()
     {
         if (particleWasSpawn)
@@ -71,5 +68,8 @@ public abstract class ActiveElement : MonoBehaviourPlus
         if (destroySound != null)
             FastAudio.PlayAtPoint(this.transform.position, destroySound);
     }
-    
+    protected virtual void OnColidWithPlayer(PlayerController player) { }
+    protected virtual void OnKill() { }
+    public virtual void OnExplode() { }
+
 }
