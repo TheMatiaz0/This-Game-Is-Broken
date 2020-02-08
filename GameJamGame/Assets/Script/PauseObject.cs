@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseObject : MonoBehaviour
 {
-
 	private void OnEnable()
 	{
 		StatisticsInfo.Instance.Timer.Stop();

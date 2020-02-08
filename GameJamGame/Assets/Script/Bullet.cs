@@ -12,8 +12,8 @@ using Cyberevolver.Unity;
 public class Bullet : Collectable
 {
     public override bool IsBad => true;
-    public Direction Dir { get; set; }
-    public float Speed { get; set; }
+    public Direction Dir   { get; set; }
+    public float     Speed { get; set; }
     private void Update()
     {
         this.transform.position += (Vector3)Dir.ToVector2() * Speed * Time.deltaTime;

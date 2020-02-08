@@ -14,16 +14,19 @@ public class Hammer : Collectable
     public override bool IsBad => false;
     [SerializeField]
     private Gradient gradient = new Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.red, 0), new GradientColorKey(Color.red, 1) } };
+
     [Auto]
     public SpriteRenderer Sprite { get; protected set; }
-    [SerializeField]
-    [Range(0,100)]
+
+    [SerializeField,Range(0, 100)]
     private float speed = 2;
+
     protected override void OnCollect()
     {
         ExplodeManager.Instance.Explode(this.transform.position);
         PlayerController.Instance.HammerUsage();
     }
+
     private void Update()
     {
         Sprite.color = gradient.Evaluate(((PlayerController.Instance.SceneTime * 100)%100) /100);

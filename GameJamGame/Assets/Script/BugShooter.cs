@@ -13,38 +13,34 @@ public class BugShooter : ActiveElement
 {
 
     [SerializeField]
-    private AudioClip shootSound = null;
+    private AudioClip  shootSound = null;
+    [SerializeField, RequiresAny]
+    private Collider2D headCollider   = null;
+    [SerializeField, Range(0.1f, 45)]
+    private float      seeLenght      = 3f;
+    [SerializeField, Range(0, 1000)]
+    private int        bounceForce    = 350;
+    [SerializeField, Min(0)]
+    private int        scoreReward    = 10;
+    [SerializeField, Range(0.01f, 10)] 
+    private float      bulletSpeed    = 1;
+    [SerializeField, Range(0.1f, 10)]
+    private float      shootSpeed     = 1;
+    [SerializeField]
+    private Bullet     bulletPrefab   = null;
+    [SerializeField]
+    private Transform  shootPoint     = null;
 
     public override bool IsBad => true;
-    [SerializeField]
-    [RequiresAny]
-    private Collider2D headCollider = null;
-    [SerializeField]
-    [Range(0.1f, 45)]
-    private float seeLenght = 3f;
-    [SerializeField]
-    [Range(0,1000)]
-    private int bounceForce = 350;
-    [SerializeField]
-    [Min(0)]
-    private int scoreReward = 10;
-    [SerializeField]
-    [Range(0.01f, 10)]
-    private float bulletSpeed = 1;
-    [SerializeField]
-    [Range(0.1f, 10)]
-    private float shootSpeed = 1;
-    [SerializeField]
-    private Bullet bulletPrefab = null;
-    [SerializeField]
-    private Transform shootPoint;
-    [Auto]
-    public SpriteRenderer Renderer { get; private set; }
-    [Auto]
-    public Animator Animator { get; private set; }
 
-    private Collider2D heroCollider;
+    [Auto]
+    public  SpriteRenderer     Renderer { get; private set; }
+    [Auto]
+    public  Animator           Animator { get; private set; }
 
+    private Collider2D heroCollider = null;
+
+   
     public void Shoot(Direction dir)
     {
 

@@ -9,9 +9,8 @@ using UnityEngine.UI;
 public class StatisticsInfo : AutoInstanceBehaviour<StatisticsInfo>
 {
 	[Auto]
-	public Text StatisticsText { get; private set; }
-
-	public Stopwatch Timer { get; private set; }
+	public Text      StatisticsText { get; private set; }
+	public Stopwatch Timer          { get; private set; }
 
 	protected new void Awake()
 	{

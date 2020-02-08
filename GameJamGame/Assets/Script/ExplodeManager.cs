@@ -16,31 +16,21 @@ public class ExplodeManager : AutoInstanceBehaviour<ExplodeManager>
 {
 
 
+    [SerializeField, Min(0)]
+    private float             finalSize     = 10;
     [SerializeField]
-    [Min(0)]
-    private float finalSize = 10;
-    [SerializeField]
-    private SerializeTimeSpan time;
-
-
-    [SerializeField]
-    private ExplosionElement explodePrefab;
+    private SerializeTimeSpan time          = new SerializeTimeSpan(TimeSpan.FromSeconds(1));
+    [SerializeField,RequiresAny]
+    private ExplosionElement  explodePrefab = null;
 
 
     public void Explode(Vector2 pos)
     {
-        GameObject g = Instantiate(explodePrefab).gameObject;
+        ExplosionElement g = Instantiate(explodePrefab);
         g.transform.position = pos;
-
-
-      
-
-        LeanTween.scale(g, new Vector2(finalSize, finalSize), (float)time.TimeSpan.TotalSeconds)
-            .setOnComplete(() => Destroy(g));
-
-
-
-
+        g.Init(new Vector2(finalSize, finalSize), time.TimeSpan);
+         
+       
     }
 
 

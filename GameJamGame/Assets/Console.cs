@@ -10,14 +10,8 @@ public class Console : AutoInstanceBehaviour<Console>
 {
 	[SerializeField] private Text outputText = null;
     public ConsoleWriter GetWriter()=> new ConsoleWriter();
-    protected virtual void Start()
-    {
-       
-    }
-
     public class ConsoleWriter:TextWriter
     {
-
         public string HtmlColor { get; set; } = "red";
         public override Encoding Encoding => Encoding.UTF8;
 

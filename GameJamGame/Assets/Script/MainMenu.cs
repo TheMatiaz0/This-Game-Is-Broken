@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField,RequiresAny]
     private GameObject childMainMenu = null;
-
     public void StartGame()
     {
         SceneManager.LoadScene("B");

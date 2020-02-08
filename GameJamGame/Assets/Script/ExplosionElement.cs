@@ -12,8 +12,22 @@ using UnityEngine;
 public class ExplosionElement : MonoBehaviourPlus
 {
 
-    
 
+
+    public Vector2 FinalSize { get; private set; }
+    public TimeSpan Time { get; private set; }
+
+    public void Init(Vector2 finalSize, TimeSpan time)
+    {
+        FinalSize = finalSize;
+        Time = time;
+    }
+
+    private void Start()
+    {
+        LeanTween.scale(this.gameObject, FinalSize, (float)Time.TotalSeconds)
+           .setOnComplete(() => Destroy(this.gameObject));
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

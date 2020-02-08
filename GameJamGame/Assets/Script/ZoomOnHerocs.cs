@@ -12,7 +12,6 @@ using Cyberevolver.Unity;
 public class ZoomOnHerocs : GlitchEffect
 {
     private float before;
-
     public override string Description => "Missing reference exception \"Zoom.json\"";
 
     protected override void OnCancel()

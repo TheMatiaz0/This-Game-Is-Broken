@@ -9,6 +9,16 @@ public abstract class GlitchEffect
 {
     public static GlitchEffect[] allGlitchEffects;
 
+
+    [RuntimeInitializeOnLoadMethod]
+    public static void Init()
+    {
+
+        allGlitchEffects = Cyberevolver.TheReflection.GetAllType(item => Cyberevolver.TheReflection.Is(item, typeof(GlitchEffect)) && item != typeof(GlitchEffect))
+            .Select(item => (GlitchEffect)Activator.CreateInstance(item))
+            .ToArray();
+
+    }
     public static GlitchEffect GetRandomGlitchEffect ()
     {
         GlitchEffect[] notEqupied =
@@ -25,8 +35,7 @@ public abstract class GlitchEffect
 
     }
 
-    public abstract string Description { get; }
-    protected abstract void OnCancel();
+  
     public void Cancel()
     {
         OnCancel();
@@ -34,16 +43,9 @@ public abstract class GlitchEffect
     }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }
+    public abstract string Description { get; }
+    protected virtual void OnCancel() { }
 
-    [RuntimeInitializeOnLoadMethod]
-    public static void Init()
-    {
-        
-        allGlitchEffects = Cyberevolver.TheReflection.GetAllType(item => Cyberevolver.TheReflection.Is(item,typeof(GlitchEffect))&& item != typeof(GlitchEffect))
-            .Select(item => (GlitchEffect)Activator.CreateInstance(item))
-            .ToArray();
-       
-    }
 
-   
+
 }

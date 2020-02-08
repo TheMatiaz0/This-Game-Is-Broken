@@ -13,9 +13,11 @@ public class WaveSymbol : MonoBehaviourPlus
 {
     [Auto]
     public SpriteRenderer Render { get; private set; }
+
     public Gradient Gradient { get; private set; }
-    public TimeSpan Delay { get; private set; }
-    private float moverValue;
+    public TimeSpan Delay    { get; private set; }
+
+    private float  moverValue;
 
     private void Start()
     {

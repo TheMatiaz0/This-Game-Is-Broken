@@ -161,22 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db56b05408a803042a4ac11b49d64b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreByBugs: -10
   <MovementSpeed>k__BackingField: 7
   <JumpMultiple>k__BackingField: 12
   gameOverManager: {fileID: 0}
   startRespPoint: {fileID: 0}
+  deathYPoint: {fileID: 0}
   cam: {fileID: 0}
   virtualCam: {fileID: 0}
+  musicSource: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: b86327326db598444896396f1e2055c2, type: 3}
   gameOverSound: {fileID: 8300000, guid: 8d7dac82730c4d841b3b867914312b51, type: 3}
   walkSound: {fileID: 8300000, guid: c9a3b391e5659b14b94ddd4ffade8c67, type: 3}
   glitchSound: {fileID: 8300000, guid: d26e306dcd4636f40865f6baa7ca5362, type: 3}
-  repairSound: []
-  musicSource: {fileID: 0}
-  minimalYSurvival: {fileID: 769460122}
-  maximumYSurvival: {fileID: 1890441792}
-  deathYPoint: {fileID: 0}
-  scoreByBugs: -10
+  repairSound: {fileID: 8300000, guid: ac7b1beec428d7f468b3a2d7cfb0d674, type: 3}
   deathParticle: {fileID: 7990820457959614184, guid: 37271fb0f32c4d34ba25074efc33aaac,
     type: 3}
 --- !u!50 &996109581129873839
@@ -191,7 +189,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2

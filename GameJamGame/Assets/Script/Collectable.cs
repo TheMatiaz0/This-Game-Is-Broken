@@ -15,11 +15,11 @@ public abstract class Collectable : ActiveElement
 
 
     [SerializeField]
-    private int score = 0;
-    [SerializeField]
-    [Foldout(EventFold)]
-    private UnityEvent onCollect;
-    private bool wasCollect;
+    private int        score     = 0;
+    [SerializeField, Foldout(EventFold)]
+    private UnityEvent onCollect = null;
+
+    private bool       wasCollect = false;
     protected sealed override void OnColidWithPlayer(PlayerController player)
     {
         if(wasCollect)

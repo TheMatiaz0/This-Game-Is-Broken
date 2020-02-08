@@ -13,9 +13,7 @@ public class Rotation180Screen : GlitchEffect
 
     public override void WhenCollect()
     {
-
         PlayerController.Instance.Cam.transform.rotation = PlayerController.Instance.Cam.transform.rotation.Add(new Vector3(0, 180, 180));
-
     }
     
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spike : Collectable
 {
-    
     public override bool IsBad =>true;
     protected override void OnCollect()
     {

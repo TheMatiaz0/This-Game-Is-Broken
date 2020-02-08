@@ -8,107 +8,98 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CustomBackgrounGroup(Value,BackgroundMode.Box)]
+[CustomBackgrounGroup(Asset,BackgroundMode.GroupBox)]
+
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
 
     #region CONST
-    protected const string Reference = "Reference";
-    protected const string Asset = "Asset";
-    protected const string Value = "Value";
+    private const string Reference = "Reference";
+    private const string Asset = "Asset";
+    private const string Value = "Value";
+    private const string AnimatorValueName = "Pose";
     #endregion
-    public bool IsDeath { get; private set; }
-    public enum AnimState
+    private enum AnimState
     {
         Idle = 0,
         Walking = 1,
         Faling = 2,
         Jumping = 3
     }
-    private bool isWalkSound = false;
-    public KeyCode JumpKey { get; set; } = KeyCode.Space;
-    public KeyCode LeftKey { get; set; } = KeyCode.LeftArrow;
-    public KeyCode RightKey { get; set; } = KeyCode.RightArrow;
-    [Auto]
-    public SpriteRenderer Sprite { get; private set; }
+   
 
-    public void ClearRandomEffect()
-    {
-        if (currentGlitches.Count != 0)
-        {
-            var index = UnityEngine.Random.Range(0, currentGlitches.Count);
-            currentGlitches[index].Cancel();
-            currentGlitches.RemoveAt(index);
+    [SerializeField, BoxGroup(Value)]
+    private int   scoreByBugs                         = -15;
+    [field: SerializeField, BoxGroup(Value), Cyberevolver.Unity.MinMaxRange(0f, 20f)]
+    public float  MovementSpeed { get; set; }         = 0.11f;
 
-
-        }
-    }
-  
-    private static readonly string AnimatorValueName = "Pose";
-    [Auto]
-    public Animator Animator { get; private set; }
-    [Auto]
-    public Rigidbody2D Rgb { get; set; }
-    private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
-
-    [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 20f)]
-    public float MovementSpeed { get; set; }        = 0.11f;
-
-    [field: SerializeField, Cyberevolver.Unity.MinMaxRange(0f, 400f)]
-    public float JumpMultiple { get; private set; } = 1;
-
+    [field: SerializeField, BoxGroup(Value), Cyberevolver.Unity.MinMaxRange(0f, 400f)]
+    public float  JumpMultiple  { get; private set; } = 1;
 
     //reference
 
-    [SerializeField]
-    private FreezeMenu gameOverManager = null;
+    [SerializeField, BoxGroup(Reference)]
+    private FreezeMenu                           gameOverManager = null;
 
-    [SerializeField,RequiresAny]
-    private Transform startRespPoint   = null;
+    [SerializeField,BoxGroup(Reference),RequiresAny]
+    private Transform                            startRespPoint  = null;
+    [SerializeField, BoxGroup(Reference)]
+    private Transform                            deathYPoint     = null;
+    [SerializeField, RequiresAny, BoxGroup(Reference)]
+    private Camera                               cam             = null;
+    [SerializeField, RequiresAny, BoxGroup(Reference)]
+    private Cinemachine.CinemachineVirtualCamera virtualCam      = null;
+     [SerializeField,BoxGroup(Reference)]
+    private AudioSource                          musicSource     = null;
+    
 
-   
+    //assets
 
-
-    [SerializeField]
-    private Camera cam;
-    public Camera Cam => cam;
-
-    [SerializeField]
-    private Cinemachine.CinemachineVirtualCamera virtualCam;
-    public Cinemachine.CinemachineVirtualCamera Virtual => virtualCam;
-
-    public float PrefferedCameraZoom { get; set; }
-    [Auto]
-    public AudioSource Source { get; private set; }
-
-    [SerializeField, Foldout(Asset)]
+    [SerializeField, BoxGroup(Asset)]
     private AudioClip   jumpSound      = null,
                         gameOverSound  = null,
                         walkSound      = null,
                         glitchSound    = null,
                         repairSound    = null;
 
-    [SerializeField, Foldout(Asset)]
-    private AudioSource musicSource  = null;
-    [SerializeField]
-    private Transform   deathYPoint  = null;
-    private float move = 0f;
-    [SerializeField]
-    private int scoreByBugs=-15;
-    [SerializeField]
+    [SerializeField, BoxGroup(Asset)]
+    private GameObject  deathParticle  = null;
+   
+    //properties
 
-    private GameObject deathParticle = null;
-    private bool canJump = false;
+    public bool           IsDeath             { get; private set; } = false;
+    public float          PrefferedCameraZoom { get; set; }         = 0;
+    public KeyCode        JumpKey             { get; set; }         = KeyCode.Space;
+    public KeyCode        LeftKey             { get; set; }         = KeyCode.LeftArrow;
+    public KeyCode        RightKey            { get; set; }         = KeyCode.RightArrow;
+
+    [Auto]
+    public SpriteRenderer Sprite              { get; private set; }
+    [Auto]
+    public AudioSource    Source              { get; private set; }
+    [Auto]
+    public Animator       Animator            { get; private set; }
+    [Auto]
+    public Rigidbody2D    Rgb                 { get; private set; }
+
     public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
-    public Transform StartRespPoint => startRespPoint;
-
-
-    public event EventHandler OnPlayerDeath = delegate { };
-    private float timeOnStart;
     public float SceneTime => Time.time - timeOnStart;
+    
+    public Cinemachine.CinemachineVirtualCamera Virtual => virtualCam;
+    public Camera Cam => cam;
+    public Transform StartRespPoint => startRespPoint;
+ 
+    public event EventHandler OnPlayerDeath = delegate { };
+   
+    private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
+
+    private          bool  canJump                      = false;
+    private          float move                         = 0f;
+    private          bool isWalkSound                   = false;
+    private          float timeOnStart;
+ 
     private void Start()
     {
-
         PrefferedCameraZoom = virtualCam.m_Lens.FieldOfView;
         timeOnStart = Time.time;
         if (gameOverManager != null)
@@ -132,10 +123,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             return;
         }
 
-
-
-
-
         foreach (var item in currentGlitches)
         {
             item.Update();
@@ -158,8 +145,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         move *= MovementSpeed;
         this.Sprite.flipX = (move < 0);
 
-
-
         if (this.Rgb.velocity.y < -1.3f)
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Faling);
 
@@ -168,6 +153,40 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         else
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Walking);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            canJump = true;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (IsDeath == true)
+        {
+            return;
+        }
+
+        if ((int)(virtualCam.m_Lens.FieldOfView) != (int)(PrefferedCameraZoom))
+            virtualCam.m_Lens.FieldOfView += (PrefferedCameraZoom - virtualCam.m_Lens.FieldOfView) / 3;
+
+        Move();
+
+        if (Input.GetKeyDown(JumpKey) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump();
+        }
+    }
+    public void ClearRandomEffect()
+    {
+        if (currentGlitches.Count != 0)
+        {
+            var index = UnityEngine.Random.Range(0, currentGlitches.Count);
+            currentGlitches[index].Cancel();
+            currentGlitches.RemoveAt(index);
+        }
+    }
+
     public void PushBugs(GlitchEffect effect)
     {
         GameManager.Instance.AddScore(scoreByBugs);
@@ -186,13 +205,13 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Source.PlayOneShot(repairSound);
         ClearRandomEffect();
-
     }
+
     public void Kill()
     {
         if (IsDeath == false)
         {
-            UIHider hider = Camera.main.GetComponent<UIHider>();
+            UIHider hider = cam.GetComponent<UIHider>();
             hider.HideUI(false);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
@@ -200,6 +219,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
 
     }
+
     private IEnumerator DeathProcess()
     {
         IsDeath = true;
@@ -213,34 +233,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         yield return Async.Wait(TimeSpan.FromSeconds(3));
         GameObject go = GameObject.FindGameObjectWithTag("GameOverObject");
         go.transform.GetChild(0).gameObject.SetActive(true);
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Ground")
-        {
-            canJump = true;
-        }
-    }
-    private void FixedUpdate()
-    {
-
-        if (IsDeath == true)
-        {
-            return;
-        }
-     
-        if ((int)(virtualCam.m_Lens.FieldOfView) != (int)(PrefferedCameraZoom))
-            virtualCam.m_Lens.FieldOfView += (PrefferedCameraZoom - virtualCam.m_Lens.FieldOfView) / 3;
-
-        Move();
-
-        if (Input.GetKeyDown(JumpKey) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jump();
-        }
-    }
+ 
     
     private void Jump()
     {
@@ -266,6 +261,5 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
                 //
             }, 1);
             */
-
     }
 }
