@@ -13,7 +13,7 @@ public class Hammer : Collectable
 {
     public override bool IsBad => false;
     [SerializeField]
-    private Gradient gradient;
+    private Gradient gradient = new Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.red, 0), new GradientColorKey(Color.red, 1) } };
     [Auto]
     public SpriteRenderer Sprite { get; protected set; }
     [SerializeField]

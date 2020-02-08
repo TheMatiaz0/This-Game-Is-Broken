@@ -13,11 +13,12 @@ public class BugShooter : ActiveElement
 {
 
     [SerializeField]
-    private AudioClip shootSound;
+    private AudioClip shootSound = null;
 
     public override bool IsBad => true;
     [SerializeField]
-    private Collider2D headCollider;
+    [RequiresAny]
+    private Collider2D headCollider = null;
     [SerializeField]
     [Range(0.1f, 45)]
     private float seeLenght = 3f;

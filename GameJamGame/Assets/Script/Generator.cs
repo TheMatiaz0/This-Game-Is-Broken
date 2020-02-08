@@ -14,10 +14,15 @@ public enum BlockMode
 
 public class Generator : MonoBehaviour
 {
+
+    #region CONST
     private const string Raw = "Values";
     private const string ChanceName = "Chance";
     private const string PrefabsName = "Prefabs";
     private const string Transform = "Transform";
+    #endregion
+
+    #region SERIALIZE_FIELDS
 
     [ShowCyberInspector]
     [Serializable]
@@ -29,58 +34,79 @@ public class Generator : MonoBehaviour
         [field: SerializeField]
         public Percent howOften;
     }
-    [SerializeField]
-    [WindowArray]
+
+    [SerializeField, WindowArray]
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
+    //chance
 
-    [SerializeField,BoxGroup(ChanceName)]
-    private Percent chanceForBlankBlock = 0.15f;
     [SerializeField, BoxGroup(ChanceName)]
-    private Percent chanceForUpperPlatform = 0.25f;
+    private Percent chanceForUpperPlatform  = 0.25f;
     [SerializeField, BoxGroup(ChanceName)]
     private Percent chanceForAnyActiveItems = 0.33f;
-    [BoxGroup(Raw)]
-    [SerializeField]
-    [Range(1, 100)]
-    private int blockInOneShoot = 10;
-    [BoxGroup(Raw)]
-    [SerializeField]
-    [Range(0, 99)]
-    private int howFastGenerate = 3;
-    [SerializeField]
-    [BoxGroup(Raw)]
-    [Range(1, 10)]
-    private int whenRemove = 3;
-    [BoxGroup(Raw)]
-    [SerializeField]
-    [Range(1, 100)]
-    private int howOftenCanHaveItem = 2;
-    [SerializeField]
-    [MinMaxSlider(1, 10)]
-    [BoxGroup(Raw)]
-    private Vector2Int platformsSize = new Vector2Int(2, 6);
-    [SerializeField]
-    [BoxGroup(PrefabsName)]
-    [RequiresAny]
-    private GameObject blockPrefab;
-    [SerializeField]
-    [BoxGroup(PrefabsName)]
-    [ArrayAsField("LeftEdge", "RightEdge")]
-    private Sprite[] edges;
-    [SerializeField]
-    [BoxGroup(Transform)]
-    private Transform startRespPoint;
-    [SerializeField]
-    [BoxGroup(Transform)]
-    private Transform maxUp;
-    [SerializeField]
-    [BoxGroup(Transform)]
-    private Transform minUp;
+   
+    //Raw
+
+    [SerializeField, BoxGroup(Raw), Range(1, 100)]
+    private int        blockInOneShoot     = 10;
+    [SerializeField, BoxGroup(Raw), Range(0, 99)]
+    private int        howFastGenerate     = 3;
+    [SerializeField, BoxGroup(Raw), Range(1, 10)]
+    private int        whenRemove          = 3;
+    [SerializeField, BoxGroup(Raw), Range(1, 100)]
+    private int        howOftenCanHaveItem = 2;
+    [SerializeField, BoxGroup(Raw), MinMaxSlider(1, 10)]
+    private Vector2Int platformsSize       = new Vector2Int(2, 6);
+
+    //Prefabs
+    [SerializeField, BoxGroup(PrefabsName), RequiresAny]
+    private GameObject blockPrefab = null;
+    [SerializeField, BoxGroup(PrefabsName), ArrayAsField("LeftEdge", "RightEdge")]
+    private Sprite[]   edges       = null;
+
+    //Transforms
+
+    [SerializeField, BoxGroup(Transform), RequiresAny]
+    private Transform startRespPoint = null;
+ 
+    [SerializeField, BoxGroup(Transform), RequiresAny]
+    private Transform maxUp          = null;
+
+    #endregion
+
+    #region PROPERTIES&FIELDS
+
+    private readonly Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
+    private float lastX = 0;
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
-    private Queue<GameObject[]> blocksPacks = new Queue<GameObject[]>();
-    private float lastX = 0;
+    #endregion
+
+    #region METHODS
+
+    protected virtual void Start()
+    {
+        lastX = startRespPoint.position.x;
+        PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
+        lastX = GenerateChunk(startRespPoint.position.x + 1, YRange, dontPutActiveItems: true, dontPutUpperPlatform: true, dontMakeEdge: true);
+
+    }
+
+    protected virtual void Update()
+    {
+        if (PlayerController.Instance.transform.position.x > (lastX) - howFastGenerate)
+        {
+            while (blocksPacks.Count >= whenRemove * 2)
+            {
+                foreach (var item in blocksPacks.Dequeue())
+                {
+                    if (item != null)
+                        Destroy(item.gameObject);
+                }
+            }
+            lastX = GenerateChunk(lastX, YRange);
+        }
+    }
 
     public float GenerateOneLine(float fromX, float blocks, float y, 
         bool dontPutActiveItems = false,bool dontMakeEdge=false,bool flip=false)
@@ -93,9 +119,6 @@ public class Generator : MonoBehaviour
             bool dontPut = dontPutActiveItems;
             if (dontMakeEdge==false)
             {
-
-                
-
                 if (x == 0)
                 {
                     mode = BlockMode.Left;
@@ -114,7 +137,6 @@ public class Generator : MonoBehaviour
             {
                 block.GetComponent<SpriteRenderer>().flipY = true;
             }
-
         }
         blocksPacks.Enqueue(objs);
         return fromX + blockInOneShoot;  
@@ -122,7 +144,6 @@ public class Generator : MonoBehaviour
 
     public GameObject GetRandomStuff()
     {
-
         PutedBlocksQuanity++;
         if(findablePrefabs.Count == 0 ||PutedBlocksQuanity %howOftenCanHaveItem!=0)
         {
@@ -145,8 +166,7 @@ public class Generator : MonoBehaviour
 
     public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
     {
-       
-        var block = Instantiate(blockPrefab);
+        GameObject block = Instantiate(blockPrefab);
         block.transform.position = pos;
         SpriteRenderer render = block.GetComponent<SpriteRenderer>();
         switch (mode)
@@ -174,14 +194,16 @@ public class Generator : MonoBehaviour
         block.isStatic = true;
         return block;
     }
+
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
     {
         float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:dontPutActiveItems);
         GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+5, dontPutActiveItems:true,dontMakeEdge: true,flip:true);
-        List<Vector2> busy = new List<Vector2>();
+        
         List<GameObject> blocks = new List<GameObject>();
+
         if (dontPutUpperPlatform == false)
-            for (float y = range.Min + 2/*No in basic line and no one cube over basic line*/; y < range.Max; y++)
+            for (float y = range.Min + 2/*No in basic line and no two cube over basic line*/; y < range.Max; y++)
             {
                 if (Chance(chanceForUpperPlatform))
                 {
@@ -193,29 +215,8 @@ public class Generator : MonoBehaviour
         blocksPacks.Enqueue(blocks.ToArray());
         return result;
     }
-    private void Start()
-    {
-        lastX = startRespPoint.position.x;
-        PutBlock(startRespPoint.position, dontPutActiveItems: true, BlockMode.Left);
-        lastX = GenerateChunk(startRespPoint.position.x+1, YRange, dontPutActiveItems:true,dontPutUpperPlatform:true,dontMakeEdge:true);
-    
 
-    }
-    private void Update()
-    {
-        if (PlayerController.Instance.transform.position.x > (lastX) - howFastGenerate)
-        {
+    #endregion
 
-           while (blocksPacks.Count >= whenRemove*2)
-            {
-                foreach (var item in blocksPacks.Dequeue())
-                {
-                    if (item != null)
-                    Destroy(item.gameObject);
-                }
-            }
-            lastX = GenerateChunk(lastX, YRange);
-        }
-    }
 
 }

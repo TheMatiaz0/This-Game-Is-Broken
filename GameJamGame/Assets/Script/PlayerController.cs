@@ -76,38 +76,32 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public AudioSource Source { get; private set; }
 
     [SerializeField]
-    private AudioClip jumpSound;
+    private AudioClip jumpSound = null;
 
     [SerializeField]
-    private AudioClip gameOverSound;
+    private AudioClip gameOverSound = null;
 
     [SerializeField]
-    private AudioClip walkSound;
+    private AudioClip walkSound = null;
 
     [SerializeField]
-    private AudioClip glitchSound;
+    private AudioClip glitchSound = null;
 
     [SerializeField]
-    private AudioClip repairSound;
+    private AudioClip repairSound = null;
 
     [SerializeField]
-    private AudioSource musicSource;
+    private AudioSource musicSource = null;
 
     [SerializeField]
-    private Transform minimalYSurvival;
-
-    [SerializeField]
-    private Transform maximumYSurvival;
-
-    [SerializeField]
-    private Transform deathYPoint;
-    private float move;
+    private Transform deathYPoint = null;
+    private float move = 0f;
     [SerializeField]
     private int scoreByBugs=-15;
     [SerializeField]
 
-    private GameObject deathParticle;
-    private bool canJump;
+    private GameObject deathParticle = null;
+    private bool canJump = false;
     public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
 
     public float SceneTime => Time.time - timeOnStart;
@@ -172,11 +166,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Idle);
         else
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Walking);
-
-
     }
-
-
     public void PushBugs(GlitchEffect effect)
     {
         GameManager.Instance.AddScore(scoreByBugs);
@@ -197,7 +187,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         ClearRandomEffect();
 
     }
-
     public void Kill()
     {
         if (IsDeath == false)
@@ -233,26 +222,16 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             canJump = true;
         }
     }
-
-
-
     private void FixedUpdate()
-
     {
 
         if (IsDeath == true)
         {
             return;
         }
-
-        Vector3Int AsInt(Vector3 v)
-            => new Vector3Int((int)v.x, (int)v.y, (int)v.z);
-
-
-
+     
         if ((int)(virtualCam.m_Lens.FieldOfView) != (int)(PrefferedCameraZoom))
             virtualCam.m_Lens.FieldOfView += (PrefferedCameraZoom - virtualCam.m_Lens.FieldOfView) / 3;
-
 
         Move();
 
