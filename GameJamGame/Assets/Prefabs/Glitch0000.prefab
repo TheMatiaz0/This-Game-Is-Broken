@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003374219, y: 0.33182436}
+  m_Offset: {x: -0.038235426, y: 0.32712537}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.227596, y: 0.042605042}
+  m_Size: {x: 0.9054942, y: 0.11142933}
   m_EdgeRadius: 0
 --- !u!1 &8300620370876285726
 GameObject:
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fakeDestroy: 0
   onKillPrefab: {fileID: 0}
+  destroySound: {fileID: 0}
   onKilled:
     m_PersistentCalls:
       m_Calls: []
@@ -197,7 +198,7 @@ MonoBehaviour:
   bounceForce: 753
   scoreReward: 10
   bulletSpeed: 5
-  shootSpeed: 0.3
+  shootSpeed: 0.99
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
     type: 3}
   shootPoint: {fileID: 8300620370876285727}

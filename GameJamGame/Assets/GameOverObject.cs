@@ -29,6 +29,6 @@ public class GameOverObject : MonoBehaviour
 
 	public void Quit()
 	{
-		Application.Quit(0);
+        SceneManager.LoadScene("Main Menu");
 	}
 }

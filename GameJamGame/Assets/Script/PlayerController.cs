@@ -49,9 +49,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private Camera                               cam             = null;
     [SerializeField, RequiresAny, BoxGroup(Reference)]
     private Cinemachine.CinemachineVirtualCamera virtualCam      = null;
-     [SerializeField,BoxGroup(Reference)]
+    [SerializeField,BoxGroup(Reference)]
     private AudioSource                          musicSource     = null;
-    
+    [SerializeField, BoxGroup(Reference),RequiresAny]
+    private Collider2D                           footCollider    = null;
+
 
     //assets
 
@@ -88,6 +90,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public Cinemachine.CinemachineVirtualCamera Virtual => virtualCam;
     public Camera Cam => cam;
     public Transform StartRespPoint => startRespPoint;
+    public Collider2D Foot => footCollider;
  
     public event EventHandler OnPlayerDeath = delegate { };
    
@@ -172,7 +175,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         Move();
 
-        if (Input.GetKeyDown(JumpKey) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(JumpKey) || Input.GetKey(KeyCode.UpArrow))
         {
             Jump();
         }
@@ -190,9 +193,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void PushBugs(GlitchEffect effect)
     {
         GameManager.Instance.AddScore(scoreByBugs);
+        Source.PlayOneShot(glitchSound);
         if (effect == null)
             return;
-        Source.PlayOneShot(glitchSound);
         if (currentGlitches.Any(item => item.GetType() == effect.GetType()) == false)
         {
             currentGlitches.Add(effect);

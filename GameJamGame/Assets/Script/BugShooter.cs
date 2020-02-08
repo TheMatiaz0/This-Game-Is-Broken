@@ -40,7 +40,6 @@ public class BugShooter : ActiveElement
 
     private Collider2D heroCollider = null;
 
-   
     public void Shoot(Direction dir)
     {
 
@@ -55,28 +54,51 @@ public class BugShooter : ActiveElement
         heroCollider= PlayerController.Instance.GetComponent<Collider2D>();
         StartCoroutine(Shooting());
     }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (end)
+            return;
+
+        if (headCollider.IsTouching(PlayerController.Instance.Foot) &&
+            collision.GetComponent<PlayerController>() &&
+            PlayerController.Instance.Rgb.velocity.y < 1)
+        {
+
+            WhenPlayerJumped();
+        }
+        else
+        {
+            base.OnTriggerEnter2D(collision);
+        }
+
+    }
+    protected override void OnColidWithPlayer(PlayerController player)
+    {
+        PlayerController.Instance.PushBugs(GlitchEffect.GetRandomGlitchEffect());
+        Explode();
+       
+    }
+
     private IEnumerator Shooting()
     {
         while(true)
         {
             Vector2 difference = (Vector2)(PlayerController.Instance.transform.position - this.transform.position);
-            if (difference.magnitude <= seeLenght)
+            if (difference.magnitude <= seeLenght&&difference.magnitude>=3.5f)
             {
                 Animator.SetTrigger("shoot");
                 Shoot((Direction)difference);
+                yield return Async.Wait(TimeSpan.FromSeconds(1f / shootSpeed));
 
             }
-            yield return Async.Wait(TimeSpan.FromSeconds(1f/shootSpeed));
+            else
+                yield return Async.NextFrame;
+           
          
            
         }
     }
-  
-    protected override void OnColidWithPlayer(PlayerController player)
-    {
-        PlayerController.Instance.Kill();
-    }
-
+ 
     public override void OnExplode()
     {
         Animator.SetTrigger("isDead");
@@ -86,29 +108,24 @@ public class BugShooter : ActiveElement
     public void WhenPlayerJumped()
     {
 
-        end = true;
-        StopAllCoroutines();
-        OnExplode();
-        Destroy(this.GetComponent<Collider2D>());
-        Invoke(() => DestroyWithEffect(), 0.55f);
+        
+        Explode();
         PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
         GameManager.Instance.AddScore(scoreReward);
     }
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    public void Explode()
     {
-        if (end)
-            return;
-
-        if (headCollider.IsTouching(heroCollider)&&collision.GetComponent<PlayerController>())
+     
+        if(end==false)
         {
-
-            WhenPlayerJumped();
+            end = true;
+            StopAllCoroutines();
+            OnExplode();
+            Destroy(this.GetComponent<Collider2D>());
+            Invoke(() => DestroyWithEffect(), 0.55f);
         }
-        else
-        {
-            base.OnTriggerEnter2D(collision);
-        }
-      
-        
+       
     }
+    
+
 }
