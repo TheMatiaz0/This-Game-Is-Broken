@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 [CustomBackgrounGroup(Asset,BackgroundMode.GroupBox)]
 
@@ -45,6 +46,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private Transform                            startRespPoint  = null;
     [SerializeField, BoxGroup(Reference)]
     private Transform                            deathYPoint     = null;
+    [SerializeField, BoxGroup(Reference)]
+    private VisualEffect                         walkingEffect   = null;
     [SerializeField, RequiresAny, BoxGroup(Reference)]
     private Camera                               cam             = null;
     [SerializeField, RequiresAny, BoxGroup(Reference)]
@@ -53,8 +56,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private AudioSource                          musicSource     = null;
     [SerializeField, BoxGroup(Reference),RequiresAny]
     private Collider2D                           footCollider    = null;
-
-
+    
     //assets
 
     [SerializeField, BoxGroup(Asset)]
@@ -66,7 +68,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     [SerializeField, BoxGroup(Asset)]
     private GameObject  deathParticle  = null;
-   
+
+
     //properties
 
     public bool           IsDeath             { get; private set; } = false;
@@ -96,10 +99,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
    
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
-    private          bool  canJump                      = false;
-    private          float move                         = 0f;
-    private          bool isWalkSound                   = false;
-    private          float timeOnStart;
+    private          bool       canJump                 = false;
+    private          float      move                    = 0f;
+    private          bool       isWalkSound             = false;
+    private          float      timeOnStart;
+
  
     private void Start()
     {
@@ -108,23 +112,28 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
+      
     }
+
 
     private void Update()
     {
+        
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        if (this.transform.position.y < deathYPoint.position.y)
-        {
-            this.Kill();
-        }
+#endif
         if (IsDeath)
         {
             return;
         }
+        if (this.transform.position.y < deathYPoint.position.y)
+        {
+            this.Kill();
+        }
+      
 
         foreach (var item in currentGlitches)
         {
@@ -139,13 +148,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             move = 1;
         }
-
         else
         {
             move = 0;
         }
 
+    
         move *= MovementSpeed;
+        walkingEffect.SetBool("Spawn", move != 0);
         this.Sprite.flipX = (move < 0);
 
         if (this.Rgb.velocity.y < -1.3f)
@@ -208,12 +218,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Source.PlayOneShot(repairSound);
         ClearRandomEffect();
+       
     }
 
     public void Kill()
     {
         if (IsDeath == false)
         {
+            foreach (Transform item in this.transform) item.gameObject.SetActive(false);
             UIHider hider = cam.GetComponent<UIHider>();
             hider.HideUI(false);
             musicSource.Stop();
