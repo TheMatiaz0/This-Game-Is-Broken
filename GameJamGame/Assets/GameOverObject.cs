@@ -12,12 +12,12 @@ public class GameOverObject : MonoBehaviour
 	protected void OnEnable()
 	{
 		ownFreezeMenu.EnableMenuWithPause(true);
-		StatisticsInfo.Instance.Timer.Stop();
+	
 	}
 
 	protected void OnDisable()
 	{
-		StatisticsInfo.Instance.Timer.Start();
+	
 	}
 
 

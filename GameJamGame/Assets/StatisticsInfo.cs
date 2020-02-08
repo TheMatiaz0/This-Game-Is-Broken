@@ -9,19 +9,20 @@ using UnityEngine.UI;
 public class StatisticsInfo : AutoInstanceBehaviour<StatisticsInfo>
 {
 	[Auto]
-	public Text      StatisticsText { get; private set; }
-	public Stopwatch Timer          { get; private set; }
+	public Text StatisticsText { get; private set; }
 
+    private float timeOnStart;
+    public TimeSpan GetTime() =>TimeSpan.FromSeconds(  Time.time - timeOnStart);
 	protected new void Awake()
 	{
 		base.Awake();
-		Timer = new Stopwatch();
-		Timer.Start();
+        timeOnStart = Time.time;
 	}
 
 	protected void Update()
 	{
-		StatisticsText.text = $"<color=red>{Timer.Elapsed.Hours}h, {Timer.Elapsed.Minutes}m, {Timer.Elapsed.Seconds}s</color>\n<color=yellow>{DistanceManager.Instance.GetMeters()} meters</color>";
+        TimeSpan time = GetTime();
+		StatisticsText.text = $"<color=red>{time.Hours}h, {time.Minutes}m, {time.Seconds}s</color>\n<color=yellow>{DistanceManager.Instance.GetMeters()} meters</color>";
 
 
 	}
