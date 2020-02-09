@@ -153,10 +153,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             move = 0;
         }
 
-    
+
+        bool isFlip = move < 0;
         move *= MovementSpeed;
         walkingEffect.SetBool("Spawn", move != 0);
-        this.Sprite.flipX = (move < 0);
+        walkingEffect.SetBool("Flip", isFlip);
+        this.Sprite.flipX = isFlip;
 
         if (this.Rgb.velocity.y < -1.3f)
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Faling);
@@ -225,7 +227,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (IsDeath == false)
         {
-            foreach (Transform item in this.transform) item.gameObject.SetActive(false);
+            walkingEffect.SetBool("Spawn", false);
             UIHider hider = cam.GetComponent<UIHider>();
             hider.HideUI(false);
             musicSource.Stop();

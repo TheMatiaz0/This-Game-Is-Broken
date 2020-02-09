@@ -12,22 +12,23 @@ using UnityEngine.SceneManagement;
 
 public class Wave : ActiveElement
 {
-    public override bool IsBad => false;
-    [field: SerializeField]
-  
-    public Direction Direction { get; private set; } = Direction.Right;
-    [field: SerializeField]
-    [field: BoxGroup(SpeedName)]
-    [field: MinMaxSlider(1, 100)]
-    public Range MinMaxSpeed { get; private set; } = new Range(1, 8);
-    private const string SpeedName = "Speed";
-    public static Wave Instance { get; protected set; }
-    [field: BoxGroup(SpeedName)]
-    [field:SerializeField]
-    public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; }
-    = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
 
+    private const string SpeedName = "Speed";
+
+    public static Wave Instance { get; protected set; }
+
+    [field: SerializeField]
+    public Direction         Direction          { get; private set; } = Direction.Right;
+    [field: SerializeField , BoxGroup(SpeedName),  MinMaxSlider(1, 100)]
+    public Range             MinMaxSpeed        { get; private set; } = new Range(1, 8);
+   
+    [field:SerializeField, BoxGroup(SpeedName)]
+    public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; } = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
+
+    public override bool IsBad => false;
+ 
     public bool End { get; private set; }
+   
 
     protected override void Awake()
     {

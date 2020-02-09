@@ -8,7 +8,6 @@ public class Spike : ActiveElement
     protected override void OnColidWithPlayer(PlayerController player)
     {
         PlayerController.Instance.Kill();
-        
     }
 
 }

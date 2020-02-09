@@ -55,8 +55,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614035389}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.28, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.059, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 996109581129873838}
@@ -100,6 +100,9 @@ VisualEffect:
       m_Array:
       - m_Value: 1
         m_Name: Spawn
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: IsFlip
         m_Overridden: 1
 --- !u!73398921 &1614035390
 VFXRenderer:
