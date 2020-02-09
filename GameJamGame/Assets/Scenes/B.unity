@@ -654,7 +654,7 @@ PrefabInstance:
     - target: {fileID: 2439395375529822851, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0003934
+      value: 2.196721
       objectReference: {fileID: 0}
     - target: {fileID: 2439395375529822851, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
@@ -705,6 +705,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375877302779, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_ScreenY
+      value: 0.583
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375877302779, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_BiasY
+      value: -0.00000012681839
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375877302779, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_ZDamping
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375877302779, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_YDamping
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439395375877302779, guid: 35b033de6040fb048ac9bfba2a0d5790,
+        type: 3}
+      propertyPath: m_XDamping
+      value: 0.81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b033de6040fb048ac9bfba2a0d5790, type: 3}
