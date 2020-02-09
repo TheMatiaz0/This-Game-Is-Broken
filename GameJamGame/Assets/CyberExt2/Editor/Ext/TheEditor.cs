@@ -329,10 +329,20 @@ namespace Cyberevolver.EditorUnity
                     GUIContent customConent = null;
                     if (customNames != null && customNames.Length > index)
                         customConent = new GUIContent(customNames[index]);
-                    
-                    
-                        
-                   if (TryDrawNestedInspectorForArray(member.FieldType.GetElementType(), index, prop.name, elementProp,true, customConent) == false)
+
+
+
+                    Type type;
+                    if(member.FieldType.IsSubclassOf(typeof(System.Array)))
+                    {
+                        type = member.FieldType.GetElementType();
+                    }
+                    else
+                    {
+                       type= member.FieldType.GetGenericArguments()[0];
+                    }
+
+                   if (TryDrawNestedInspectorForArray(type, index, prop.name, elementProp,true, customConent) == false)
                     {
                         if (customConent!=null)
                             EditorGUILayout.PropertyField(elementProp,customConent);

@@ -132,6 +132,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (this.transform.position.y < deathYPoint.position.y)
         {
             this.Kill();
+            return;
         }
       
 
@@ -229,6 +230,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (IsDeath == false)
         {
+            IsDeath = true;
+            move = 0;
             walkingEffect.SetBool("Spawn", false);
             UIHider hider = cam.GetComponent<UIHider>();
             hider.HideUI(false);
@@ -241,7 +244,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private IEnumerator DeathProcess()
     {
-        IsDeath = true;
+      
         OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
         if (deathParticle != null)

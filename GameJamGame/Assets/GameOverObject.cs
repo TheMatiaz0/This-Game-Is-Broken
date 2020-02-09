@@ -4,7 +4,7 @@ using UnityEngine;
 using Cyberevolver.Unity;
 using UnityEngine.SceneManagement;
 
-public class GameOverObject : MonoBehaviour
+public class GameOverObject : CanvasMenu
 {
 	[SerializeField]
 	private FreezeMenu ownFreezeMenu;
@@ -15,20 +15,12 @@ public class GameOverObject : MonoBehaviour
 	
 	}
 
-	protected void OnDisable()
-	{
-	
-	}
 
 
 	public void Retry()
-	{
-		// freeze or not freeze?
+	{		
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	public void Quit()
-	{
-        SceneManager.LoadScene("Main Menu");
-	}
+	
 }

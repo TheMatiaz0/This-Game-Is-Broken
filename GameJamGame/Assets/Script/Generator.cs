@@ -17,7 +17,6 @@ public class Generator : MonoBehaviour
 
     #region CONST
     private const string Raw = "Values";
-    private const string ChanceName = "Chance";
     private const string PrefabsName = "Prefabs";
     private const string Transform = "Transform";
     #endregion
@@ -38,25 +37,26 @@ public class Generator : MonoBehaviour
     [SerializeField, WindowArray]
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
-    //chance
-
-    [SerializeField, BoxGroup(ChanceName)]
-    private Percent chanceForUpperPlatform  = 0.25f;
-    [SerializeField, BoxGroup(ChanceName)]
-    private Percent chanceForAnyActiveItems = 0.33f;
-   
     //Raw
 
+    [SerializeField, BoxGroup(Raw)]
+    private Percent             chanceForUpperPlatform  = 0.25f;
+    [SerializeField, BoxGroup(Raw)]
+    private Percent             chanceForAnyActiveItems = 0.33f;
     [SerializeField, BoxGroup(Raw), Range(1, 100)]
-    private int        blockInOneShoot     = 10;
+    private int                 blockInOneShoot         = 10;
     [SerializeField, BoxGroup(Raw), Range(0, 99)]
-    private int        howFastGenerate     = 3;
+    private int                 howFastGenerate         = 3;
     [SerializeField, BoxGroup(Raw), Range(1, 10)]
-    private int        whenRemove          = 3;
+    private int                 whenRemove              = 3;
     [SerializeField, BoxGroup(Raw), Range(1, 100)]
-    private int        howOftenCanHaveItem = 2;
+    private int                 howOftenCanHaveItem     = 2;
     [SerializeField, BoxGroup(Raw), MinMaxSlider(1, 10)]
-    private Vector2Int platformsSize       = new Vector2Int(2, 6);
+    private Vector2Int          platformsSize           = new Vector2Int(2, 6);
+    [HelpBox("Value should be lower or equals than 1 time unit = 100 metres", MessageType.Info,UISize.Default)]
+    [SerializeField, BoxGroup(Raw)]
+    private AnimationCurve      elementAmountGrowing    = null;
+
 
     //Prefabs
     [SerializeField, BoxGroup(PrefabsName), RequiresAny]
@@ -80,10 +80,25 @@ public class Generator : MonoBehaviour
     private float lastX = 0;
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
+#if UNITY_EDITOR 
+    private bool showInfo = true;
+#endif
     #endregion
 
     #region METHODS
 
+
+    private Percent GetFinalChanceForAnyActiveItems()
+    {
+        if (elementAmountGrowing.length == 0)
+            return chanceForAnyActiveItems;
+
+        float currentTime = (DistanceManager.Instance.GetMeters()/100F);
+        return chanceForAnyActiveItems+ (Percent.Full - chanceForAnyActiveItems) *(Percent) elementAmountGrowing.Evaluate(currentTime);
+
+
+
+    }
     protected virtual void Start()
     {
         lastX = startRespPoint.position.x;
@@ -91,9 +106,34 @@ public class Generator : MonoBehaviour
         lastX = GenerateChunk(startRespPoint.position.x + 1, YRange, dontPutActiveItems: true, dontPutUpperPlatform: true, dontMakeEdge: true);
 
     }
+    protected virtual void OnGUI()
+    {
+#if UNITY_EDITOR 
 
+
+
+       
+        GUILayout.BeginVertical("Box");
+        if (showInfo)
+        {
+            GUIStyle style = new GUIStyle();
+            style.fontSize = 60;
+            style.normal.textColor = Color.white;
+          
+        }
+        GUIStyle btStyle = new GUIStyle("button");
+        btStyle.fontSize = 60;
+        if (GUILayout.Button(showInfo?"Hide":"Show", btStyle))
+            showInfo = !showInfo;
+        GUILayout.EndVertical();
+
+#endif
+    }
     protected virtual void Update()
     {
+
+
+
         if (PlayerController.Instance.transform.position.x > (lastX) - howFastGenerate)
         {
             while (blocksPacks.Count >= whenRemove * 2)
@@ -148,19 +188,26 @@ public class Generator : MonoBehaviour
         if(findablePrefabs.Count == 0 ||PutedBlocksQuanity %howOftenCanHaveItem!=0)
         {
             return null;
-        }      
-        int x = UnityEngine.Random.Range(0, findablePrefabs.Count);
-        if (Chance(findablePrefabs[x].howOften))
-        {
-            return findablePrefabs[x].prefab;
         }
-        else
-            return null;
+        List<int> acceptalbe = Enumerable.Range(0, findablePrefabs.Count).ToList();
+        while(acceptalbe.Count>0)
+        {
+            int x = UnityEngine.Random.Range(0, acceptalbe.Count);
+            if (Chance(findablePrefabs[acceptalbe[x]].howOften))
+            {
+                return findablePrefabs[acceptalbe[x]].prefab;
+            }
+            else
+                acceptalbe.RemoveAt(x);
+        }
+        return null;
+
+
     }
 
     private bool Chance (Percent percent)
     {
-        return UnityEngine.Random.Range(0, 1f + 0.01f) <= percent.AsFloatValue;
+        return UnityEngine.Random.Range(0, 1f) <= percent.AsFloatValue;
     }
 
     public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
@@ -179,7 +226,7 @@ public class Generator : MonoBehaviour
             default: break;
         }
 
-        if (dontPutActiveItems==false&&Chance(chanceForAnyActiveItems))
+        if (dontPutActiveItems == false && Chance(GetFinalChanceForAnyActiveItems()))
         {
             var prefab = GetRandomStuff();
             if (prefab != null)
