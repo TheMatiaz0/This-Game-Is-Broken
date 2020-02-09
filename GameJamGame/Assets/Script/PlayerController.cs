@@ -204,6 +204,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void PushBugs(GlitchEffect effect)
     {
+        if (this.IsDeath)
+            return;
         GameManager.Instance.AddScore(scoreByBugs);
         Source.PlayOneShot(glitchSound);
         if (effect == null)
