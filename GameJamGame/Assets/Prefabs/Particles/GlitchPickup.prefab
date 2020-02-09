@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1921599099218263810}
   - component: {fileID: 5116949283662169266}
   - component: {fileID: 1088036808640061496}
+  - component: {fileID: 3634053647514238620}
+  - component: {fileID: 8382167317284096823}
   m_Layer: 0
   m_Name: GlitchPickup
   m_TagString: Untagged
@@ -107,3 +109,55 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3634053647514238620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7959714611182668746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36195d327d076b84aae3095c8f9c6b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay:
+    miliseconds: 0
+    seconds: 3
+    minutes: 0
+    hour: 0
+    day: 0
+    precision: 2
+  onTimeOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8382167317284096823}
+        m_MethodName: InvokeStaticMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  activeOnStart: 1
+  autoReset: 0
+--- !u!114 &8382167317284096823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7959714611182668746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57808bef6cabc064283f137d5cf87207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method:
+    _TypeName: GameObjectHelper
+    _MethodName: Destroy
+  args: 
+  reference: {fileID: 7959714611182668746}

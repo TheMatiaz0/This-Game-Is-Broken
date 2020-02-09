@@ -29,13 +29,15 @@ public abstract class ActiveElement : MonoBehaviourPlus
     public Rigidbody2D Rgb { get; protected set; }
     public bool IsKilled { get; private set; }
     public abstract bool IsBad { get; }
-
+    private bool wasExplode;
     protected virtual void Start()
     {
         Rgb.bodyType = RigidbodyType2D.Kinematic;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if (wasExplode)
+            return;
         PlayerController player;
         if ((player = collision.GetComponent<PlayerController>()) != null)
         {
@@ -70,6 +72,15 @@ public abstract class ActiveElement : MonoBehaviourPlus
     }
     protected virtual void OnColidWithPlayer(PlayerController player) { }
     protected virtual void OnKill() { }
-    public virtual void OnExplode() { }
+    public  void Explode()
+    {
+        if(wasExplode==false)
+        {
+            wasExplode = true;
+            OnExplode();
+        }
+      
+    }
+    protected virtual void OnExplode() { }
 
 }

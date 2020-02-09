@@ -38,7 +38,7 @@ public class BugShooter : ActiveElement
     [Auto]
     public  Animator           Animator { get; private set; }
 
-    private Collider2D heroCollider = null;
+
 
     public void Shoot(Direction dir)
     {
@@ -51,13 +51,12 @@ public class BugShooter : ActiveElement
     protected override void Start()
     {
         base.Start();
-        heroCollider= PlayerController.Instance.GetComponent<Collider2D>();
+       
         StartCoroutine(Shooting());
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (end)
-            return;
+       
 
         if (headCollider.IsTouching(PlayerController.Instance.Foot) &&
             collision.GetComponent<PlayerController>() &&
@@ -99,12 +98,15 @@ public class BugShooter : ActiveElement
         }
     }
  
-    public override void OnExplode()
+    protected override void OnExplode()
     {
         Animator.SetTrigger("isDead");
-  
+        StopAllCoroutines();
+        Destroy(this.GetComponent<Collider2D>());
+        Invoke(() => DestroyWithEffect(), 0.55f);
+
     }
-    bool end = false;
+   
     public void WhenPlayerJumped()
     {
 
@@ -113,19 +115,7 @@ public class BugShooter : ActiveElement
         PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
         GameManager.Instance.AddScore(scoreReward);
     }
-    public void Explode()
-    {
-     
-        if(end==false)
-        {
-            end = true;
-            StopAllCoroutines();
-            OnExplode();
-            Destroy(this.GetComponent<Collider2D>());
-            Invoke(() => DestroyWithEffect(), 0.55f);
-        }
-       
-    }
+
     
 
 }

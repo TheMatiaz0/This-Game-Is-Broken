@@ -16,17 +16,15 @@ namespace Cyberevolver.Unity
 		public static void PlayAtPoint(Vector2 point, AudioClip clip, AudioMixerGroup mixer = null)
 		{
 			GameObject newGameObject = new GameObject();
+            newGameObject.name = "FastAudio";
 			newGameObject.transform.position = (Vector2)point;
 			AudioSource source = newGameObject.AddComponent<AudioSource>();
 			source.spatialBlend = 1.0f;
 			source.clip = clip;
-
 			if (mixer != null)
 			{
 				source.outputAudioMixerGroup = mixer;
 			}
-
-
 			source.Play();
 			source.gameObject.AddComponent<MonoBehaviourPlus>().StartCoroutine(Cor(source));
 		}

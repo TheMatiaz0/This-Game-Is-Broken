@@ -97,12 +97,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeDestroy: 0
-  onKillPrefab: {fileID: 7990820457959614184, guid: 8561cfe9a66401a4ca463d3804840437,
-    type: 3}
+  onKillPrefab: {fileID: 0}
+  destroySound: {fileID: 0}
   onKilled:
     m_PersistentCalls:
       m_Calls: []
   score: 25
+  onCollectEffect: {fileID: 7990820457959614184, guid: 8561cfe9a66401a4ca463d3804840437,
+    type: 3}
   onCollect:
     m_PersistentCalls:
       m_Calls: []

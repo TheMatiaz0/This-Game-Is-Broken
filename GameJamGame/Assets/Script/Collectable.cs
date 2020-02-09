@@ -15,11 +15,14 @@ public abstract class Collectable : ActiveElement
 
 
     [SerializeField]
-    private int        score     = 0;
+    private int        score           = 0;
+    [SerializeField]
+    private GameObject onCollectEffect = null;
     [SerializeField, Foldout(EventFold)]
-    private UnityEvent onCollect = null;
+    private UnityEvent onCollect       = null;
 
-    private bool       wasCollect = false;
+
+    private bool wasCollect = false;
     protected sealed override void OnColidWithPlayer(PlayerController player)
     {
         if(wasCollect)
@@ -29,8 +32,9 @@ public abstract class Collectable : ActiveElement
         wasCollect = true;
         GameManager.Instance.AddScore(score);
         onCollect.Invoke();
-   
         OnCollect();
+        if (onCollectEffect != null)
+            Instantiate(onCollectEffect, this.transform.position, Quaternion.identity);
         DestroyWithEffect();
        
     }

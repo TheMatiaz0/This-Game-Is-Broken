@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 147126103301924963}
   - component: {fileID: 81012413060527655}
+  - component: {fileID: 2618979561913774644}
   - component: {fileID: 1265754965042086798}
+  - component: {fileID: 7086135388841558826}
   m_Layer: 0
   m_Name: SpikeDestroy
   m_TagString: Untagged
@@ -68,6 +70,41 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!114 &2618979561913774644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201254571279065272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36195d327d076b84aae3095c8f9c6b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay:
+    miliseconds: 0
+    seconds: 4
+    minutes: 0
+    hour: 0
+    day: 0
+    precision: 2
+  onTimeOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7086135388841558826}
+        m_MethodName: InvokeStaticMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  activeOnStart: 1
+  autoReset: 0
 --- !u!73398921 &1265754965042086798
 VFXRenderer:
   m_ObjectHideFlags: 0
@@ -107,3 +144,20 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7086135388841558826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201254571279065272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57808bef6cabc064283f137d5cf87207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method:
+    _TypeName: GameObjectHelper
+    _MethodName: Destroy
+  args: 
+  reference: {fileID: 201254571279065272}

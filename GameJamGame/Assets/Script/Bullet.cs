@@ -16,13 +16,13 @@ public class Bullet : Collectable
     public float     Speed { get; set; }
     private void Update()
     {
+
         this.transform.position += (Vector3)Dir.ToVector2() * Speed * Time.deltaTime;
 
         if (Vector2.Distance(this.transform.position, PlayerController.Instance.transform.position) > 10)
         {
             Destroy(this.gameObject);
         }
-
     }
     protected override void OnCollect()
     {
