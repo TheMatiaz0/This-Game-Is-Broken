@@ -202,6 +202,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             currentGlitches.RemoveAt(index);
         }
     }
+    public void ClearAllGlith()
+    {
+        foreach(var item in currentGlitches)
+        {
+            item.Cancel();
+        }
+        currentGlitches.Clear();
+
+    }
 
     public void PushBugs(GlitchEffect effect)
     {

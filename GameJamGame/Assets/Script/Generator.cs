@@ -12,7 +12,7 @@ public enum BlockMode
     Center
 }
 
-public class Generator : MonoBehaviour
+public class Generator : AutoInstanceBehaviour<Generator>
 {
 
     #region CONST
@@ -80,15 +80,12 @@ public class Generator : MonoBehaviour
     private float lastX = 0;
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
-#if UNITY_EDITOR 
-    private bool showInfo = true;
-#endif
     #endregion
 
     #region METHODS
 
 
-    private Percent GetFinalChanceForAnyActiveItems()
+    public Percent GetFinalChanceForAnyActiveItems()
     {
         if (elementAmountGrowing.length == 0)
             return chanceForAnyActiveItems;
@@ -108,26 +105,7 @@ public class Generator : MonoBehaviour
     }
     protected virtual void OnGUI()
     {
-#if UNITY_EDITOR 
 
-
-
-       
-        GUILayout.BeginVertical("Box");
-        if (showInfo)
-        {
-            GUIStyle style = new GUIStyle();
-            style.fontSize = 60;
-            style.normal.textColor = Color.white;
-          
-        }
-        GUIStyle btStyle = new GUIStyle("button");
-        btStyle.fontSize = 60;
-        if (GUILayout.Button(showInfo?"Hide":"Show", btStyle))
-            showInfo = !showInfo;
-        GUILayout.EndVertical();
-
-#endif
     }
     protected virtual void Update()
     {
