@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
+using static UnityEngine.InputSystem.InputAction;
 
 [CustomBackgrounGroup(Asset,BackgroundMode.GroupBox)]
 
@@ -78,6 +79,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public KeyCode        LeftKey             { get; set; }         = KeyCode.LeftArrow;
     public KeyCode        RightKey            { get; set; }         = KeyCode.RightArrow;
 
+    private InputActions inputActions;
+    private Vector2 movement;
+
+
+
     [Auto]
     public SpriteRenderer Sprite              { get; private set; }
     [Auto]
@@ -104,7 +110,23 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private          bool       isWalkSound             = false;
     private          float      timeOnStart;
 
- 
+    private new void Awake()
+    {
+        base.Awake();
+        inputActions = new InputActions();
+        inputActions.PlayerControls.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
     private void Start()
     {
         PrefferedCameraZoom = virtualCam.m_Lens.FieldOfView;
@@ -117,8 +139,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     private void Update()
-    {
-        
+    {      
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -141,18 +162,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             item.Update();
         }
 
-        if (Input.GetKey(LeftKey))
-        {
-            move = -1;
-        }
-        else if (Input.GetKey(RightKey))
-        {
-            move = 1;
-        }
-        else
-        {
-            move = 0;
-        }
+        move = movement.x;
 
 
         bool isFlip = move < 0;
@@ -168,10 +178,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Idle);
         else
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Walking);
+
+        if (inputActions.PlayerControls.OpenPause.triggered)
+        {
+            GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
+        if (collision.tag.Equals("Ground"))
         {
             canJump = true;
         }
@@ -188,7 +203,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         Move();
 
-        if (Input.GetKey(JumpKey) || Input.GetKey(KeyCode.UpArrow))
+        if (inputActions.PlayerControls.Jump.triggered)
         {
             Jump();
         }
@@ -242,8 +257,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             IsDeath = true;
             move = 0;
             walkingEffect.SetBool("Spawn", false);
-            UIHider hider = cam.GetComponent<UIHider>();
-            hider.HideUI(false);
+            // UIHider hider = cam.GetComponent<UIHider>();
+            // hider.HideUI(false);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());

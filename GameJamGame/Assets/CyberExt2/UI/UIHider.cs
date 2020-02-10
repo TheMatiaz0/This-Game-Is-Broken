@@ -22,9 +22,14 @@ namespace Cyberevolver.Unity
 		{
 			if (Input.GetKeyDown(keyCodeActive))
 			{
-				IsHidden = !IsHidden;
-				HideUI(IsHidden);
+				Switch();
 			}
+		}
+
+		public void Switch ()
+		{
+			IsHidden = !IsHidden;
+			HideUI(IsHidden);
 		}
 
 		public void HideUI (bool areUSure)
