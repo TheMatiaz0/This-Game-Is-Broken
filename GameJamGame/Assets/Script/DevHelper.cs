@@ -12,9 +12,9 @@ public class DevHelper : MonoBehaviourPlus
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     private bool showInfo = true;
 
-    protected override void OnGUI()
+    protected virtual void OnGUI()
     {
-        base.OnGUI();
+     
 
 
 

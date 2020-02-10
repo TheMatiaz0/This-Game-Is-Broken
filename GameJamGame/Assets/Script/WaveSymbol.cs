@@ -33,7 +33,6 @@ public class WaveSymbol : MonoBehaviourPlus
     }
     private IEnumerator MainLoop()
     {
-
         while(true)
         {
 

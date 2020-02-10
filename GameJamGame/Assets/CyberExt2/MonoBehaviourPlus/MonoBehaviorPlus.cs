@@ -27,13 +27,7 @@ namespace Cyberevolver.Unity
             return Physics2D.RaycastAll(from, dir, distance)
                 .FirstOrDefault(item => item.collider != null && item.collider.gameObject != this.gameObject);
         }
-        protected virtual void OnGUI()
-        {
-            if (Application.isPlaying == false)
-                if (Time.frameCount % 10 == 0)
-                    foreach (PropertyInfo item in GetAllRequirer())
-                        this.gameObject.TryGetElseAdd(item.PropertyType);
-        }      
+        
         #region Invoke
         protected MethodDelay InvokeRepeating(Action action, float seconds)
         {
