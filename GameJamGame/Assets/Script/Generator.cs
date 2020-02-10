@@ -141,6 +141,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
         GameObject[] objs = new GameObject[10];
         Cint cooldown = 0;
         bool[] holes = new bool[(int)blocks+1];
+      
         if(drawLineFlags.HasFlag(DrawLineFlags.DontMakeHoles)==false&&makeHole&&blocks>=3)
             for(int x=2;x<blocks-2;x++)
             {
@@ -177,8 +178,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
                 {
                     anyMode = false;
                 }
-               
-                  
+ 
             }
             if(anyMode==false)
             {
@@ -192,7 +192,6 @@ public class Generator : AutoInstanceBehaviour<Generator>
                 }
             }
             
-
             if (holes[x]==false)
             {
                 GameObject block;
@@ -208,7 +207,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
         return fromX + blockInOneShoot;  
     }
 
-    public GameObject GetRandomStuff()
+    public GameObject GetRandomPrefabStuff()
     {
         PutedBlocksQuanity++;
         if(findablePrefabs.Count == 0 ||PutedBlocksQuanity %howOftenCanHaveItem!=0)
@@ -255,7 +254,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
         if (dontPutActiveItems == false && Chance(GetFinalChanceForAnyActiveItems()))
         {
-            var prefab = GetRandomStuff();
+            var prefab = GetRandomPrefabStuff();
             if (prefab != null)
             {
                 GameObject gameObj = Instantiate(prefab);
