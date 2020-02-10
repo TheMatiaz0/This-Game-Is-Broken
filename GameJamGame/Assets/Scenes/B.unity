@@ -618,6 +618,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1083868979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083868981}
+  - component: {fileID: 1083868980}
+  m_Layer: 0
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1083868980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083868979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56850a7c5dbb3184783b985120b117fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1083868981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083868979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.953588, y: 8.929637, z: -11.788086}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1200267093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2439395374753690981, guid: 35b033de6040fb048ac9bfba2a0d5790,
@@ -1307,6 +1350,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
+      propertyPath: f.keys.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: f.values.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
       propertyPath: findablePrefabs.Array.data[0].howOften._Value
       value: 0.15600000321865082
       objectReference: {fileID: 0}
@@ -1409,6 +1462,26 @@ PrefabInstance:
         type: 3}
       propertyPath: findablePrefabs.Array.data[3].howOften._Value
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: f.values.Array.data[0]._Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: f.values.Array.data[1]._Value
+      value: 0.23899999260902405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: f.values.Array.data[2]._Value
+      value: 0.23899999260902405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: f.values.Array.data[3]._Value
+      value: 0.23899999260902405
       objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}

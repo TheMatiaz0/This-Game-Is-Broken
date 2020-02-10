@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEditor;
 namespace  Cyberevolver.EditorUnity
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(UnityEngine.Object),true)]
     public class CyberInspector : Editor
     {
