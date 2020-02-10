@@ -108,9 +108,6 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
         float currentTime = (DistanceManager.Instance.GetMeters()/100F);
         return chanceForAnyActiveItems+ (Percent.Full - chanceForAnyActiveItems) *(Percent) elementAmountGrowing.Evaluate(currentTime);
-
-
-
     }
     protected virtual void Start()
     {
