@@ -70,7 +70,6 @@ public class CanvasMenu : MonoBehaviourPlus
 
     protected virtual void Update()
     {
-        // Debug.Log($"{movement.x}, {movement.y}");
         if (buttons.Length == 0)
             return;
 

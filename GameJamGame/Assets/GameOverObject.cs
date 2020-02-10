@@ -9,8 +9,9 @@ public class GameOverObject : CanvasMenu
 	[SerializeField]
 	private FreezeMenu ownFreezeMenu;
 
-	protected void OnEnable()
+	protected new void OnEnable()
 	{
+		base.OnEnable();
 		ownFreezeMenu.EnableMenuWithPause(true);
 	
 	}
