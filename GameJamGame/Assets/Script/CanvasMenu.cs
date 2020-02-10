@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Cyberevolver;
+using Cyberevolver.Unity;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cyberevolver;
-using Cyberevolver.Unity;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CanvasMenu : MonoBehaviourPlus
 {
@@ -19,30 +19,49 @@ public class CanvasMenu : MonoBehaviourPlus
     [ShowCyberInspector]
     protected struct ButtonWithEvent
     {
-        [field:SerializeField]
+        [field: SerializeField]
         public Text Button { get; private set; }
-        [field:SerializeField]
+        [field: SerializeField]
         public UnityEvent OnClick { get; private set; }
     }
 
     [SerializeField]
-    protected ButtonWithEvent[] buttons         = null;
+    protected ButtonWithEvent[] buttons = null;
     [SerializeField]
-    private Color             selectColor     = Color.yellow;
+    private Color selectColor = Color.yellow;
     [SerializeField]
-    private Color             nonSelectColor  = Color.white;
+    private Color nonSelectColor = Color.white;
 
-    private Cint  selectId = 0;
+    private InputActions inputActions;
+    private Vector2 movement;
+
+    private Cint selectId = 0;
+
+    protected new void Awake()
+    {
+        base.Awake();
+        inputActions = new InputActions();
+        inputActions.PauseControls.UpDown.performed += ctx => movement = ctx.ReadValue<Vector2>();
+    }
+
+    protected void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    protected void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
 
     protected virtual void Start()
     {
-        foreach(ButtonWithEvent item in buttons)
+        foreach (ButtonWithEvent item in buttons)
         {
             Button trueButton = item.Button.GetComponentInChildren<Button>();
             if (trueButton == null)
                 continue;
-            trueButton.onClick.AddListener(()=> item.OnClick.Invoke());
+            trueButton.onClick.AddListener(() => item.OnClick.Invoke());
             EventTrigger trigger = item.Button.gameObject.TryGetElseAdd<EventTrigger>();
             trigger.Add(EventTriggerType.PointerEnter, (b) => selectId = (uint)buttons.GetIndex(element => element.Button == item.Button));
 
@@ -51,20 +70,28 @@ public class CanvasMenu : MonoBehaviourPlus
 
     protected virtual void Update()
     {
+        // Debug.Log($"{movement.x}, {movement.y}");
         if (buttons.Length == 0)
             return;
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
-            selectId--;//this is cint, so increment is always  safe
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-            selectId++;
-        if (selectId >= buttons.Length)
-            selectId = (Cint)(uint) (buttons.Length - 1);//It's safer option. If inspektor is changing in play mode it still works.
 
-        for(int x=0;x<buttons.Length;x++)
+        if (movement.y > 0)
+        {
+            selectId--;
+        }
+
+        else if (movement.y < 0)
+        {
+            selectId++;
+        }
+
+        if (selectId >= buttons.Length)
+            selectId = (Cint)(uint)(buttons.Length - 1);
+
+        for (int x = 0; x < buttons.Length; x++)
             buttons[x].Button.color = (selectId == x) ? selectColor : nonSelectColor;
 
-        if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.Space))
-            buttons[selectId].OnClick.Invoke();           
+        if (inputActions.PauseControls.Click.triggered)
+            buttons[selectId].OnClick.Invoke();
 
     }
 

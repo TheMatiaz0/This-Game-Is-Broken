@@ -6,8 +6,11 @@ using Cyberevolver.Unity;
 
 public class UIChanger : AutoInstanceBehaviour<UIChanger>
 {
+	public bool IsHidden { get; private set; } = false;
+
 	public void Activate (bool isTrue)
 	{
+		IsHidden = !IsHidden;
 		foreach (var item in GetComponentsInChildren<Graphic>())
 		{
 			item.enabled = isTrue;
