@@ -10,7 +10,7 @@ using System.Collections;
 namespace Cyberevolver.Unity
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public class CondtionsAttribute : CyberAttrribute
+    public abstract class CondtionsAttribute : CyberAttrribute
     {
         public string Prop { get; }
         public object Value { get; }

@@ -21,7 +21,6 @@ public class Wave : ActiveElement
     public Direction         Direction          { get; private set; } = Direction.Right;
     [field: SerializeField , BoxGroup(SpeedName),  MinMaxSlider(1, 100)]
     public Range             MinMaxSpeed        { get; private set; } = new Range(1, 8);
-   
     [field:SerializeField, BoxGroup(SpeedName)]
     public SerializeTimeSpan WhenSpeedWillBeMax { get; private set; } = new SerializeTimeSpan(TimeSpan.FromSeconds(5));
 
@@ -51,14 +50,8 @@ public class Wave : ActiveElement
 
     }
     protected override void OnColidWithPlayer(PlayerController player)
-    {
-        
+    {    
         player.Kill();
     }
-   
-
-
-
-
 
 }

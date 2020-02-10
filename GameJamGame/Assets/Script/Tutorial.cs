@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 //watch this first: https://www.youtube.com/watch?v=0VGosgaoTsw
 
-public class TutorialScript : MonoBehaviour
+public class Tutorial : MonoBehaviour
 {
-    public float tutorialSpeed;
+    [SerializeField]
+    private float      tutorialSpeed;
+    [SerializeField]
+    private GameObject myObject;
 
-    public GameObject myObject;
-
-       void Start()
+   protected virtual  void Start()
     {
         //tutorialSpeed = Time.timeScale;
-}
+    }
 
-    // Update is called once per frame
-    void Update()
+  
+    protected virtual void Update()
     {
         Time.timeScale = tutorialSpeed;
         

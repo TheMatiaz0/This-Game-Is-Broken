@@ -5,12 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-public enum BlockMode
-{
-    Left,
-    Right,
-    Center
-}
 
 public class Generator : AutoInstanceBehaviour<Generator>
 {
@@ -20,7 +14,23 @@ public class Generator : AutoInstanceBehaviour<Generator>
     private const string PrefabsName = "Prefabs";
     private const string Transform = "Transform";
     #endregion
-
+    #region ENUMS
+    public enum BlockMode
+    {
+        Left,
+        Right,
+        Center
+    }
+    [Flags]
+    public enum DrawLineFlags
+    {
+        None = 0,
+        DontPutActiveItems = 1 << 0,
+        DontMakeEdge = 1 << 1,
+        Flip = 1 << 2,
+        DontMakeHoles=1<<3,
+    }
+    #endregion
     #region SERIALIZE_FIELDS
 
     [ShowCyberInspector]
@@ -38,19 +48,25 @@ public class Generator : AutoInstanceBehaviour<Generator>
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
     //Raw
-
+     [SerializeField, BoxGroup(Raw), Range(0, 99)]
+    private int                 howFastGenerate         = 3;
     [SerializeField, BoxGroup(Raw)]
     private Percent             chanceForUpperPlatform  = 0.25f;
     [SerializeField, BoxGroup(Raw)]
     private Percent             chanceForAnyActiveItems = 0.33f;
+       [SerializeField, BoxGroup(Raw), Range(1, 100)]
+    private int                 howOftenCanHaveItem     = 2;
     [SerializeField, BoxGroup(Raw), Range(1, 100)]
     private int                 blockInOneShoot         = 10;
-    [SerializeField, BoxGroup(Raw), Range(0, 99)]
-    private int                 howFastGenerate         = 3;
     [SerializeField, BoxGroup(Raw), Range(1, 10)]
     private int                 whenRemove              = 3;
-    [SerializeField, BoxGroup(Raw), Range(1, 100)]
-    private int                 howOftenCanHaveItem     = 2;
+    [SerializeField,BoxGroup(Raw)]
+    private bool                makeHole                = true;
+    [SerializeField,BoxGroup(Raw), ShowWhen(nameof(makeHole))]
+    private Percent             chanceForHole           = 0.25f;
+    [SerializeField,BoxGroup(Raw),MinMaxRange(0,10) , ShowWhen(nameof(makeHole))]
+    private uint                 minHoleBreak             = 2;
+
     [SerializeField, BoxGroup(Raw), MinMaxSlider(1, 10)]
     private Vector2Int          platformsSize           = new Vector2Int(2, 6);
     [HelpBox("Value should be lower or equals than 1 time unit = 100 metres", MessageType.Info,UISize.Default)]
@@ -83,7 +99,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
     #endregion
 
     #region METHODS
-
+   
 
     public Percent GetFinalChanceForAnyActiveItems()
     {
@@ -103,15 +119,8 @@ public class Generator : AutoInstanceBehaviour<Generator>
         lastX = GenerateChunk(startRespPoint.position.x + 1, YRange, dontPutActiveItems: true, dontPutUpperPlatform: true, dontMakeEdge: true);
 
     }
-    protected virtual void OnGUI()
-    {
-
-    }
     protected virtual void Update()
     {
-
-
-
         if (PlayerController.Instance.transform.position.x > (lastX) - howFastGenerate)
         {
             while (blocksPacks.Count >= whenRemove * 2)
@@ -127,34 +136,73 @@ public class Generator : AutoInstanceBehaviour<Generator>
     }
 
     public float GenerateOneLine(float fromX, float blocks, float y, 
-        bool dontPutActiveItems = false,bool dontMakeEdge=false,bool flip=false)
+       DrawLineFlags drawLineFlags)
     {
         GameObject[] objs = new GameObject[10];
+        Cint cooldown = 0;
+        bool[] holes = new bool[(int)blocks+1];
+        if(drawLineFlags.HasFlag(DrawLineFlags.DontMakeHoles)==false&&makeHole&&blocks>=3)
+            for(int x=2;x<blocks-2;x++)
+            {
+                if (cooldown == 0 && Chance(chanceForHole))
+                {
+                    holes[x] = true;
+                    cooldown = minHoleBreak;
+                }
+                else
+                    cooldown--;
+            }
+       
         for (int x = 0; x < blocks; x++)
         {
 
             BlockMode mode = BlockMode.Center;
-            bool dontPut = dontPutActiveItems;
-            if (dontMakeEdge==false)
+            bool dontPut = drawLineFlags.HasFlag(DrawLineFlags.DontPutActiveItems);
+            bool anyMode = false;
+            if (drawLineFlags.HasFlag(DrawLineFlags.DontMakeEdge) == false)
             {
+                anyMode = true;
                 if (x == 0)
                 {
                     mode = BlockMode.Left;
                     dontPut = true;
                 }
+                
                 else if (x == blocks - 1)
                 {
                     mode = BlockMode.Right;
                     dontPut = true;
                 }
+                else
+                {
+                    anyMode = false;
+                }
+               
+                  
+            }
+            if(anyMode==false)
+            {
+                if (holes[x + 1])
+                {
+                    mode = BlockMode.Right;
+                }
+                else if (x > 0 && holes[x - 1])
+                {
+                    mode = BlockMode.Left;
+                }
+            }
+            
+
+            if (holes[x]==false)
+            {
+                GameObject block;
+                objs[x] = block = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
+                if (drawLineFlags.HasFlag(DrawLineFlags.Flip))
+                {
+                    block.GetComponent<SpriteRenderer>().flipY = true;
+                }
             }
 
-            GameObject block;
-            objs[x] = block = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
-            if (flip)
-            {
-                block.GetComponent<SpriteRenderer>().flipY = true;
-            }
         }
         blocksPacks.Enqueue(objs);
         return fromX + blockInOneShoot;  
@@ -186,6 +234,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
     private bool Chance (Percent percent)
     {
         return UnityEngine.Random.Range(0, 1f) <= percent.AsFloatValue;
+       
     }
 
     public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
@@ -221,8 +270,8 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
     public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
     {
-        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y,dontMakeEdge:true,dontPutActiveItems:dontPutActiveItems);
-        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+5, dontPutActiveItems:true,dontMakeEdge: true,flip:true);
+        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y, DrawLineFlags.DontMakeEdge |((dontPutActiveItems)?DrawLineFlags.DontPutActiveItems:DrawLineFlags.None));
+        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+5, DrawLineFlags.DontPutActiveItems|DrawLineFlags.DontMakeEdge|DrawLineFlags.Flip|DrawLineFlags.DontMakeHoles);
         
         List<GameObject> blocks = new List<GameObject>();
 
@@ -231,8 +280,13 @@ public class Generator : AutoInstanceBehaviour<Generator>
             {
                 if (Chance(chanceForUpperPlatform))
                 {
+                    DrawLineFlags flags = DrawLineFlags.None;
+                    if (dontPutActiveItems)
+                        flags |= DrawLineFlags.DontPutActiveItems;
+                    if (dontMakeEdge)
+                        flags |= DrawLineFlags.DontMakeEdge;
                     int lenght = UnityEngine.Random.Range(platformsSize.x, platformsSize.y);
-                    GenerateOneLine(fromX, lenght, y, dontPutActiveItems,dontMakeEdge);
+                    GenerateOneLine(fromX, lenght, y, flags);
                     y += lenght;
                 }
             }

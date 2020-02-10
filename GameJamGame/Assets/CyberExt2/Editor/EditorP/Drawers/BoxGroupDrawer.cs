@@ -23,7 +23,7 @@ namespace Cyberevolver.EditorUnity
             BackgroundMode mode = BackgroundMode.Box;
             if (TheEditor.DrawBeforeGroup<CustomBackgrounGroupDrawer>(groups.Key) != null)
                 mode = BackgroundMode.None;
-            TheEditor.DrawBasicGroup(groups, mode);
+            CyberEdit.Current.DrawBasicGroup(groups, mode);
             TheEditor.DrawAfteGroup<CustomBackgrounGroupDrawer>(groups.Key);
         }
     }

@@ -643,16 +643,7 @@ namespace Cyberevolver.EditorUnity
             else
                 EditorGUILayout.PrefixLabel(content);
         }
-        public static void DrawBasicGroup(IGrouping<string,MemberInfo> group,BackgroundMode mode)
-        {
-            TheEditor.BeginVertical(mode);
-            EditorGUILayout.LabelField(group.Key, new GUIStyle() { fontStyle = FontStyle.Bold });
-            foreach (FieldInfo item in group)
-            {
-                TheEditor.DrawProperty(item,CyberEdit.Current.GetPropByName(item.Name));
-            }
-            EditorGUILayout.EndVertical();
-        }
+     
         public static void HelpBox(string content, MessageType type, GUIStyle style)
         {
             JumpBeetwenStyles(style,

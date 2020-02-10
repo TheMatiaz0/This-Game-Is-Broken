@@ -17,7 +17,7 @@ namespace Cyberevolver.EditorUnity
     {
         public void DrawGroup(IGrouping<string, MemberInfo> groups)
         {
-            TheEditor.DrawBasicGroup(groups, BackgroundMode.GroupBox);
+            CyberEdit.Current.DrawBasicGroup(groups, BackgroundMode.GroupBox);
         }
     }
 }

@@ -385,6 +385,20 @@ namespace Cyberevolver.EditorUnity
             }
             return t.GetField(name);
         }
+        public  void DrawBasicGroup(IGrouping<string, MemberInfo> group, BackgroundMode mode)
+        {
+            TheEditor.BeginVertical(mode);
+            EditorGUILayout.LabelField(group.Key, new GUIStyle() { fontStyle = FontStyle.Bold });
+            foreach (FieldInfo item in group)
+            {
+                CurrentProp = GetPropByName(item.Name);
+                CurrentField = item;
+                TheEditor.DrawProperty(item, CurrentProp);
+                CurrentProp = null;
+                CurrentField = null;
+            }
+            EditorGUILayout.EndVertical();
+        }
 
         public void DrawGroup(IGrouping<string, MemberInfo> group)
         {
