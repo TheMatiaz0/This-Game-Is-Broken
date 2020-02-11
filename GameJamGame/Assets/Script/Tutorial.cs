@@ -8,21 +8,22 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField]
-    private float      tutorialSpeed;
+    private float tutorialSpeed;
     [SerializeField]
     private GameObject myObject;
 
-   protected virtual  void Start()
+    protected virtual void Start()
     {
         //tutorialSpeed = Time.timeScale;
     }
 
-  
     protected virtual void Update()
     {
         Time.timeScale = tutorialSpeed;
-        
-
+        Time.fixedDeltaTime = Time.timeScale * 0.2f;
+    }
+    protected virtual void TutorialSlowmotion()
+    {
         if (Input.GetKeyDown("return"))
         {
             tutorialSpeed = 1f;
