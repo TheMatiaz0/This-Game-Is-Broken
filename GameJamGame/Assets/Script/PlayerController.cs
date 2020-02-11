@@ -109,6 +109,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private          float      move                    = 0f;
     private          bool       isWalkSound             = false;
     private          float      timeOnStart;
+    private bool jumped = false;
 
     private new void Awake()
     {
@@ -183,7 +184,13 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
         }
+
+        if (inputActions.PlayerControls.Jump.triggered)
+        {
+            jumped = true;
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("Ground"))
@@ -191,6 +198,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             canJump = true;
         }
     }
+
     private void FixedUpdate()
     {
         if (IsDeath == true)
@@ -203,11 +211,13 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         Move();
 
-        if (inputActions.PlayerControls.Jump.triggered)
+        if (jumped == true && canJump == true)
         {
             Jump();
+            jumped = false;
         }
     }
+
     public void ClearRandomEffect()
     {
         if (currentGlitches.Count != 0)
@@ -257,8 +267,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             IsDeath = true;
             move = 0;
             walkingEffect.SetBool("Spawn", false);
-            // UIHider hider = cam.GetComponent<UIHider>();
-            // hider.HideUI(false);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
             StartCoroutine(DeathProcess());
@@ -285,10 +293,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     
     private void Jump()
     {
-        if (canJump == false)
-        {
-            return;
-        }
         Source.PlayOneShot(jumpSound);
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
