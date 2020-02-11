@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 using static UnityEngine.InputSystem.InputAction;
 
-[CustomBackgrounGroup(Asset,BackgroundMode.GroupBox)]
+[CustomBackgrounGroup(Asset, BackgroundMode.GroupBox)]
 
 public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 {
@@ -28,56 +28,55 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         Faling = 2,
         Jumping = 3
     }
-   
+
 
     [SerializeField, BoxGroup(Value)]
-    private int   scoreByBugs                         = -15;
+    private int scoreByBugs = -15;
     [field: SerializeField, BoxGroup(Value), Cyberevolver.Unity.MinMaxRange(0f, 20f)]
-    public float  MovementSpeed { get; set; }         = 0.11f;
+    public float MovementSpeed { get; set; } = 0.11f;
 
     [field: SerializeField, BoxGroup(Value), Cyberevolver.Unity.MinMaxRange(0f, 400f)]
-    public float  JumpMultiple  { get; private set; } = 1;
+    public float JumpMultiple { get; private set; } = 1;
 
     //reference
 
     [SerializeField, BoxGroup(Reference)]
-    private FreezeMenu                           gameOverManager = null;
+    private FreezeMenu gameOverManager = null;
 
-    [SerializeField,BoxGroup(Reference),RequiresAny]
-    private Transform                            startRespPoint  = null;
+    [SerializeField, BoxGroup(Reference), RequiresAny]
+    private Transform startRespPoint = null;
     [SerializeField, BoxGroup(Reference)]
-    private Transform                            deathYPoint     = null;
+    private Transform deathYPoint = null;
     [SerializeField, BoxGroup(Reference)]
-    private VisualEffect                         walkingEffect   = null;
+    private VisualEffect walkingEffect = null;
     [SerializeField, RequiresAny, BoxGroup(Reference)]
-    private Camera                               cam             = null;
+    private Camera cam = null;
     [SerializeField, RequiresAny, BoxGroup(Reference)]
-    private Cinemachine.CinemachineVirtualCamera virtualCam      = null;
-    [SerializeField,BoxGroup(Reference)]
-    private AudioSource                          musicSource     = null;
-    [SerializeField, BoxGroup(Reference),RequiresAny]
-    private Collider2D                           footCollider    = null;
-    
+    private Cinemachine.CinemachineVirtualCamera virtualCam = null;
+    [SerializeField, BoxGroup(Reference)]
+    private AudioSource musicSource = null;
+    [SerializeField, BoxGroup(Reference), RequiresAny]
+    private Collider2D footCollider = null;
+
     //assets
 
     [SerializeField, BoxGroup(Asset)]
-    private AudioClip   jumpSound      = null,
-                        gameOverSound  = null,
-                        walkSound      = null,
-                        glitchSound    = null,
-                        repairSound    = null;
+    private AudioClip jumpSound = null,
+                        gameOverSound = null,
+                        walkSound = null,
+                        glitchSound = null,
+                        repairSound = null;
 
     [SerializeField, BoxGroup(Asset)]
-    private GameObject  deathParticle  = null;
+    private GameObject deathParticle = null;
 
 
     //properties
 
-    public bool           IsDeath             { get; private set; } = false;
-    public float          PrefferedCameraZoom { get; set; }         = 0;
-    public KeyCode        JumpKey             { get; set; }         = KeyCode.Space;
-    public KeyCode        LeftKey             { get; set; }         = KeyCode.LeftArrow;
-    public KeyCode        RightKey            { get; set; }         = KeyCode.RightArrow;
+    public bool IsDeath { get; private set; } = false;
+    public float PrefferedCameraZoom { get; set; } = 0;
+
+    public bool KeysReversed { get; set; } = false;
 
     private InputActions inputActions;
     private Vector2 movement;
@@ -85,30 +84,30 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
 
     [Auto]
-    public SpriteRenderer Sprite              { get; private set; }
+    public SpriteRenderer Sprite { get; private set; }
     [Auto]
-    public AudioSource    Source              { get; private set; }
+    public AudioSource Source { get; private set; }
     [Auto]
-    public Animator       Animator            { get; private set; }
+    public Animator Animator { get; private set; }
     [Auto]
-    public Rigidbody2D    Rgb                 { get; private set; }
+    public Rigidbody2D Rgb { get; private set; }
 
     public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
     public float SceneTime => Time.time - timeOnStart;
-    
+
     public Cinemachine.CinemachineVirtualCamera Virtual => virtualCam;
     public Camera Cam => cam;
     public Transform StartRespPoint => startRespPoint;
     public Collider2D Foot => footCollider;
- 
+
     public event EventHandler OnPlayerDeath = delegate { };
-   
+
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
-    private          bool       canJump                 = false;
-    private          float      move                    = 0f;
-    private          bool       isWalkSound             = false;
-    private          float      timeOnStart;
+    private bool canJump = false;
+    private float move = 0f;
+    private bool isWalkSound = false;
+    private float timeOnStart;
     private bool jumped = false;
 
     private new void Awake()
@@ -135,12 +134,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
-      
+
     }
 
 
     private void Update()
-    {      
+    {
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -156,14 +155,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             this.Kill();
             return;
         }
-      
+
 
         foreach (var item in currentGlitches)
         {
             item.Update();
         }
 
-        move = movement.x;
+
+        move = GetProperMovement(KeysReversed);
 
 
         bool isFlip = move < 0;
@@ -189,6 +189,20 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             jumped = true;
         }
+    }
+
+    private float GetProperMovement(bool isReversed)
+    {
+        if (isReversed)
+        {
+            return movement.x * (-1);
+        }
+
+        else
+        {
+            return movement.x;
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -227,9 +241,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             currentGlitches.RemoveAt(index);
         }
     }
-    public void ClearAllGlith()
+    public void ClearAllGlitches()
     {
-        foreach(var item in currentGlitches)
+        foreach (var item in currentGlitches)
         {
             item.Cancel();
         }
@@ -257,7 +271,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         Source.PlayOneShot(repairSound);
         ClearRandomEffect();
-       
+
     }
 
     public void Kill()
@@ -276,7 +290,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private IEnumerator DeathProcess()
     {
-      
+
         OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
         if (deathParticle != null)
@@ -289,8 +303,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         go.transform.GetChild(0).gameObject.SetActive(true);
     }
 
- 
-    
+
+
     private void Jump()
     {
         Source.PlayOneShot(jumpSound);
