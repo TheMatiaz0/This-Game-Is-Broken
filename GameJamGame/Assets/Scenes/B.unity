@@ -1048,10 +1048,20 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 16083141622251908, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 441790690548621270, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 696239737677118180, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1652867852491301107, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
@@ -1168,6 +1178,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3710249137944364745, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5273607872761138494, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1222,6 +1237,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793635291764051357, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_Name
+      value: Tutorial4Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459961225826673434, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8761799257151699756, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_Name
+      value: Tutorial4Image
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5947457475405654057, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
