@@ -11,6 +11,6 @@ public class SliderWithText : SliderWithCounter
 
     public override void OnDrag()
     {
-        TextCounter.text = slider.value.ToString();
+        TextCounter.text = slider?.value.ToString();
     }
 }

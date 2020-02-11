@@ -94,8 +94,6 @@ public class OptionsManager : MonoBehaviour
 		else
 			resolutionDropdown.value = (int)index;
 
-		// languageDropDown.value = languageDropDown.options.FindIndex(item => item.text == CurrentConfig.Language);
-
 		inited = true;
 	}
 
