@@ -20,8 +20,7 @@ public class KeybordRevert : GlitchEffect
 
     public override void WhenCollect()
     {
-        var temp = PlayerController.Instance.LeftKey;
-        PlayerController.Instance.LeftKey = PlayerController.Instance.RightKey;
-        PlayerController.Instance.RightKey = temp;
+        PlayerController player = PlayerController.Instance;
+        player.KeysReversed = !player.KeysReversed;
     }
 }

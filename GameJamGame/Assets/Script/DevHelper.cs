@@ -37,7 +37,7 @@ public class DevHelper : MonoBehaviourPlus
             if (GUILayout.Button("Kill",btStyle))
                 PlayerController.Instance.Kill();
             if (GUILayout.Button("RemoveAllGlith", btStyle))
-                PlayerController.Instance.ClearAllGlith();
+                PlayerController.Instance.ClearAllGlitches();
 
 
         }
