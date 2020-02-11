@@ -68,7 +68,7 @@ public class OptionsManager : MonoBehaviour
 
 		}
 		await Async.NextFrame;
-		// CurrentConfig.Accept();
+		CurrentConfig.Accept();
 
 	}
 

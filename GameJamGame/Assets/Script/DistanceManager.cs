@@ -8,9 +8,13 @@ using Cyberevolver.Unity;
 
 public class DistanceManager : AutoInstanceBehaviour<DistanceManager>
 {
-	public float MetersTravelled { get { return _MetersTravelled; } private set { _MetersTravelled = value; /* OnMetersChange(_MetersTravelled); */ } }
+	public float MetersTravelled { get { return _MetersTravelled; } private set { _MetersTravelled = value; OnMetersChange(_MetersTravelled); } }
 	private float _MetersTravelled;
 	private float startX;
+
+	private int lastMetersReward = 0;
+
+	private const int meterMaxForReward = 8;
 
 	protected void Start()
 	{
@@ -19,9 +23,12 @@ public class DistanceManager : AutoInstanceBehaviour<DistanceManager>
 
 	public void OnMetersChange (float meters)
 	{
-		if ((int)meters % 10 == 0)
+		int m = (int)meters;
+
+		if (m / meterMaxForReward > lastMetersReward && m % meterMaxForReward == 0)
 		{
 			GameManager.Instance.AddScore(1);
+			lastMetersReward++;
 		}
 	}
 

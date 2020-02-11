@@ -15,16 +15,16 @@ public class SettingsConfig
     public float MusicVolume { get; set; }
     public float SfxVolume { get; set; }
     public FullScreenMode FullScreenMode { get; set; }
-    private AudioMixer mixer = (Resources.Load("Audio") as AudioMixer);
+    // private AudioMixer mixer = (Resources.Load("Audio") as AudioMixer);
 
     public void Accept()
     {
         Screen.SetResolution(Resolution.width, Resolution.height, FullScreenMode, Resolution.refreshRate);
         QualitySettings.SetQualityLevel((int)Quality);
         QualitySettings.vSyncCount = Convert.ToInt32(VSync);
-        mixer.SetFloat("masterVolume", MasterVolume);
-        mixer.SetFloat("musicVolume", MusicVolume);
-        mixer.SetFloat("sfxVolume", SfxVolume);
+        // mixer.SetFloat("masterVolume", MasterVolume);
+        // mixer.SetFloat("musicVolume", MusicVolume);
+        // mixer.SetFloat("sfxVolume", SfxVolume);
       
     }
     public SettingsConfig()
