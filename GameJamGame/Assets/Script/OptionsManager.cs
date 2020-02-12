@@ -29,17 +29,12 @@ public class OptionsManager : MonoBehaviour
 
 	[SerializeField] private Slider master = null, sfx = null, music = null;
 
-	private readonly static XmlSerializer xmlWriter = new XmlSerializer(typeof(SettingsConfig));
 
-	private static readonly string path = "Settings.config";
+   
 
 	protected virtual void OnDisable()
 	{
-		CurrentConfig.Accept();
-		using (StreamWriter writer = new StreamWriter(path))
-		{
-			xmlWriter.Serialize(writer, CurrentConfig);
-		}
+        CurrentConfig.Save();
 		inited = false;
 	}
 
@@ -50,20 +45,28 @@ public class OptionsManager : MonoBehaviour
 
 	public static SettingsConfig CurrentConfig { get; private set; }
 
-	[RuntimeInitializeOnLoadMethod]
+#if UNITY_EDITOR
+
+    [UnityEditor.MenuItem("TGIB/Clear Config")]
+    public static void ClearConfig()
+    {
+        File.Delete(SettingsConfig.Path);
+    }
+#endif
+
+    [RuntimeInitializeOnLoadMethod]
 	public async static void Init()
 	{
-		if (File.Exists(path))
+		if (File.Exists(SettingsConfig.Path))
 		{
-			using (StreamReader s = new StreamReader(path))
-			{
-				CurrentConfig = (SettingsConfig)xmlWriter.Deserialize(s);
-			}
+            CurrentConfig= SettingsConfig.Load();
 		}
 		else
 		{
 			Debug.Log("Can't find Settings.config file");
+
 			CurrentConfig = new SettingsConfig();
+            CurrentConfig.FirstTime = true;
 			CurrentConfig.LoadDefault();
 
 		}

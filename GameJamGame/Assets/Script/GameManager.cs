@@ -36,7 +36,7 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     }
 
     // Save in XML or something like that.
-    public bool FirstTime { get; private set; } = false;
+ 
 
     private void OnEnable()
     {
@@ -46,7 +46,10 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     private void Start()
     {
-        Invoke(() => tutorialManager.EnableMenuWithPause(FirstTime), 0.5f);
+        bool firstTime = OptionsManager.CurrentConfig.FirstTime;//it has to be here becuase "delayed invoking"
+        Invoke(() => tutorialManager.EnableMenuWithPause(firstTime), 0.5f);
+        OptionsManager.CurrentConfig.FirstTime = false;
+        OptionsManager.CurrentConfig.Save();
     }
 
     public void Back ()
