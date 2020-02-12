@@ -11,7 +11,7 @@ using System.IO;
 
 public sealed class SettingsConfig
 {
-    public static string Path => System.IO.Path.Combine(Application.dataPath, "Settings.config");
+    public static string Path => System.IO.Path.Combine(Application.persistentDataPath, "Settings.config");
     public Resolution Resolution { get; set; }
     public uint Quality { get; set; }
     public bool VSync { get; set; }

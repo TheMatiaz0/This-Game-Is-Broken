@@ -34,8 +34,6 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
         }
     }
-
-    // Save in XML or something like that.
  
 
     private void OnEnable()
@@ -55,7 +53,6 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     public void Back ()
     {
         tutorialManager.EnableMenuWithPause(false);
-        // not working, WiP
         StartCoroutine(BackToNormalTime());
     }
 
