@@ -36,7 +36,7 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     }
 
     // Save in XML or something like that.
-    public bool FirstTime { get; private set; } = true;
+    public bool FirstTime { get; private set; } = false;
 
     private void OnEnable()
     {

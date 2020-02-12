@@ -110,6 +110,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private float timeOnStart;
     private bool jumped = false;
 
+    private bool jumpedOnMobile = false;
+
     private new void Awake()
     {
         base.Awake();
@@ -135,6 +137,31 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
 
+    }
+
+    public void RightBtnClick ()
+    {
+        movement.x = 1;
+    }
+
+    public void LeftBtnClick ()
+    {
+        movement.x = -1;
+    }
+
+    public void ResetMovement ()
+    {
+        movement.x = 0;
+    }
+
+    public void JumpBtnClick ()
+    {
+        jumpedOnMobile = true;
+    }
+
+    public void OpenPause ()
+    {
+        GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
     }
 
 
@@ -180,12 +207,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         else
             Animator.SetInteger(AnimatorValueName, (int)AnimState.Walking);
 
-        if (inputActions.PlayerControls.OpenPause.triggered)
+        if (inputActions.PlayerControls.SwitchUI.triggered)
         {
-            GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
+            GameObject.FindObjectOfType<UIChanger>().ReswitchUI();
         }
 
-        if (inputActions.PlayerControls.Jump.triggered)
+        if (inputActions.PlayerControls.OpenPause.triggered)
+        {
+            OpenPause();
+        }
+
+        if (inputActions.PlayerControls.Jump.triggered || jumpedOnMobile)
         {
             jumped = true;
         }
@@ -228,6 +260,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (jumped == true && canJump == true)
         {
             Jump();
+            jumpedOnMobile = false;
             jumped = false;
         }
     }

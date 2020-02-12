@@ -10,10 +10,15 @@ public class UIChanger : AutoInstanceBehaviour<UIChanger>
 
 	public void Activate (bool isTrue)
 	{
-		IsHidden = !IsHidden;
 		foreach (var item in GetComponentsInChildren<Graphic>())
 		{
 			item.enabled = isTrue;
+			IsHidden = isTrue;
 		}
+	}
+
+	public void ReswitchUI ()
+	{
+		Activate(!IsHidden);
 	}
 }

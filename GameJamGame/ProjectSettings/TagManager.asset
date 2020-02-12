@@ -11,6 +11,7 @@ TagManager:
   - Mixer
   - PauseManager
   - TutorialManager
+  - UiChanger
   layers:
   - Default
   - TransparentFX
