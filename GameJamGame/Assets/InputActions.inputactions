@@ -438,6 +438,52 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TutorialControls",
+            "id": "ca8a0eb5-c838-433a-b953-e5b7c863bcf1",
+            "actions": [
+                {
+                    "name": "SkipFull",
+                    "type": "Button",
+                    "id": "0c056db4-26c9-4687-a64e-93c9beb2adff",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SkipNext",
+                    "type": "Button",
+                    "id": "5eb4013e-afd7-477b-9e84-4a03019bd744",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a2486b42-e102-408c-99cc-1c94c545715d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipFull",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40feccf3-c57b-402f-9860-73c91eb17d29",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

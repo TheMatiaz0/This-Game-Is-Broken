@@ -84,8 +84,6 @@ namespace Cyberevolver.Unity
 				tempChild.SetActive(to);
 				TimeManipulate(to);
 			}
-
-			// LeanTween.alpha(tempChild, 1f, 25f);
 		}
 
 		private bool TimeManipulate(bool isTrue)

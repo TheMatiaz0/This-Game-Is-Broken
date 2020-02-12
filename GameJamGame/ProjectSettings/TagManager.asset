@@ -10,6 +10,7 @@ TagManager:
   - GlitchEnemy
   - Mixer
   - PauseManager
+  - TutorialManager
   layers:
   - Default
   - TransparentFX

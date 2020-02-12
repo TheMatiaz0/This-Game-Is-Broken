@@ -2,37 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-//watch this first: https://www.youtube.com/watch?v=0VGosgaoTsw
+using Cyberevolver.Unity;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField]
-    private float tutorialSpeed;
-    [SerializeField]
-    private GameObject myObject;
+	// Handles Tutorial 1-6:
+	[SerializeField]
+	private SpecificGameObjectFromGameObjects gameObjectScript;
 
-    protected virtual void Start()
-    {
-        //tutorialSpeed = Time.timeScale;
-    }
+	private InputActions inputActions;
 
-    protected virtual void Update()
-    {
-        Time.timeScale = tutorialSpeed;
-        Time.fixedDeltaTime = Time.timeScale * 0.2f;
-    }
-    protected virtual void TutorialSlowmotion()
-    {
-        if (Input.GetKeyDown("return"))
-        {
-            tutorialSpeed = 1f;
-            myObject.SetActive(false);
-        }
-        else
-        {
-            myObject.SetActive(true);
-            tutorialSpeed = 0.1f;
-        }
-    }
+	private int lastSectionNumber = 0;
+
+	protected void Awake()
+	{
+		inputActions = new InputActions();
+	}
+
+	protected void OnEnable()
+	{
+		inputActions.Enable();
+	}
+
+	protected void OnDisable()
+	{
+		inputActions.Disable();
+	}
+
+	protected void Update()
+	{
+		if (inputActions.TutorialControls.SkipFull.triggered)
+		{
+			GameManager.Instance.Back();
+		}
+
+		if (inputActions.TutorialControls.SkipNext.triggered)
+		{
+			if (gameObjectScript.AllSections.Length > lastSectionNumber + 1)
+			{
+				gameObjectScript.ButtonClick(gameObjectScript.AllSections[lastSectionNumber += 1]);
+			}
+
+			else
+			{
+				GameManager.Instance.Back();
+			}
+
+		}
+	}
+
+
 }

@@ -451,6 +451,52 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TutorialControls"",
+            ""id"": ""ca8a0eb5-c838-433a-b953-e5b7c863bcf1"",
+            ""actions"": [
+                {
+                    ""name"": ""SkipFull"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c056db4-26c9-4687-a64e-93c9beb2adff"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SkipNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""5eb4013e-afd7-477b-9e84-4a03019bd744"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a2486b42-e102-408c-99cc-1c94c545715d"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipFull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40feccf3-c57b-402f-9860-73c91eb17d29"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipNext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -465,6 +511,10 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PauseControls = asset.FindActionMap("PauseControls", throwIfNotFound: true);
         m_PauseControls_UpDown = m_PauseControls.FindAction("UpDown", throwIfNotFound: true);
         m_PauseControls_Click = m_PauseControls.FindAction("Click", throwIfNotFound: true);
+        // TutorialControls
+        m_TutorialControls = asset.FindActionMap("TutorialControls", throwIfNotFound: true);
+        m_TutorialControls_SkipFull = m_TutorialControls.FindAction("SkipFull", throwIfNotFound: true);
+        m_TutorialControls_SkipNext = m_TutorialControls.FindAction("SkipNext", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -608,6 +658,47 @@ public class @InputActions : IInputActionCollection, IDisposable
         }
     }
     public PauseControlsActions @PauseControls => new PauseControlsActions(this);
+
+    // TutorialControls
+    private readonly InputActionMap m_TutorialControls;
+    private ITutorialControlsActions m_TutorialControlsActionsCallbackInterface;
+    private readonly InputAction m_TutorialControls_SkipFull;
+    private readonly InputAction m_TutorialControls_SkipNext;
+    public struct TutorialControlsActions
+    {
+        private @InputActions m_Wrapper;
+        public TutorialControlsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SkipFull => m_Wrapper.m_TutorialControls_SkipFull;
+        public InputAction @SkipNext => m_Wrapper.m_TutorialControls_SkipNext;
+        public InputActionMap Get() { return m_Wrapper.m_TutorialControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TutorialControlsActions set) { return set.Get(); }
+        public void SetCallbacks(ITutorialControlsActions instance)
+        {
+            if (m_Wrapper.m_TutorialControlsActionsCallbackInterface != null)
+            {
+                @SkipFull.started -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipFull;
+                @SkipFull.performed -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipFull;
+                @SkipFull.canceled -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipFull;
+                @SkipNext.started -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipNext;
+                @SkipNext.performed -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipNext;
+                @SkipNext.canceled -= m_Wrapper.m_TutorialControlsActionsCallbackInterface.OnSkipNext;
+            }
+            m_Wrapper.m_TutorialControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SkipFull.started += instance.OnSkipFull;
+                @SkipFull.performed += instance.OnSkipFull;
+                @SkipFull.canceled += instance.OnSkipFull;
+                @SkipNext.started += instance.OnSkipNext;
+                @SkipNext.performed += instance.OnSkipNext;
+                @SkipNext.canceled += instance.OnSkipNext;
+            }
+        }
+    }
+    public TutorialControlsActions @TutorialControls => new TutorialControlsActions(this);
     public interface IPlayerControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -619,5 +710,10 @@ public class @InputActions : IInputActionCollection, IDisposable
     {
         void OnUpDown(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+    }
+    public interface ITutorialControlsActions
+    {
+        void OnSkipFull(InputAction.CallbackContext context);
+        void OnSkipNext(InputAction.CallbackContext context);
     }
 }

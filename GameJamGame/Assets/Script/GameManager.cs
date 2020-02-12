@@ -17,6 +17,9 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     [SerializeField]
     private Text scoreEntity;
 
+    [SerializeField]
+    private FreezeMenu tutorialManager;
+
     private int _Score;
     public int Score
     {
@@ -31,10 +34,35 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
         }
     }
+
+    // Save in XML or something like that.
+    public bool FirstTime { get; private set; } = true;
+
     private void OnEnable()
     {
         OnScoreChanged += IfScoreChanged;
         IfScoreChanged(this, Score);
+    }
+
+    private void Start()
+    {
+        Invoke(() => tutorialManager.EnableMenuWithPause(FirstTime), 0.5f);
+    }
+
+    public void Back ()
+    {
+        tutorialManager.EnableMenuWithPause(false);
+        // not working, WiP
+        StartCoroutine(BackToNormalTime());
+    }
+
+    private IEnumerator BackToNormalTime()
+    {
+        while (Time.timeScale < 1f)
+        {
+            Time.timeScale += 0.00001f;
+            yield return Async.WaitForSecondsReal(0.1f);
+        }
     }
 
     private void IfScoreChanged(object sender, SimpleArgs<int> e)
