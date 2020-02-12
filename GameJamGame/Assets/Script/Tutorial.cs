@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cyberevolver.Unity;
+using System;
 
 public class Tutorial : MonoBehaviour
 {
@@ -18,14 +19,17 @@ public class Tutorial : MonoBehaviour
 	{
 		inputActions = new InputActions();
 	}
+    public static bool TutorialIsActive { get; private set; } = false;
 
 	protected void OnEnable()
 	{
+        TutorialIsActive=true;
 		inputActions.Enable();
 	}
 
 	protected void OnDisable()
 	{
+        TutorialIsActive = false;
 		inputActions.Disable();
 	}
 
@@ -45,11 +49,26 @@ public class Tutorial : MonoBehaviour
 
 			else
 			{
+                GameObject slower = new GameObject();
+                slower.name = "slower";
+                slower.AddComponent<MonoBehaviourPlus>()
+                    .StartCoroutine(RestoringScaling());
 				GameManager.Instance.Back();
 			}
 
 		}
 	}
 
-
+    private IEnumerator RestoringScaling()
+    {
+        yield return Async.NextFrame;
+        Time.timeScale = 0.45f;
+        while(Time.timeScale<1)
+        {
+            yield return Async.NextFrame;
+            Time.timeScale += Time.deltaTime/5f;
+        }
+        Time.timeScale = 1;
+        Destroy(this.gameObject);
+    }
 }

@@ -59,6 +59,7 @@ namespace Cyberevolver.Unity
                 }
 
             } while (delay.IsRepeating && ((delay.LimitedRepating == true && --delay.RepatingValue > 0) || delay.LimitedRepating == false) && delay.HasStopped == false);
+            delay.InvokeOnEnd();
         }
         #endregion
         #region Deactived

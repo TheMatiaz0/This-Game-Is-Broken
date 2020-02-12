@@ -47,6 +47,8 @@ namespace Cyberevolver.Unity
 
 		public void EnableMenuWithPause(bool to)
 		{
+            if (to==true&&Tutorial.TutorialIsActive)
+                return;
 			foreach (FreezeMenu item in blockOtherFreezes)
 			{
 				item.enabled = !to;

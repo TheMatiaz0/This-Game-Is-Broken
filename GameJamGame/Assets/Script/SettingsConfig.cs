@@ -18,8 +18,8 @@ public sealed class SettingsConfig
     public float MasterVolume { get; set; }
     public float MusicVolume { get; set; }
     public float SfxVolume { get; set; }
-    [XmlIgnore]
-    public bool FirstTime { get; set; } = false;
+  
+    public bool FirstTime { get; set; } = true;
 
    
     public FullScreenMode FullScreenMode { get; set; }
