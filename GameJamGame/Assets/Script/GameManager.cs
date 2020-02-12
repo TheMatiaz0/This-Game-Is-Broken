@@ -46,7 +46,10 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     private void Start()
     {
-        Invoke(() => tutorialManager.EnableMenuWithPause(OptionsManager.CurrentConfig.FirstTime), 0.5f);
+        bool firstTime = OptionsManager.CurrentConfig.FirstTime;//it has to be here becuase "delayed invoking"
+        Invoke(() => tutorialManager.EnableMenuWithPause(firstTime), 0.5f);
+        OptionsManager.CurrentConfig.FirstTime = false;
+        OptionsManager.CurrentConfig.Save();
     }
 
     public void Back ()
