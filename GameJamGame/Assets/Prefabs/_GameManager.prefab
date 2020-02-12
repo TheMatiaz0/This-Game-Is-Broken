@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreEntity: {fileID: 0}
+  tutorialManager: {fileID: 0}
   _devS: 0
 --- !u!114 &6093236110085131789
 MonoBehaviour:
@@ -209,11 +210,11 @@ MonoBehaviour:
   - prefab: {fileID: 6935800402712673812, guid: af22efd29a1b0bb489fbd3de63b1f1ca,
       type: 3}
     howOften:
-      _Value: 0.30000001192092896
+      _Value: 0.15600000321865082
   - prefab: {fileID: 5538117781444494137, guid: f6ff06f676987134f8e607a598426026,
       type: 3}
     howOften:
-      _Value: 1
+      _Value: 0.6000000238418579
   - prefab: {fileID: 4375590924283750840, guid: 67260d9b02f004542a5f1fa7253fe4f0,
       type: 3}
     howOften:
@@ -221,18 +222,44 @@ MonoBehaviour:
   - prefab: {fileID: 8300620371891373703, guid: 051a3cc97f530c34699f32bf0f1c5d88,
       type: 3}
     howOften:
-      _Value: 1
-  chanceForBlankBlock:
-    _Value: 0.07000000029802322
+      _Value: 0.5
+  howFastGenerate: 20
   chanceForUpperPlatform:
-    _Value: 0.25
+    _Value: 0.5
   chanceForAnyActiveItems:
     _Value: 0.33000001311302185
-  blockInOneShoot: 10
-  howFastGenerate: 12
-  whenRemove: 6
   howOftenCanHaveItem: 2
+  blockInOneShoot: 10
+  whenRemove: 10
+  makeHole: 1
+  chanceForHole:
+    _Value: 0.25
+  minHoleBreak: 2
   platformsSize: {x: 3, y: 10}
+  elementAmountGrowing:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0030718446
+      value: -0.0000041276217
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5.131748
+      value: 0.9665586
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   blockPrefab: {fileID: 7857634901582839201, guid: 7f78be8291dec60499cb301e07b23af2,
     type: 3}
   edges:
@@ -240,4 +267,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a84c0566ad0110e48a2f42c249c71ca0, type: 3}
   startRespPoint: {fileID: 6093236108851153043}
   maxUp: {fileID: 6093236108728701859}
-  minUp: {fileID: 6093236108724445063}

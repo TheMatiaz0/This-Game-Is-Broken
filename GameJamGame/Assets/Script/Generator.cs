@@ -28,12 +28,11 @@ public class Generator : AutoInstanceBehaviour<Generator>
         DontPutActiveItems = 1 << 0,
         DontMakeEdge = 1 << 1,
         Flip = 1 << 2,
-        DontMakeHoles=1<<3,
+        DontMakeHoles = 1 << 3,
     }
     #endregion
     #region SERIALIZE_FIELDS
 
-    [ShowCyberInspector]
     [Serializable]
     public struct FindableItemInfo
     {
@@ -44,49 +43,49 @@ public class Generator : AutoInstanceBehaviour<Generator>
         public Percent howOften;
     }
 
-    [SerializeField, WindowArray]
+    [SerializeField]
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
     //Raw
-     [SerializeField, BoxGroup(Raw), Range(0, 99)]
-    private int                 howFastGenerate         = 3;
+    [SerializeField, BoxGroup(Raw), Range(0, 99)]
+    private int howFastGenerate = 3;
     [SerializeField, BoxGroup(Raw)]
-    private Percent             chanceForUpperPlatform  = 0.25f;
+    private Percent chanceForUpperPlatform = 0.25f;
     [SerializeField, BoxGroup(Raw)]
-    private Percent             chanceForAnyActiveItems = 0.33f;
-       [SerializeField, BoxGroup(Raw), Range(1, 100)]
-    private int                 howOftenCanHaveItem     = 2;
+    private Percent chanceForAnyActiveItems = 0.33f;
     [SerializeField, BoxGroup(Raw), Range(1, 100)]
-    private int                 blockInOneShoot         = 10;
+    private int howOftenCanHaveItem = 2;
+    [SerializeField, BoxGroup(Raw), Range(1, 100)]
+    private int blockInOneShoot = 10;
     [SerializeField, BoxGroup(Raw), Range(1, 10)]
-    private int                 whenRemove              = 3;
-    [SerializeField,BoxGroup(Raw)]
-    private bool                makeHole                = true;
-    [SerializeField,BoxGroup(Raw), ShowWhen(nameof(makeHole))]
-    private Percent             chanceForHole           = 0.25f;
-    [SerializeField,BoxGroup(Raw),MinMaxRange(0,10) , ShowWhen(nameof(makeHole))]
-    private uint                 minHoleBreak             = 2;
+    private int whenRemove = 3;
+    [SerializeField, BoxGroup(Raw)]
+    private bool makeHole = true;
+    [SerializeField, BoxGroup(Raw), ShowWhen(nameof(makeHole))]
+    private Percent chanceForHole = 0.25f;
+    [SerializeField, BoxGroup(Raw), MinMaxRange(0, 10), ShowWhen(nameof(makeHole))]
+    private uint minHoleBreak = 2;
 
     [SerializeField, BoxGroup(Raw), MinMaxSlider(1, 10)]
-    private Vector2Int          platformsSize           = new Vector2Int(2, 6);
-    [HelpBox("Value should be lower or equals than 1 time unit = 100 metres", MessageType.Info,UISize.Default)]
+    private Vector2Int platformsSize = new Vector2Int(2, 6);
+    [HelpBox("Value should be lower or equals than 1 time unit = 100 metres", MessageType.Info, UISize.Default)]
     [SerializeField, BoxGroup(Raw)]
-    private AnimationCurve      elementAmountGrowing    = null;
+    private AnimationCurve elementAmountGrowing = null;
 
 
     //Prefabs
     [SerializeField, BoxGroup(PrefabsName), RequiresAny]
     private GameObject blockPrefab = null;
     [SerializeField, BoxGroup(PrefabsName), ArrayAsField("LeftEdge", "RightEdge")]
-    private Sprite[]   edges       = null;
+    private Sprite[] edges = null;
 
     //Transforms
 
     [SerializeField, BoxGroup(Transform), RequiresAny]
     private Transform startRespPoint = null;
- 
+
     [SerializeField, BoxGroup(Transform), RequiresAny]
-    private Transform maxUp          = null;
+    private Transform maxUp = null;
 
     #endregion
 
@@ -99,15 +98,15 @@ public class Generator : AutoInstanceBehaviour<Generator>
     #endregion
 
     #region METHODS
-   
+
 
     public Percent GetFinalChanceForAnyActiveItems()
     {
         if (elementAmountGrowing.length == 0)
             return chanceForAnyActiveItems;
 
-        float currentTime = (DistanceManager.Instance.GetMeters()/100F);
-        return chanceForAnyActiveItems+ (Percent.Full - chanceForAnyActiveItems) *(Percent) elementAmountGrowing.Evaluate(currentTime);
+        float currentTime = (DistanceManager.Instance.GetMeters() / 100F);
+        return chanceForAnyActiveItems + (Percent.Full - chanceForAnyActiveItems) * (Percent)elementAmountGrowing.Evaluate(currentTime);
     }
     protected virtual void Start()
     {
@@ -132,15 +131,15 @@ public class Generator : AutoInstanceBehaviour<Generator>
         }
     }
 
-    public float GenerateOneLine(float fromX, float blocks, float y, 
+    public float GenerateOneLine(float fromX, float blocks, float y,
        DrawLineFlags drawLineFlags)
     {
         GameObject[] objs = new GameObject[10];
         Cint cooldown = 0;
-        bool[] holes = new bool[(int)blocks+1];
-      
-        if(drawLineFlags.HasFlag(DrawLineFlags.DontMakeHoles)==false&&makeHole&&blocks>=3)
-            for(int x=2;x<blocks-2;x++)
+        bool[] holes = new bool[(int)blocks + 1];
+
+        if (drawLineFlags.HasFlag(DrawLineFlags.DontMakeHoles) == false && makeHole && blocks >= 3)
+            for (int x = 2; x < blocks - 2; x++)
             {
                 if (cooldown == 0 && Chance(chanceForHole))
                 {
@@ -150,7 +149,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
                 else
                     cooldown--;
             }
-       
+
         for (int x = 0; x < blocks; x++)
         {
 
@@ -165,7 +164,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
                     mode = BlockMode.Left;
                     dontPut = true;
                 }
-                
+
                 else if (x == blocks - 1)
                 {
                     mode = BlockMode.Right;
@@ -175,9 +174,9 @@ public class Generator : AutoInstanceBehaviour<Generator>
                 {
                     anyMode = false;
                 }
- 
+
             }
-            if(anyMode==false)
+            if (anyMode == false)
             {
                 if (holes[x + 1])
                 {
@@ -188,8 +187,8 @@ public class Generator : AutoInstanceBehaviour<Generator>
                     mode = BlockMode.Left;
                 }
             }
-            
-            if (holes[x]==false)
+
+            if (holes[x] == false)
             {
                 GameObject block;
                 objs[x] = block = PutBlock(new Vector2(fromX + x, y), dontPut, mode);
@@ -201,18 +200,18 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
         }
         blocksPacks.Enqueue(objs);
-        return fromX + blockInOneShoot;  
+        return fromX + blockInOneShoot;
     }
 
     public GameObject GetRandomPrefabStuff()
     {
         PutedBlocksQuanity++;
-        if(findablePrefabs.Count == 0 ||PutedBlocksQuanity %howOftenCanHaveItem!=0)
+        if (findablePrefabs.Count == 0 || PutedBlocksQuanity % howOftenCanHaveItem != 0)
         {
             return null;
         }
         List<int> acceptalbe = Enumerable.Range(0, findablePrefabs.Count).ToList();
-        while(acceptalbe.Count>0)
+        while (acceptalbe.Count > 0)
         {
             int x = UnityEngine.Random.Range(0, acceptalbe.Count);
             if (Chance(findablePrefabs[acceptalbe[x]].howOften))
@@ -227,13 +226,13 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
     }
 
-    private bool Chance (Percent percent)
+    private bool Chance(Percent percent)
     {
         return UnityEngine.Random.Range(0, 1f) <= percent.AsFloatValue;
-       
+
     }
 
-    public GameObject PutBlock(Vector2 pos,bool dontPutActiveItems=false, BlockMode mode = BlockMode.Center)
+    public GameObject PutBlock(Vector2 pos, bool dontPutActiveItems = false, BlockMode mode = BlockMode.Center)
     {
         GameObject block = Instantiate(blockPrefab);
         block.transform.position = pos;
@@ -251,24 +250,25 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
         if (dontPutActiveItems == false && Chance(GetFinalChanceForAnyActiveItems()))
         {
-            var prefab = GetRandomPrefabStuff();
+            GameObject prefab = GetRandomPrefabStuff();
             if (prefab != null)
             {
                 GameObject gameObj = Instantiate(prefab);
+                Debug.Log(gameObj);
                 gameObj.transform.SetParent(block.transform);
                 gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
-                
+
             }
         }
         block.isStatic = true;
         return block;
     }
 
-    public float GenerateChunk(float fromX, Range range,bool dontPutActiveItems=false,bool dontPutUpperPlatform=false,bool dontMakeEdge=false)
+    public float GenerateChunk(float fromX, Range range, bool dontPutActiveItems = false, bool dontPutUpperPlatform = false, bool dontMakeEdge = false)
     {
-        float result = GenerateOneLine(fromX,blockInOneShoot,startRespPoint.position.y, DrawLineFlags.DontMakeEdge |((dontPutActiveItems)?DrawLineFlags.DontPutActiveItems:DrawLineFlags.None));
-        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y+maxUp.position.y+5, DrawLineFlags.DontPutActiveItems|DrawLineFlags.DontMakeEdge|DrawLineFlags.Flip|DrawLineFlags.DontMakeHoles);
-        
+        float result = GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y, DrawLineFlags.DontMakeEdge | ((dontPutActiveItems) ? DrawLineFlags.DontPutActiveItems : DrawLineFlags.None));
+        GenerateOneLine(fromX, blockInOneShoot, startRespPoint.position.y + maxUp.position.y + 5, DrawLineFlags.DontPutActiveItems | DrawLineFlags.DontMakeEdge | DrawLineFlags.Flip | DrawLineFlags.DontMakeHoles);
+
         List<GameObject> blocks = new List<GameObject>();
 
         if (dontPutUpperPlatform == false)

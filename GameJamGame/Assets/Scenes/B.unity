@@ -850,10 +850,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 335314857, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 394141014, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -862,26 +858,14 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 110215597}
-    - target: {fileID: 985105160, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -148.99998
-      objectReference: {fileID: 0}
     - target: {fileID: 1334221259, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 110215597}
-    - target: {fileID: 1586163353, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1586163355, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: buttons.Array.data[0].<OnClick>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 538881156}
-    - target: {fileID: 1759815448, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1874381254, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -993,11 +977,6 @@ PrefabInstance:
     - target: {fileID: 2945081381710195697, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680028505925943022, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4411737211615084588, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
@@ -1379,151 +1358,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6093236108851153043, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.keys.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.values.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: findablePrefabs.Array.data[0].howOften._Value
-      value: 0.15600000321865082
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: howFastGenerate
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: chanceForUpperPlatform._Value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: whenRemove
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: chanceForAnyActiveItems._Value
-      value: 0.33000001311302185
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[0].time
-      value: 0.0030718446
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[0].value
-      value: -0.0000041276217
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[0].tangentMode
-      value: 136
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[0].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[0].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[1].time
-      value: 5.131748
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[1].value
-      value: 0.9665586
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[1].tangentMode
-      value: 136
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: elementAmountGrowing.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: whenAmountIsMax.miliseconds
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: whenAmountIsMax.seconds
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: howOftenCanHaveItem
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: findablePrefabs.Array.data[1].howOften._Value
-      value: 0.6000000238418579
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: findablePrefabs.Array.data[2].howOften._Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: findablePrefabs.Array.data[3].howOften._Value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.values.Array.data[0]._Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.values.Array.data[1]._Value
-      value: 0.23899999260902405
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.values.Array.data[2]._Value
-      value: 0.23899999260902405
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: f.values.Array.data[3]._Value
-      value: 0.23899999260902405
-      objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1589,11 +1423,6 @@ PrefabInstance:
       propertyPath: scoreEntity
       value: 
       objectReference: {fileID: 506424722}
-    - target: {fileID: 6093236110085131791, guid: 2638a76687e68444c967ef0523df2019,
-        type: 3}
-      propertyPath: tutorialObj
-      value: 
-      objectReference: {fileID: 1894440661}
     - target: {fileID: 6093236110085131791, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
       propertyPath: tutorialManager
