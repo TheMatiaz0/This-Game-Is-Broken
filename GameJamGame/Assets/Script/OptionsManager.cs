@@ -31,12 +31,12 @@ public class OptionsManager : MonoBehaviour
 
 	private readonly static XmlSerializer xmlWriter = new XmlSerializer(typeof(SettingsConfig));
 
-	private static readonly string path = "Settings.config";
+    private static string Path => System.IO.Path.Combine(Application.dataPath, "Settings.config");
 
 	protected virtual void OnDisable()
 	{
 		CurrentConfig.Accept();
-		using (StreamWriter writer = new StreamWriter(path))
+		using (StreamWriter writer = new StreamWriter(Path))
 		{
 			xmlWriter.Serialize(writer, CurrentConfig);
 		}
@@ -50,13 +50,21 @@ public class OptionsManager : MonoBehaviour
 
 	public static SettingsConfig CurrentConfig { get; private set; }
 
+#if UNITY_EDITOR
 
-	[RuntimeInitializeOnLoadMethod]
+    [UnityEditor.MenuItem("TGIB/Clear Config")]
+    public static void ClearConfig()
+    {
+        File.Delete(Path);
+    }
+#endif
+
+    [RuntimeInitializeOnLoadMethod]
 	public async static void Init()
 	{
-		if (File.Exists(path))
+		if (File.Exists(Path))
 		{
-			using (StreamReader s = new StreamReader(path))
+			using (StreamReader s = new StreamReader(Path))
 			{
 				CurrentConfig = (SettingsConfig)xmlWriter.Deserialize(s);
 			}
