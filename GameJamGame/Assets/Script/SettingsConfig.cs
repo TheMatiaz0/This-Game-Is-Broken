@@ -37,8 +37,6 @@ public class SettingsConfig
         Resolution = Screen.currentResolution;
         Quality = (uint)QualitySettings.GetQualityLevel();
         VSync = QualitySettings.vSyncCount == 1;
-
-
         MasterVolume = 1f;
         MusicVolume = 1f;
         SfxVolume = 1f;

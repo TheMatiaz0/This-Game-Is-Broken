@@ -77,8 +77,9 @@ public class OptionsManager : MonoBehaviour
 	protected virtual void OnEnable()
 	{
 		qualityDropdown.SetValueWithoutNotify(QualitySettings.GetQualityLevel());
-		vSyncToggle.SetIsOnWithoutNotify(CurrentConfig.VSync);
-		fullscreenToggle.SetIsOnWithoutNotify(CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
+		vSyncToggle.isOn=(CurrentConfig.VSync);
+       
+		fullscreenToggle.isOn=(CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
 		master.value = CurrentConfig.MasterVolume;
 		music.value = CurrentConfig.MusicVolume;
 		sfx.value = CurrentConfig.SfxVolume;
