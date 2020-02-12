@@ -227,11 +227,6 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
     }
 
-    private bool Chance (float number)
-    {
-        return UnityEngine.Random.Range(0, 1f) <= number;
-    }
-
     private bool Chance(Percent percent)
     {
         return UnityEngine.Random.Range(0, 1f) <= percent.AsFloatValue;
