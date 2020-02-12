@@ -110,8 +110,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private float timeOnStart;
     private bool jumped = false;
 
-    private bool jumpedOnMobile = false;
-
     private new void Awake()
     {
         base.Awake();
@@ -156,7 +154,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void JumpBtnClick ()
     {
-        jumpedOnMobile = true;
+        if (canJump == false)
+        {
+            return;
+        }
+
+        jumped = true;
     }
 
     public void OpenPause ()
@@ -217,7 +220,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             OpenPause();
         }
 
-        if (inputActions.PlayerControls.Jump.triggered || jumpedOnMobile)
+        if (inputActions.PlayerControls.Jump.triggered)
         {
             jumped = true;
         }
@@ -259,9 +262,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         if (jumped == true && canJump == true)
         {
-            Jump();
-            jumpedOnMobile = false;
             jumped = false;
+            Jump();
         }
     }
 
