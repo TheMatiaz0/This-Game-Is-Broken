@@ -60,8 +60,8 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     {
         while (Time.timeScale < 1f)
         {
-            Time.timeScale += 0.00001f;
-            yield return Async.WaitForSecondsReal(0.1f);
+            Time.timeScale += 0.001f;
+            yield return Async.NextFrame;
         }
     }
 
