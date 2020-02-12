@@ -30,10 +30,9 @@ namespace Cyberevolver
         /// 100%
         /// </summary>
         public static readonly Percent Full = new Percent(1);
-#if UNITY_EDITOR || UNITY_STANDALONE
+
         [UnityEngine.SerializeField]
         [UnityEngine.Range(0.0f,1.0f)] 
-#endif
         private double _Value;
         /// <summary>
         /// Get double value (native). It is always in range 0.0-1.0

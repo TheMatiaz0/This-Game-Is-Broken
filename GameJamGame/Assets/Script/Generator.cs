@@ -33,6 +33,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
     #endregion
     #region SERIALIZE_FIELDS
 
+    [ShowCyberInspector]
     [Serializable]
     public struct FindableItemInfo
     {
@@ -43,7 +44,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
         public Percent howOften;
     }
 
-    [SerializeField]
+    [SerializeField, WindowArray]
     private List<FindableItemInfo> findablePrefabs = new List<FindableItemInfo>();
 
     //Raw
@@ -226,6 +227,11 @@ public class Generator : AutoInstanceBehaviour<Generator>
 
     }
 
+    private bool Chance (float number)
+    {
+        return UnityEngine.Random.Range(0, 1f) <= number;
+    }
+
     private bool Chance(Percent percent)
     {
         return UnityEngine.Random.Range(0, 1f) <= percent.AsFloatValue;
@@ -254,7 +260,6 @@ public class Generator : AutoInstanceBehaviour<Generator>
             if (prefab != null)
             {
                 GameObject gameObj = Instantiate(prefab);
-                Debug.Log(gameObj);
                 gameObj.transform.SetParent(block.transform);
                 gameObj.transform.position = (Vector2)block.transform.position + Vector2.up;
 
