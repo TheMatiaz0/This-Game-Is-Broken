@@ -50,6 +50,7 @@ public class OptionsManager : MonoBehaviour
 
 	public static SettingsConfig CurrentConfig { get; private set; }
 
+
 	[RuntimeInitializeOnLoadMethod]
 	public async static void Init()
 	{
@@ -63,7 +64,9 @@ public class OptionsManager : MonoBehaviour
 		else
 		{
 			Debug.Log("Can't find Settings.config file");
+
 			CurrentConfig = new SettingsConfig();
+            CurrentConfig.FirstTime = true;
 			CurrentConfig.LoadDefault();
 
 		}
