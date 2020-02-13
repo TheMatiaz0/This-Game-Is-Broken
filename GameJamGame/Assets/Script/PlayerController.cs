@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 using static UnityEngine.InputSystem.InputAction;
@@ -81,6 +82,18 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private InputActions inputActions;
     private Vector2 movement;
 
+    [SerializeField]
+    private AudioMixerSnapshot startingSnapshot;
+
+    public AudioMixerSnapshot StartingSnapshot => startingSnapshot;
+
+    [SerializeField]
+    private AudioMixerSnapshot pausedSnapshot;
+
+    [SerializeField]
+    private AudioMixerSnapshot glitchedSnapshot;
+    public AudioMixerSnapshot GlitchedSnapshot => glitchedSnapshot;
+
 
 
     [Auto]
@@ -134,6 +147,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (gameOverManager != null)
             gameOverManager.EnableMenuWithPause(false);
         transform.position = StartRespPoint.position;
+        StartingSnapshot.TransitionTo(.01f);
 
     }
 
@@ -165,6 +179,19 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public void OpenPause ()
     {
         GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
+
+    }
+
+    // UnityAction
+    public void PauseSnapshotWork ()
+    {
+        pausedSnapshot.TransitionTo(.01f);
+    }
+
+    // UnityAction
+    public void ClosePause ()
+    {
+        startingSnapshot.TransitionTo(.01f);
     }
 
 

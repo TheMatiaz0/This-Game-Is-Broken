@@ -45,7 +45,7 @@ public class Wave : ActiveElement
         if (End)
             return;
         float speed = GetSpeedForTime(PlayerController.Instance.SceneTime);
-        var change = Direction.ToVector2() * speed;
+        Vector2 change = Direction.ToVector2() * speed;
         this.Rgb.velocity = change;
 
     }

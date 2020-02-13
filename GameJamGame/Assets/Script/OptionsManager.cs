@@ -164,6 +164,40 @@ public class OptionsManager : MonoBehaviour
 		UpdateConfig();
 	}
 
+	public void SetMaxFramerate (int choice)
+	{
+		if (inited == false)
+			return;
+
+		switch (choice)
+		{
+			default:
+				Application.targetFrameRate = -1;
+				break;
+
+			case 1:
+				Application.targetFrameRate = 144;
+				break;
+
+			case 2:
+				Application.targetFrameRate = 75;
+				break;
+
+			case 3:
+				Application.targetFrameRate = 60;
+				break;
+
+			case 4:
+				Application.targetFrameRate = 45;
+				break;
+
+			case 5:
+				Application.targetFrameRate = 30;
+				break;
+		}
+		UpdateConfig();
+	}
+
 	#endregion
 
 	#region Audio
