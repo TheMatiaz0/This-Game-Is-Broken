@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 2439395375529822849}
   - component: {fileID: 2439395375529822878}
   - component: {fileID: 1747310323}
-  - component: {fileID: 619629860}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -306,19 +305,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &619629860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439395375529822879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba16023804638e45a1462d0dce3b3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCodeActive: 282
 --- !u!1 &2439395375877302777
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,11 +364,11 @@ MonoBehaviour:
   m_LookaheadTime: 0.1
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.81
+  m_YDamping: 0.81
+  m_ZDamping: 0.81
   m_ScreenX: 0.24
-  m_ScreenY: 0.6700001
+  m_ScreenY: 0.583
   m_CameraDistance: 8
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -391,7 +377,7 @@ MonoBehaviour:
   m_SoftZoneWidth: 0.4
   m_SoftZoneHeight: 0.94
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.00000012681839
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0

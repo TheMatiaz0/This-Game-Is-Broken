@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace Cyberevolver.Unity
 {
 
-	#pragma warning disable IDE0044
+#pragma warning disable IDE0044
 	/// <summary>
 	/// Creates a menu that can freeze the game by key press. A menu can be created by two methods in this script - first: GameObject Initialization, second: GameObject Set Active (both controlled by bool <c>isInitialization</c>).
 	/// </summary>
@@ -44,11 +44,34 @@ namespace Cyberevolver.Unity
 
 		public void MenuOpen() => EnableMenuWithPause(!IsPaused);
 
+		public void FakePause (bool to)
+		{
+			foreach (FreezeMenu item in blockOtherFreezes)
+			{
+				item.enabled = !to;
+			}
+
+			if (to)
+			{
+				afterBeingPaused.Invoke();
+			}
+
+			else
+			{
+				afterBeingUnpaused.Invoke();
+			}
+
+			IsPaused = to;
+
+			tempChild = objectToOpen;
+			tempChild.SetActive(to);
+		}
+
 
 		public void EnableMenuWithPause(bool to)
 		{
-            if (to==true&&Tutorial.TutorialIsActive)
-                return;
+			if (to == true && Tutorial.TutorialIsActive)
+				return;
 			foreach (FreezeMenu item in blockOtherFreezes)
 			{
 				item.enabled = !to;

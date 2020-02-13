@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Cyberevolver.Unity;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Cyberevolver.Unity;
-using System;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial : AutoInstanceBehaviour<Tutorial>
 {
 	// Handles Tutorial 1-6:
 	[SerializeField]
@@ -13,23 +13,26 @@ public class Tutorial : MonoBehaviour
 
 	private InputActions inputActions;
 
+	public bool isWithTime = true;
+
 	private int lastSectionNumber = 0;
 
-	protected void Awake()
+	protected new void Awake()
 	{
+		base.Awake();
 		inputActions = new InputActions();
 	}
-    public static bool TutorialIsActive { get; private set; } = false;
+	public static bool TutorialIsActive { get; private set; } = false;
 
 	protected void OnEnable()
 	{
-        TutorialIsActive=true;
+		TutorialIsActive = true;
 		inputActions.Enable();
 	}
 
 	protected void OnDisable()
 	{
-        TutorialIsActive = false;
+		TutorialIsActive = false;
 		inputActions.Disable();
 	}
 
@@ -37,6 +40,7 @@ public class Tutorial : MonoBehaviour
 	{
 		if (inputActions.TutorialControls.SkipFull.triggered)
 		{
+			if (isWithTime)
 			GameManager.Instance.Back();
 		}
 
@@ -49,26 +53,31 @@ public class Tutorial : MonoBehaviour
 
 			else
 			{
-                GameObject slower = new GameObject();
-                slower.name = "slower";
-                slower.AddComponent<MonoBehaviourPlus>()
-                    .StartCoroutine(RestoringScaling());
-				GameManager.Instance.Back();
+				if (isWithTime)
+				{
+					GameObject slower = new GameObject();
+					slower.name = "slower";
+					slower.AddComponent<MonoBehaviourPlus>()
+						.StartCoroutine(RestoringScaling());
+					GameManager.Instance.Back();
+				}
+
+
 			}
 
 		}
 	}
 
-    private IEnumerator RestoringScaling()
-    {
-        yield return Async.NextFrame;
-        Time.timeScale = 0.45f;
-        while(Time.timeScale<1)
-        {
-            yield return Async.NextFrame;
-            Time.timeScale += Time.deltaTime/5f;
-        }
-        Time.timeScale = 1;
-        Destroy(this.gameObject);
-    }
+	private IEnumerator RestoringScaling()
+	{
+		yield return Async.NextFrame;
+		Time.timeScale = 0.45f;
+		while (Time.timeScale < 1)
+		{
+			yield return Async.NextFrame;
+			Time.timeScale += Time.deltaTime / 5f;
+		}
+		Time.timeScale = 1;
+		Destroy(this.gameObject);
+	}
 }

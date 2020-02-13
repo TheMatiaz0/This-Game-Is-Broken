@@ -14,6 +14,6 @@ public class AudioBugger : GlitchEffect
 
 	public override void WhenCollect()
 	{
-		PlayerController.Instance.GlitchedSnapshot.TransitionTo(.5f);
+		PlayerController.Instance.GlitchedSnapshot.TransitionTo(.8f);
 	}
 }

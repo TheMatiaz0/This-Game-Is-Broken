@@ -293,6 +293,11 @@ MonoBehaviour:
   repairSound: {fileID: 8300000, guid: ac7b1beec428d7f468b3a2d7cfb0d674, type: 3}
   deathParticle: {fileID: 7990820457959614184, guid: 37271fb0f32c4d34ba25074efc33aaac,
     type: 3}
+  startingSnapshot: {fileID: 24500006, guid: bdca27d914302e44fb4c83dccb583973, type: 2}
+  pausedSnapshot: {fileID: 3887710827102734948, guid: bdca27d914302e44fb4c83dccb583973,
+    type: 2}
+  glitchedSnapshot: {fileID: -1511573392048717061, guid: bdca27d914302e44fb4c83dccb583973,
+    type: 2}
 --- !u!50 &996109581129873839
 Rigidbody2D:
   serializedVersion: 4

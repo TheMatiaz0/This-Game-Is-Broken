@@ -292,6 +292,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             jumped = false;
             Jump();
         }
+
+        foreach (var item in currentGlitches)
+        {
+            item.FixedUpdate();
+        }
     }
 
     public void ClearRandomEffect()
