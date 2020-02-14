@@ -50,7 +50,8 @@ public class Wave : ActiveElement
 
     }
     protected override void OnColidWithPlayer(PlayerController player)
-    {    
+    {
+        player.GlitchedSnapshot.TransitionTo(.5f);
         player.Kill();
     }
 
