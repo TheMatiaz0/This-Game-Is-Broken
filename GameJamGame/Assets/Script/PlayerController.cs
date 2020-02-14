@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
+using UnityStandardAssets.CrossPlatformInput;
 using static UnityEngine.InputSystem.InputAction;
 
 [CustomBackgrounGroup(Asset, BackgroundMode.GroupBox)]
@@ -207,12 +208,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             return;
         }
+
         if (this.transform.position.y < deathYPoint.position.y)
         {
             this.Kill();
             return;
         }
 
+        movement.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
         foreach (var item in currentGlitches)
         {
@@ -247,9 +250,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             OpenPause();
         }
 
-        if (inputActions.PlayerControls.Jump.triggered)
+        if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-            jumped = true;
+            JumpBtnClick();
         }
     }
 
