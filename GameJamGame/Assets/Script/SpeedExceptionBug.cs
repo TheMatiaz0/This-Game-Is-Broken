@@ -12,7 +12,7 @@ public class SpeedExceptionBug : GlitchEffect
     }
     public override void WhenCollect()
     {
-        Time.timeScale = 1.666f;
+        Time.timeScale = 1.33f;
 
     }
 }

@@ -755,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 2439395375529822851, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6020222
+      value: -1.600174
       objectReference: {fileID: 0}
     - target: {fileID: 2439395375529822851, guid: 35b033de6040fb048ac9bfba2a0d5790,
         type: 3}
@@ -1130,6 +1130,11 @@ PrefabInstance:
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 1980602040}
+    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
+        type: 3}
+      propertyPath: repairSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a357de4392ef5143b30f7a7a4b359ec, type: 3}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Name
