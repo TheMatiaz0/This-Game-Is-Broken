@@ -64,7 +64,9 @@ namespace Cyberevolver.Unity
 			IsPaused = to;
 
 			tempChild = objectToOpen;
-			tempChild.SetActive(to);
+
+            if (tempChild != null)
+                tempChild.SetActive(to);
 		}
 
 
