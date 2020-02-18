@@ -109,7 +109,7 @@ public class BugShooter : ActiveElement
    
     public void WhenPlayerJumped()
     {
-
+        PlayerController.Instance.PlayJumpSound();
         
         Explode();
         PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);

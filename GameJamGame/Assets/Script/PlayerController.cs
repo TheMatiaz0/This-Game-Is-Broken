@@ -377,9 +377,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Jump()
     {
-        Source.PlayOneShot(jumpSound);
+        PlayJumpSound();
         canJump = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
+    }
+
+    public void PlayJumpSound ()
+    {
+        Source.PlayOneShot(jumpSound);
     }
 
     private void Move()
