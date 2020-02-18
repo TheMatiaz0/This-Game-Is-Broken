@@ -149,12 +149,12 @@ PrefabInstance:
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.85
+      value: -29.89
       objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777920, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
@@ -201,6 +201,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 18.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_Name
@@ -209,12 +219,17 @@ PrefabInstance:
     - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: elementsQuanity.y
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: elementsQuanity.x
-      value: 22
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: spriteSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ef330d0478f488484ef5ad074b50, type: 3}

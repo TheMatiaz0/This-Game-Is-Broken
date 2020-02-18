@@ -96,6 +96,8 @@ public class Generator : AutoInstanceBehaviour<Generator>
     private float lastX = 0;
     public uint PutedBlocksQuanity { get; private set; } = 0;
     private Range YRange => new Range(startRespPoint.position.y, maxUp.position.y);
+
+    public bool DontSpawnElements { get; set; } = false;
     #endregion
 
     #region METHODS
@@ -128,7 +130,7 @@ public class Generator : AutoInstanceBehaviour<Generator>
                         Destroy(item.gameObject);
                 }
             }
-            lastX = GenerateChunk(lastX, YRange);
+            lastX = GenerateChunk(lastX, YRange, DontSpawnElements);
         }
     }
 

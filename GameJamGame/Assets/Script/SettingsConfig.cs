@@ -27,20 +27,26 @@ public sealed class SettingsConfig
 
     private readonly static XmlSerializer xmlWriter = new XmlSerializer(typeof(SettingsConfig));
 
-    public void Accept()
+    public void Accept(AudioMixer mixer)
     {
         Screen.SetResolution(Resolution.width, Resolution.height, FullScreenMode, Resolution.refreshRate);
         QualitySettings.SetQualityLevel((int)Quality);
         QualitySettings.vSyncCount = Convert.ToInt32(VSync);
+
+        if (mixer == null)
+            return;
+
+        AudioSettings.SetVolume(mixer, MasterVolume, "masterVolume");
+        AudioSettings.SetVolume(mixer, MusicVolume, "musicVolume");
+        AudioSettings.SetVolume(mixer, SfxVolume, "sfxVolume");
         // mixer.SetFloat("masterVolume", MasterVolume);
         // mixer.SetFloat("musicVolume", MusicVolume);
-        // mixer.SetFloat("sfxVolume", SfxVolume);
-      
+        // mixer.SetFloat("sfxVolume", SfxVolume); 
     }
 
-    public void Save()
+    public void Save(AudioMixer mixer = null)
     {
-        this.Accept();
+        this.Accept(mixer);
         using (StreamWriter writer = new StreamWriter(Path))
         {
             xmlWriter.Serialize(writer, this);

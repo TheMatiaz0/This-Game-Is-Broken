@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-public class OptionsManager : MonoBehaviour
+public class OptionsManager : AutoInstanceBehaviour<OptionsManager>
 {
 
 
@@ -29,49 +29,52 @@ public class OptionsManager : MonoBehaviour
 
 	[SerializeField] private Slider master = null, sfx = null, music = null;
 
+	[SerializeField]
+	private AudioMixer mixer;
 
-   
+
+
 
 	protected virtual void OnDisable()
 	{
-        CurrentConfig.Save();
+		CurrentConfig.Save();
 		inited = false;
 	}
 
 	private void UpdateConfig()
 	{
-		CurrentConfig.Accept();
+		CurrentConfig.Accept(mixer);
 	}
 
 	public static SettingsConfig CurrentConfig { get; private set; }
 
 #if UNITY_EDITOR
 
-    [UnityEditor.MenuItem("TGIB/Clear Config")]
-    public static void ClearConfig()
-    {
-        File.Delete(SettingsConfig.Path);
-    }
+	[UnityEditor.MenuItem("TGIB/Clear Config")]
+	public static void ClearConfig()
+	{
+		File.Delete(SettingsConfig.Path);
+	}
 #endif
 
-    [RuntimeInitializeOnLoadMethod]
+	[RuntimeInitializeOnLoadMethod]
 	public async static void Init()
 	{
 		if (File.Exists(SettingsConfig.Path))
 		{
-            CurrentConfig= SettingsConfig.Load();
+			CurrentConfig = SettingsConfig.Load();
 		}
 		else
 		{
 			Debug.Log("Can't find Settings.config file");
 
 			CurrentConfig = new SettingsConfig();
-            CurrentConfig.FirstTime = true;
+			CurrentConfig.FirstTime = true;
 			CurrentConfig.LoadDefault();
 
 		}
 		await Async.NextFrame;
-		CurrentConfig.Accept();
+		CurrentConfig.Accept(null);
 
 	}
 
@@ -80,9 +83,9 @@ public class OptionsManager : MonoBehaviour
 	protected virtual void OnEnable()
 	{
 		qualityDropdown.SetValueWithoutNotify(QualitySettings.GetQualityLevel());
-		vSyncToggle.isOn=(CurrentConfig.VSync);
-       
-		fullscreenToggle.isOn=(CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
+		vSyncToggle.isOn = (CurrentConfig.VSync);
+
+		fullscreenToggle.isOn = (CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
 		master.value = CurrentConfig.MasterVolume;
 		music.value = CurrentConfig.MusicVolume;
 		sfx.value = CurrentConfig.SfxVolume;
@@ -164,7 +167,7 @@ public class OptionsManager : MonoBehaviour
 		UpdateConfig();
 	}
 
-	public void SetMaxFramerate (int choice)
+	public void SetMaxFramerate(int choice)
 	{
 		if (inited == false)
 			return;

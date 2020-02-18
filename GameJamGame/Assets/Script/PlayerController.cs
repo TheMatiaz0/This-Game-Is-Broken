@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -198,7 +199,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -206,9 +206,28 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-
+            // wyłącz/włącz falę.
+            Wave.Instance.gameObject.SetActive(!Wave.Instance.gameObject.activeSelf);
         }
-#endif
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            // wyłącz/włącz przeszkadzajki (włącznie z młotkiem).
+            Generator.Instance.DontSpawnElements = !Generator.Instance.DontSpawnElements;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            // waving
+            Animator.SetTrigger("Waving");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            // surprised
+            Animator.SetTrigger("Surprised");
+        }
+
         if (IsDeath)
         {
             return;
