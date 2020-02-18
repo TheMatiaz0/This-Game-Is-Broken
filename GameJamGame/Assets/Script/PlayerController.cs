@@ -65,7 +65,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     [SerializeField, BoxGroup(Asset)]
     private AudioClip jumpSound = null,
                         gameOverSound = null,
-                        walkSound = null,
                         glitchSound = null,
                         repairSound = null;
 
@@ -77,6 +76,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public bool IsDeath { get; private set; } = false;
     public float PrefferedCameraZoom { get; set; } = 0;
+
+    public int SecondsToFullGameOver { get; set; } = 3;
 
     public bool KeysReversed { get; set; } = false;
 
@@ -120,7 +121,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private bool canJump = false;
     private float move = 0f;
-    private bool isWalkSound = false;
     private float timeOnStart;
     private bool jumped = false;
 
@@ -202,6 +202,11 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+
         }
 #endif
         if (IsDeath)
@@ -368,7 +373,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             Instantiate(deathParticle, this.transform.position, Quaternion.identity);
         }
         this.Sprite.enabled = false;
-        yield return Async.Wait(TimeSpan.FromSeconds(3));
+        yield return Async.Wait(TimeSpan.FromSeconds(SecondsToFullGameOver));
         GameObject go = GameObject.FindGameObjectWithTag("GameOverObject");
         go.transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -390,15 +395,5 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private void Move()
     {
         Rgb.velocity = new Vector2(move * Vector2.right.x, Rgb.velocity.y);
-        /*
-        isWalkSound = true;
-        base.Invoke(
-            () =>
-            {
-                isWalkSound = false;
-                Source.PlayOneShot(walkSound);
-                //
-            }, 1);
-            */
     }
 }
