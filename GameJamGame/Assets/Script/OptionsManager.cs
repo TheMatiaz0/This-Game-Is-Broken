@@ -29,6 +29,9 @@ public class OptionsManager : MonoBehaviour
 
 	[SerializeField] private Slider master = null, sfx = null, music = null;
 
+	[SerializeField]
+	private AudioMixer mixer;
+
 
    
 
@@ -40,7 +43,7 @@ public class OptionsManager : MonoBehaviour
 
 	private void UpdateConfig()
 	{
-		CurrentConfig.Accept();
+		CurrentConfig.Accept(mixer);
 	}
 
 	public static SettingsConfig CurrentConfig { get; private set; }
@@ -71,7 +74,7 @@ public class OptionsManager : MonoBehaviour
 
 		}
 		await Async.NextFrame;
-		CurrentConfig.Accept();
+		CurrentConfig.Accept(null);
 
 	}
 
