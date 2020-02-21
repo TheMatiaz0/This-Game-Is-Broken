@@ -821,6 +821,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 335314857, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 394141014, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -829,6 +833,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 110215597}
+    - target: {fileID: 897475023, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1334221256, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -845,6 +853,10 @@ PrefabInstance:
       propertyPath: buttons.Array.data[0].<OnClick>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 538881156}
+    - target: {fileID: 1595234144, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1874381254, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -853,6 +865,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 110215597}
+    - target: {fileID: 441790690548621270, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2945081381710195697, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1098,6 +1115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8765278358631116668, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
