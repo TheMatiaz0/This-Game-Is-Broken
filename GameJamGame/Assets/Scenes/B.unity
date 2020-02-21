@@ -164,10 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d382c52297e7049b73e0e3e4ebb00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownText: {fileID: 0}
+  countdownText: {fileID: 1273315928}
+  countdownVisualObj: {fileID: 1550179184}
   timeForEnd:
     miliseconds: 0
-    seconds: 14
+    seconds: 3
     minutes: 0
     hour: 0
     day: 0
@@ -252,10 +253,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777922, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 3.36
+      objectReference: {fileID: 0}
     - target: {fileID: 2404895514149777933, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
       propertyPath: m_Name
       value: Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.minutes
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404895514149777934, guid: cf61ef330d0478f488484ef5ad074b50,
+        type: 3}
+      propertyPath: <WhenSpeedWillBeMax>k__BackingField.seconds
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7380079060228078109, guid: cf61ef330d0478f488484ef5ad074b50,
         type: 3}
@@ -658,6 +674,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1273315928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 820250803, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1894440653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1550179184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 739556719, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1894440653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1586163353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1586163353, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
@@ -1367,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
       propertyPath: findablePrefabs.Array.data[2].howOften._Value
-      value: 0.6650000214576721
+      value: 0.550000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}

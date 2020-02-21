@@ -17,39 +17,47 @@ public class Countdown : MonoBehaviourPlus
     [SerializeField]
     private SerializeTimeSpan timeForEnd;
 
-    private int actualTimer;
+    private double actualTimer;
 
     private void Start()
     {
-        Invoke(() => TrueStart(), 0.5f);
+        Invoke(() => TrueStart(), 0.3f);
         countdownVisualObj.SetActive(true);
     }
 
     private void TrueStart ()
     {
-        // 1 second interval
-        InvokeRepeating(() => )
+        actualTimer = timeForEnd.TimeSpan.TotalSeconds;
         Time.timeScale = 0f;
+        // 1 second interval
+        timer = new System.Timers.Timer(1000);
+        timer.Start();
+        timer.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) => actualTimer -= 1;
+
     }
 
-    private void OnSecondPassed(object sender, System.Timers.ElapsedEventArgs e)
+    private void Update()
     {
-        countdownText.text = actualTimer.ToString();
-
-        if (actualTimer >= timeForEnd.TimeSpan.TotalSeconds)
+        if (timer == null)
         {
-            timer.Stop();
-            Time.timeScale = 1f;
             return;
         }
 
-        actualTimer += 1;
+        countdownText.text = (actualTimer).ToString();
+
+        if (actualTimer <= 0)
+        {
+            timer.Stop();
+            countdownVisualObj.SetActive(false);
+            Time.timeScale = 1f;
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnDisable()
     {
         timer.Stop();
-        timer.Elapsed -= OnSecondPassed;
+        // timer.Elapsed -= OnSecondPassed;
     }
 
 }

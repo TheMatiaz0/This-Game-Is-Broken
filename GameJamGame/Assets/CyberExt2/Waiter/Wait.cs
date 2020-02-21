@@ -17,6 +17,7 @@ namespace Cyberevolver.Unity
         public static WaitForAnim WaitForAnim(Animation anim)
             => new WaitForAnim(anim);
         public static WaitForSeconds Wait(TimeSpan time) => new WaitForSeconds((float)time.TotalSeconds);
+        public static WaitForSecondsRealtime WaitReal(TimeSpan time) => new WaitForSecondsRealtime((float)time.TotalSeconds);
         public static WaitForSeconds WaitForSeconds(float seconds) => new WaitForSeconds(seconds);
         public static object WaitForSeconds(float seconds, bool realTime)
             => (realTime) ? (object)WaitForSecondsReal(seconds) : (object)WaitForSeconds(seconds);
