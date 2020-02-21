@@ -209,11 +209,16 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         }
 #endif
+       
         if (IsDeath)
         {
             return;
         }
-
+        if (inputActions.PlayerControls.OpenPause.triggered)
+        {
+            OpenPause();
+        }
+        
         if (this.transform.position.y < deathYPoint.position.y)
         {
             this.Kill();
@@ -227,14 +232,18 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             item.Update();
         }
 
-
         move = GetProperMovement(KeysReversed);
-
-
+        if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump"))
+        {
+            JumpBtnClick();
+        }
+        if (Time.timeScale == 0)
+            return;
         bool isFlip = move < 0;
         move *= MovementSpeed;
         walkingEffect.SetBool("Spawn", move != 0);
-        walkingEffect.SetBool("Flip", isFlip);
+       
+            walkingEffect.SetBool("Flip", isFlip);
         this.Sprite.flipX = isFlip;
 
         if (this.Rgb.velocity.y < -1.3f)
@@ -250,15 +259,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             GameObject.FindObjectOfType<UIChanger>().ReswitchUI();
         }
 
-        if (inputActions.PlayerControls.OpenPause.triggered)
-        {
-            OpenPause();
-        }
+       
 
-        if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump"))
-        {
-            JumpBtnClick();
-        }
+       
     }
 
     private float GetProperMovement(bool isReversed)

@@ -1401,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 6093236110085131778, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
       propertyPath: findablePrefabs.Array.data[2].howOften._Value
-      value: 0.550000011920929
+      value: 0.9390000104904175
       objectReference: {fileID: 0}
     - target: {fileID: 6093236110085131788, guid: 2638a76687e68444c967ef0523df2019,
         type: 3}
