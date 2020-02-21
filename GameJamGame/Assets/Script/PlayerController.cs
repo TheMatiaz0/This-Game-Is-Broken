@@ -77,7 +77,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public bool IsDeath { get; private set; } = false;
     public float PrefferedCameraZoom { get; set; } = 0;
 
-    public int SecondsToFullGameOver { get; set; } = 3;
+    public int SecondsToFullGameOver { get; } = 2;
 
     public bool KeysReversed { get; set; } = false;
 
@@ -375,7 +375,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         this.Sprite.enabled = false;
         yield return Async.Wait(TimeSpan.FromSeconds(SecondsToFullGameOver));
         GameObject go = GameObject.FindGameObjectWithTag("GameOverObject");
-        go.transform.GetChild(0).gameObject.SetActive(true);
+        GameObject gameOverObj = go.transform.GetChild(0).gameObject;
+        gameOverObj.SetActive(true);
+        GameOverObject gameOver = gameOverObj.GetComponent<GameOverObject>();
+        gameOver.EndScore.text = $"Your score is: {GameManager.Instance.Score.ToString()}";
     }
 
 
