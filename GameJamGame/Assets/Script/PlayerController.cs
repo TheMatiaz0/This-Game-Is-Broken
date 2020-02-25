@@ -143,6 +143,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private void Start()
     {
+        Cursor.visible = false;
         PrefferedCameraZoom = virtualCam.m_Lens.FieldOfView;
         timeOnStart = Time.time;
         if (gameOverManager != null)
@@ -177,10 +178,15 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         jumped = true;
     }
 
+    public void CursorEnable (bool isTrue)
+    {
+        Cursor.visible = isTrue;
+    }
+
+
     public void OpenPause ()
     {
         GameObject.FindGameObjectWithTag("PauseManager").GetComponent<FreezeMenu>().MenuOpen();
-
     }
 
     // UnityAction
@@ -202,11 +208,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-
         }
 #endif
        
@@ -368,7 +369,6 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private IEnumerator DeathProcess()
     {
-
         OnPlayerDeath.Invoke(this, EventArgs.Empty);
         Destroy(this.Rgb);
         if (deathParticle != null)

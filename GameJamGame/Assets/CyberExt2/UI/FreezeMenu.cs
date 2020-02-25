@@ -74,12 +74,12 @@ namespace Cyberevolver.Unity
 		{
 			if (to == true && Tutorial.TutorialIsActive)
 				return;
+
 			foreach (FreezeMenu item in blockOtherFreezes)
 			{
 				item.enabled = !to;
 			}
-
-			IsPaused = to;
+			IsPaused = to; 
 
 			if (to)
 			{
