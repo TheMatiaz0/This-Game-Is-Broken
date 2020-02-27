@@ -169,7 +169,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         volume.m_Profile.TryGetSettings(out lensDistortion);
         volume.m_Profile.TryGetSettings(out depthOfField);
 
-
+        LensDistortion.scale.value = 0.56f;
         VignetteBug.ResetValues();
         FishyEyeBug.ResetValues();
         BlindnessBug.ResetValues();

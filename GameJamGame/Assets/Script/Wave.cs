@@ -52,7 +52,21 @@ public class Wave : ActiveElement
     protected override void OnColidWithPlayer(PlayerController player)
     {
         player.GlitchedSnapshot.TransitionTo(.5f);
+        player.LensDistortion.enabled.value = true;
+        StartCoroutine(ScaleUp(player));
+
         player.Kill();
+    }
+
+    private IEnumerator ScaleUp (PlayerController player)
+    {
+        player.LensDistortion.scale.value = 1f;
+
+        while (player.LensDistortion.scale.value >= 0.30f)
+        {
+            player.LensDistortion.scale.value -= 0.004f;
+            yield return Async.NextFrame;
+        }
     }
 
 }
