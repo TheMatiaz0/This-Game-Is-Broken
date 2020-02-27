@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 using UnityStandardAssets.CrossPlatformInput;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.Rendering.PostProcessing;
+using Cinemachine.PostFX;
 
 [CustomBackgrounGroup(Asset, BackgroundMode.GroupBox)]
 
@@ -96,6 +98,22 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private AudioMixerSnapshot glitchedSnapshot;
     public AudioMixerSnapshot GlitchedSnapshot => glitchedSnapshot;
 
+    [SerializeField]
+    private CinemachinePostProcessing volume;
+
+
+    private Vignette vignetteEffect;
+
+    public Vignette VignetteEffect => vignetteEffect;
+
+    private LensDistortion lensDistortion;
+
+    public LensDistortion LensDistortion => lensDistortion;
+
+    private DepthOfField depthOfField;
+
+    public DepthOfField DepthOfField => depthOfField;
+
 
 
     [Auto]
@@ -106,6 +124,8 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     public Animator Animator { get; private set; }
     [Auto]
     public Rigidbody2D Rgb { get; private set; }
+
+
 
     public ReadOnlyCollection<GlitchEffect> CurrentGlithes => new ReadOnlyCollection<GlitchEffect>(currentGlitches);
     public float SceneTime => Time.time - timeOnStart;
@@ -144,6 +164,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private void Start()
     {
         Cursor.visible = false;
+
+        volume.m_Profile.TryGetSettings(out vignetteEffect);
+        volume.m_Profile.TryGetSettings(out lensDistortion);
+        volume.m_Profile.TryGetSettings(out depthOfField);
+
+
+        VignetteBug.ResetValues();
+        FishyEyeBug.ResetValues();
+        BlindnessBug.ResetValues();
+
+
         PrefferedCameraZoom = virtualCam.m_Lens.FieldOfView;
         timeOnStart = Time.time;
         if (gameOverManager != null)

@@ -436,6 +436,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &547893855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004988695, guid: 35b033de6040fb048ac9bfba2a0d5790,
+    type: 3}
+  m_PrefabInstance: {fileID: 1867139044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619043653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1189,11 @@ PrefabInstance:
       propertyPath: repairSound
       value: 
       objectReference: {fileID: 8300000, guid: 7a357de4392ef5143b30f7a7a4b359ec, type: 3}
+    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
+        type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 547893855}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Name
