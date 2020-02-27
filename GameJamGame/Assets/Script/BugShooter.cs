@@ -30,6 +30,8 @@ public class BugShooter : ActiveElement
     private Bullet     bulletPrefab   = null;
     [SerializeField]
     private Transform  shootPoint     = null;
+    [SerializeField]
+    private Bullet.BulletType bulletType = Bullet.BulletType.Buggy;
 
     public override bool IsBad => true;
 
@@ -47,6 +49,20 @@ public class BugShooter : ActiveElement
         var bullet= Instantiate(bulletPrefab, this.shootPoint.transform.position, Quaternion.identity);
         bullet.Dir = dir;
         bullet.Speed = bulletSpeed;
+        bullet.CurrentBulletType = bulletType;
+        switch (bulletType)
+        {
+            case Bullet.BulletType.Buggy: 
+                bullet.SpriteRenderer.color = Color.white;
+                break;
+
+
+            case Bullet.BulletType.Deadly:
+                bullet.SpriteRenderer.color = Color.red;
+                break;
+        }
+
+
     }
     protected override void Start()
     {
