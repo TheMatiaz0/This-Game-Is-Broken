@@ -100,18 +100,17 @@ public class BugShooter : ActiveElement
  
     protected override void OnExplode()
     {
+        Destroy(this.GetComponent<Collider2D>());
         Animator.SetTrigger("isDead");
         StopAllCoroutines();
-        Destroy(this.GetComponent<Collider2D>());
-        Invoke(() => DestroyWithEffect(), 0.55f);
+        Invoke(() => DestroyWithEffect(), 0.22f);
 
     }
    
     public void WhenPlayerJumped()
-    {
-        PlayerController.Instance.PlayJumpSound();
-        
+    {       
         Explode();
+        PlayerController.Instance.PlayJumpSound();
         PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
         GameManager.Instance.AddScore(scoreReward);
     }
