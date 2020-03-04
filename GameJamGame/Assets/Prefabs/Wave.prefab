@@ -89,8 +89,8 @@ MonoBehaviour:
     val: {x: 4, y: 8}
   <WhenSpeedWillBeMax>k__BackingField:
     miliseconds: 0
-    seconds: 0
-    minutes: 10
+    seconds: 30
+    minutes: 9
     hour: 0
     day: 0
     precision: 3
@@ -107,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.68, y: 1.9837132}
+  m_Offset: {x: 3.36, y: 1.9837132}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 5881112765733894611, guid: 742a977518c2564478aebfaa71415b32, type: 3}
   - {fileID: 0}
   elementSize: {x: 0.35, y: 0.35}
-  elementsQuanity: {x: 24, y: 32}
+  elementsQuanity: {x: 22, y: 30}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
