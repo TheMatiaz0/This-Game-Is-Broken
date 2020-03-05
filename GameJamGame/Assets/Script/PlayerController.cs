@@ -139,10 +139,10 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     private readonly List<GlitchEffect> currentGlitches = new List<GlitchEffect>();
 
-    private bool canJump = false;
+    private bool isGrounded = false;
     private float move = 0f;
     private float timeOnStart;
-    private bool jumped = false;
+    private bool jumpedJump = false;
 
     private new void Awake()
     {
@@ -199,14 +199,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         movement.x = 0;
     }
 
-    public void JumpBtnClick ()
+    public void JumpQuick ()
     {
-        if (canJump == false)
+        if (isGrounded == false)
         {
             return;
         }
 
-        jumped = true;
+        jumpedJump = true;
     }
 
     public void CursorEnable (bool isTrue)
@@ -265,10 +265,12 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
 
         move = GetProperMovement(KeysReversed);
+
         if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-            JumpBtnClick();
+            JumpQuick();
         }
+
         if (Time.timeScale == 0)
             return;
         bool isFlip = move < 0;
@@ -314,7 +316,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     {
         if (collision.tag.Equals("Ground"))
         {
-            canJump = true;
+            isGrounded = true;
         }
     }
 
@@ -330,13 +332,13 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         Move();
 
-        if (jumped == true && canJump == true)
+        if (jumpedJump == true && isGrounded == true)
         {
-            jumped = false;
+            jumpedJump = false;
             Jump();
         }
 
-        foreach (var item in currentGlitches)
+        foreach (GlitchEffect item in currentGlitches)
         {
             item.FixedUpdate();
         }
@@ -420,7 +422,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
     private void Jump()
     {
         PlayJumpSound();
-        canJump = false;
+        isGrounded = false;
         Rgb.velocity = new Vector2(Rgb.velocity.x, Vector3.up.y * JumpMultiple);
     }
 
