@@ -34,6 +34,8 @@ public class Tutorial : AutoInstanceBehaviour<Tutorial>
 	{
 		TutorialIsActive = false;
 		inputActions.Disable();
+		if (GameManager.Instance.CountdownObject != null)
+			GameManager.Instance.CountdownObject.SetActive(true);
 	}
 
 	protected void Update()

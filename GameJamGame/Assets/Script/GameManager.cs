@@ -20,6 +20,11 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     [SerializeField]
     private FreezeMenu tutorialManager;
 
+    [SerializeField]
+    private GameObject countdownObject = null;
+
+    public GameObject CountdownObject => countdownObject;
+
     private int _Score;
     public int Score
     {
@@ -45,7 +50,18 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     private void Start()
     {
         bool firstTime = OptionsManager.CurrentConfig.FirstTime;//it has to be here becuase "delayed invoking"
-        Invoke(() => tutorialManager.EnableMenuWithPause(firstTime), 0.2f);
+
+        if (firstTime)
+        {
+            countdownObject.SetActive(false);
+        }
+
+        else
+        {
+            countdownObject.SetActive(true);
+            return;
+        }
+        Invoke(() => tutorialManager.EnableMenuWithPause(firstTime), 0.05f);
         OptionsManager.CurrentConfig.FirstTime = false;
         OptionsManager.CurrentConfig.Save();
     }

@@ -75,6 +75,11 @@ namespace Cyberevolver.Unity
 			if (to == true && Tutorial.TutorialIsActive)
 				return;
 
+			if (Countdown.Instance.IsCountdownEnabled == true)
+			{
+				return;
+			}
+
 			foreach (FreezeMenu item in blockOtherFreezes)
 			{
 				item.enabled = !to;

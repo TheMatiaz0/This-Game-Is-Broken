@@ -16,6 +16,8 @@ public class BugShooter : ActiveElement
     private AudioClip  shootSound = null;
     [SerializeField, RequiresAny]
     private Collider2D headCollider   = null;
+    // [SerializeField]
+    // private Collider2D defaultCollider = null;
     [SerializeField, Range(0.1f, 45)]
     private float      seeLenght      = 3f;
     [SerializeField, Range(0, 1000)]
@@ -72,19 +74,27 @@ public class BugShooter : ActiveElement
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-       
+        if (headCollider == null)
+        {
+            return;
+        }
+
 
         if (headCollider.IsTouching(PlayerController.Instance.Foot) &&
-            collision.GetComponent<PlayerController>() &&
-            PlayerController.Instance.Rgb.velocity.y < 1)
+collision.GetComponent<PlayerController>() &&
+PlayerController.Instance.Rgb.velocity.y < 1)
         {
 
             WhenPlayerJumped();
         }
+
         else
         {
             base.OnTriggerEnter2D(collision);
         }
+
+
+
 
     }
     protected override void OnColidWithPlayer(PlayerController player)
@@ -116,7 +126,7 @@ public class BugShooter : ActiveElement
  
     protected override void OnExplode()
     {
-        Destroy(this.GetComponent<Collider2D>());
+        Destroy(headCollider);
         Animator.SetTrigger("isDead");
         StopAllCoroutines();
         Invoke(() => DestroyWithEffect(), 0.22f);

@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5270207
 Transform:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1948327253}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1591071446}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db56b05408a803042a4ac11b49d64b47, type: 3}
@@ -832,6 +832,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1894440653}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1591071446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
+    type: 3}
+  m_PrefabInstance: {fileID: 1948327253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1591071447
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591071446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019999996, y: 0.039852798}
+  m_Size: {x: 0.42, y: 0.8201994}
+  m_Direction: 0
 --- !u!20 &1702390524 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2439395375529822848, guid: 35b033de6040fb048ac9bfba2a0d5790,
@@ -1061,6 +1083,10 @@ PrefabInstance:
       propertyPath: buttons.Array.data[0].<OnClick>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 538881156}
+    - target: {fileID: 1894440663, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de, type: 3}
+      propertyPath: countdownObject
+      value: 
+      objectReference: {fileID: 5270206}
     - target: {fileID: 2945081381710195697, guid: 1ba9fb0addbfb5747b7d0c87ed0df7de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1233,13 +1259,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 966889445, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
-      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+    - target: {fileID: 966889443, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
+      propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 966889445, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
-      propertyPath: MaxDistance
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1614035390, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1277,19 +1299,9 @@ PrefabInstance:
       objectReference: {fileID: 1980602040}
     - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
-      propertyPath: repairSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7a357de4392ef5143b30f7a7a4b359ec, type: 3}
-    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
-        type: 3}
       propertyPath: volume
       value: 
       objectReference: {fileID: 547893855}
-    - target: {fileID: 996109581129873832, guid: 983defc5ed3481e48a10926d5054a703,
-        type: 3}
-      propertyPath: <JumpMultiple>k__BackingField
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 996109581129873835, guid: 983defc5ed3481e48a10926d5054a703,
         type: 3}
       propertyPath: m_Name
@@ -1350,12 +1362,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 996109581129873839, guid: 983defc5ed3481e48a10926d5054a703,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 966889443, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 983defc5ed3481e48a10926d5054a703, type: 3}
 --- !u!1 &1956945405
 GameObject:
@@ -1659,5 +1667,10 @@ PrefabInstance:
       propertyPath: tutorialManager
       value: 
       objectReference: {fileID: 1956945407}
+    - target: {fileID: 6093236110085131791, guid: 2638a76687e68444c967ef0523df2019,
+        type: 3}
+      propertyPath: countdownObject
+      value: 
+      objectReference: {fileID: 5270206}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2638a76687e68444c967ef0523df2019, type: 3}

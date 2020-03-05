@@ -194,14 +194,15 @@ MonoBehaviour:
       m_Calls: []
   shootSound: {fileID: 8300000, guid: f45611278e8e1104a9ab46c281c4364b, type: 3}
   headCollider: {fileID: 2772545428694721470}
-  seeLenght: 7
-  bounceForce: 753
+  seeLenght: 8
+  bounceForce: 1000
   scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.99
   bulletPrefab: {fileID: 2123230807534845098, guid: ae2716fb54ece1a478ab4cd53af1c6e6,
     type: 3}
   shootPoint: {fileID: 8300620370876285727}
+  bulletType: 1
 --- !u!95 &8300620371891373755
 Animator:
   serializedVersion: 3

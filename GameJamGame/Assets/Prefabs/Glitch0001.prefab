@@ -194,8 +194,8 @@ MonoBehaviour:
       m_Calls: []
   shootSound: {fileID: 8300000, guid: f45611278e8e1104a9ab46c281c4364b, type: 3}
   headCollider: {fileID: 2772545428694721470}
-  seeLenght: 7
-  bounceForce: 753
+  seeLenght: 6
+  bounceForce: 1000
   scoreReward: 10
   bulletSpeed: 5
   shootSpeed: 0.99

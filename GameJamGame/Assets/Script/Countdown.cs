@@ -4,7 +4,7 @@ using UnityEngine;
 using Cyberevolver.Unity;
 using UnityEngine.UI;
 
-public class Countdown : MonoBehaviourPlus
+public class Countdown : AutoInstanceBehaviour<Countdown>
 {
     private System.Timers.Timer timer;
 
@@ -14,6 +14,8 @@ public class Countdown : MonoBehaviourPlus
     [SerializeField]
     private GameObject countdownVisualObj = null;
 
+    public bool IsCountdownEnabled { get; private set; } = false; 
+
     [SerializeField]
     private SerializeTimeSpan timeForEnd;
 
@@ -21,7 +23,8 @@ public class Countdown : MonoBehaviourPlus
 
     private void Start()
     {
-        Invoke(() => TrueStart(), 0.3f);
+        IsCountdownEnabled = true;
+        Invoke(() => TrueStart(), 0.001f);
         countdownVisualObj.SetActive(true);
     }
 
@@ -50,6 +53,7 @@ public class Countdown : MonoBehaviourPlus
             timer.Stop();
             countdownVisualObj.SetActive(false);
             Time.timeScale = 1f;
+            IsCountdownEnabled = false;
             Destroy(this.gameObject);
         }
     }
