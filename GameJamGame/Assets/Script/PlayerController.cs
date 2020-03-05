@@ -259,7 +259,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         movement.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
-        foreach (var item in currentGlitches)
+        foreach (GlitchEffect item in currentGlitches)
         {
             item.Update();
         }

@@ -34,6 +34,10 @@ public class BugShooter : ActiveElement
     private Transform  shootPoint     = null;
     [SerializeField]
     private Bullet.BulletType bulletType = Bullet.BulletType.Buggy;
+    [SerializeField]
+    private AudioClip onPlayerJumped = null;
+    [SerializeField]
+    private AudioSource shooterSource = null;
 
     public override bool IsBad => true;
 
@@ -47,7 +51,7 @@ public class BugShooter : ActiveElement
     public void Shoot(Direction dir)
     {
 
-        FastAudio.PlayAtPoint(this.transform.position, shootSound);
+        shooterSource.PlayOneShot(shootSound);
         var bullet= Instantiate(bulletPrefab, this.shootPoint.transform.position, Quaternion.identity);
         bullet.Dir = dir;
         bullet.Speed = bulletSpeed;
@@ -134,7 +138,8 @@ PlayerController.Instance.Rgb.velocity.y < 1)
     }
    
     public void WhenPlayerJumped()
-    {       
+    {
+        shooterSource.PlayOneShot(onPlayerJumped);
         Explode();
         PlayerController.Instance.PlayJumpSound();
         PlayerController.Instance.Rgb.AddForce(Vector2.up * bounceForce);
