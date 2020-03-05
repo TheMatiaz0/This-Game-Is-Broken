@@ -20,17 +20,16 @@ public class WaveLook : AutoInstanceBehaviour<WaveLook>
     [SerializeField]
     private Vector2 elementSize = new Vector2(0.5f, 0.5f);
     [SerializeField]
-    private Vector2Int elementsQuanity = new Vector2Int(10, 10);
+    private Vector2Int elementsQuantity = new Vector2Int(10, 10);
     [SerializeField]
     private Gradient gradient = new Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.yellow, 0), new GradientColorKey(Color.red, 1) } };
     [SerializeField, Range(0.2f, 40)]
     private float spriteSpeed = 1;
 
-
     private SpriteRenderer[] elements;
     protected virtual void Start()
     {
-        Generate();
+        Generate(elementSize, elementsQuantity);
 
     }
     public Sprite GetRandomSprite()
@@ -41,12 +40,12 @@ public class WaveLook : AutoInstanceBehaviour<WaveLook>
             return sprites[UnityEngine.Random.Range(0, sprites.Length)];
     }
 
-    private void Generate()
+    public void Generate(Vector2 elementSize = new Vector2(), Vector2Int elementsQuantity = new Vector2Int())
     {
-        elements = new SpriteRenderer[elementsQuanity.x * elementsQuanity.y];
+        elements = new SpriteRenderer[elementsQuantity.x * elementsQuantity.y];
 
-        for (int x = 0, i = 0; x < elementsQuanity.x; x++)
-            for (int y = 0; y < elementsQuanity.y; y++, i++)
+        for (int x = 0, i = 0; x < elementsQuantity.x; x++)
+            for (int y = 0; y < elementsQuantity.y; y++, i++)
             {
                 float xMoved = elementSize.x * UnityEngine.Random.Range(0, 1f / 2);
                 float yMoved = elementSize.y * UnityEngine.Random.Range(0, 1f / 2);

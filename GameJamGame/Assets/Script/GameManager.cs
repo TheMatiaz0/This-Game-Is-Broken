@@ -23,6 +23,9 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
     [SerializeField]
     private GameObject countdownObject = null;
 
+    [SerializeField]
+    private WaveLook waveLook;
+
     public GameObject CountdownObject => countdownObject;
 
     private int _Score;
@@ -49,6 +52,17 @@ public class GameManager : AutoInstanceBehaviour<GameManager>
 
     private void Start()
     {
+        bool hugeWave = OptionsManager.CurrentConfig.HugeWave;
+
+        if (hugeWave)
+        {
+            waveLook.Generate(elementsQuantity: new Vector2Int(56, 70));
+            Vector3 vect = waveLook.transform.position;
+
+            vect.y = -1.55f;
+            waveLook.transform.position = vect;
+        }
+
         bool firstTime = OptionsManager.CurrentConfig.FirstTime;//it has to be here becuase "delayed invoking"
 
         if (firstTime)

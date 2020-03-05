@@ -10,8 +10,14 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 public class OptionsManager : MonoBehaviour
 {
+	public enum ControlsSetup
+	{
+		Arrows,
+		Joystick
+	}
 
 
 	public event EventHandler<float> OnMasterVolumeChanged = delegate { };
@@ -29,52 +35,61 @@ public class OptionsManager : MonoBehaviour
 
 	[SerializeField] private Slider master = null, sfx = null, music = null;
 
+	[SerializeField] private Dropdown controlsSetupDropdown = null;
+
+	[SerializeField] private Toggle fastMode = null, hugeWave = null;
+
+	[SerializeField]
+	private PostProcessProfile postProcessProfile = null;
+
 	[SerializeField]
 	private AudioMixer mixer;
 
 
-   
+
 
 	protected virtual void OnDisable()
 	{
-        CurrentConfig.Save();
+		CurrentConfig.Save();
 		inited = false;
 	}
 
 	private void UpdateConfig()
 	{
-		CurrentConfig.Accept(mixer);
+		CurrentConfig.Accept(mixer, postProcessProfile);
 	}
 
 	public static SettingsConfig CurrentConfig { get; private set; }
 
 #if UNITY_EDITOR
 
-    [UnityEditor.MenuItem("TGIB/Clear Config")]
-    public static void ClearConfig()
-    {
-        File.Delete(SettingsConfig.Path);
-    }
+	[UnityEditor.MenuItem("TGIB/Clear Config")]
+	public static void ClearConfig()
+	{
+		File.Delete(SettingsConfig.Path);
+	}
 #endif
 
-    [RuntimeInitializeOnLoadMethod]
+	[RuntimeInitializeOnLoadMethod]
 	public async static void Init()
 	{
 		if (File.Exists(SettingsConfig.Path))
 		{
-            CurrentConfig= SettingsConfig.Load();
+			CurrentConfig = SettingsConfig.Load();
 		}
 		else
 		{
-			Debug.Log("Can't find Settings.config file");
+			Debug.Log("Can't find 'Settings.config' file");
 
-			CurrentConfig = new SettingsConfig();
-            CurrentConfig.FirstTime = true;
+			CurrentConfig = new SettingsConfig
+			{
+				FirstTime = true
+			};
 			CurrentConfig.LoadDefault();
 
 		}
 		await Async.NextFrame;
-		CurrentConfig.Accept(null);
+		CurrentConfig.Accept(null, null);
 
 	}
 
@@ -83,12 +98,18 @@ public class OptionsManager : MonoBehaviour
 	protected virtual void OnEnable()
 	{
 		qualityDropdown.SetValueWithoutNotify(QualitySettings.GetQualityLevel());
-		vSyncToggle.isOn=(CurrentConfig.VSync);
-       
-		fullscreenToggle.isOn=(CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
+		vSyncToggle.isOn = (CurrentConfig.VSync);
+
+		fullscreenToggle.isOn = (CurrentConfig.FullScreenMode == FullScreenMode.FullScreenWindow);
 		master.value = CurrentConfig.MasterVolume;
 		music.value = CurrentConfig.MusicVolume;
 		sfx.value = CurrentConfig.SfxVolume;
+
+		controlsSetupDropdown.SetValueWithoutNotify((int)CurrentConfig.ControlsSetup);
+
+		fastMode.isOn = CurrentConfig.FastMode;
+		hugeWave.isOn = CurrentConfig.HugeWave;
+
 
 		if (resolutionDropdown != null)
 		{
@@ -143,6 +164,15 @@ public class OptionsManager : MonoBehaviour
 		UpdateConfig();
 	}
 
+	public void SetFastMode(bool isFast)
+	{
+		if (inited == false)
+			return;
+
+		CurrentConfig.FastMode = isFast;
+		UpdateConfig();
+	}
+
 	public void SetVSync(bool isOn)
 	{
 		if (inited == false)
@@ -167,7 +197,7 @@ public class OptionsManager : MonoBehaviour
 		UpdateConfig();
 	}
 
-	public void SetMaxFramerate (int choice)
+	public void SetMaxFramerate(int choice)
 	{
 		if (inited == false)
 			return;
@@ -221,6 +251,29 @@ public class OptionsManager : MonoBehaviour
 
 	}
 
+
+	#endregion
+
+	#region Gameplay
+
+	public void SetControlsSetup(int choice)
+	{
+		if (inited == false)
+			return;
+
+		CurrentConfig.ControlsSetup = (ControlsSetup)choice;
+		UpdateConfig();
+	}
+
+	public void SetHugeWave (bool hugeWave)
+	{
+		if (inited == false)
+			return;
+
+		CurrentConfig.HugeWave = hugeWave;
+
+		UpdateConfig();
+	}
 
 	#endregion
 }

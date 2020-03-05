@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using UnityEngine.Rendering.PostProcessing;
 
 public sealed class SettingsConfig
 {
@@ -18,33 +19,48 @@ public sealed class SettingsConfig
     public float MasterVolume { get; set; }
     public float MusicVolume { get; set; }
     public float SfxVolume { get; set; }
+
+    public bool HugeWave { get; set; }
+
+    public bool FastMode { get; set; }
+    public OptionsManager.ControlsSetup ControlsSetup { get; set; } = OptionsManager.ControlsSetup.Joystick;
   
     public bool FirstTime { get; set; } = true;
 
+    private Bloom bloom;
+    private ChromaticAberration chromaticAberration;
    
     public FullScreenMode FullScreenMode { get; set; }
     // private AudioMixer mixer = (Resources.Load("Audio") as AudioMixer);
 
     private readonly static XmlSerializer xmlWriter = new XmlSerializer(typeof(SettingsConfig));
 
-    public void Accept(AudioMixer mixer)
+    public void Accept(AudioMixer mixer, PostProcessProfile postProcessProfile)
     {
         Screen.SetResolution(Resolution.width, Resolution.height, FullScreenMode, Resolution.refreshRate);
         QualitySettings.SetQualityLevel((int)Quality);
         QualitySettings.vSyncCount = Convert.ToInt32(VSync);
 
-        if (mixer == null)
-            return;
+        if (postProcessProfile != null)
+        {
+            postProcessProfile.TryGetSettings(out bloom);
+            postProcessProfile.TryGetSettings(out chromaticAberration);
 
-        AudioSettings.SetVolume(mixer, MasterVolume, "masterVolume");
-        AudioSettings.SetVolume(mixer, MusicVolume, "musicVolume");
-        AudioSettings.SetVolume(mixer, SfxVolume, "sfxVolume");
+            bloom.fastMode.value = FastMode;
+            chromaticAberration.fastMode.value = FastMode;
+        }
 
+        if (mixer != null)
+        {
+            AudioSettings.SetVolume(mixer, MasterVolume, "masterVolume");
+            AudioSettings.SetVolume(mixer, MusicVolume, "musicVolume");
+            AudioSettings.SetVolume(mixer, SfxVolume, "sfxVolume");
+        }
     }
 
-    public void Save(AudioMixer mixer = null)
+    public void Save(AudioMixer mixer = null, PostProcessProfile postProcessProfile = null)
     {
-        this.Accept(mixer);
+        this.Accept(mixer, postProcessProfile);
         using (StreamWriter writer = new StreamWriter(Path))
         {
             xmlWriter.Serialize(writer, this);
@@ -71,6 +87,8 @@ public sealed class SettingsConfig
         MasterVolume = 1f;
         MusicVolume = 1f;
         SfxVolume = 1f;
+        FastMode = false;
+        HugeWave = false;
     }
   
 
