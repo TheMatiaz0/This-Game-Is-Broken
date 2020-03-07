@@ -258,6 +258,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         }
 
         movement.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        movement.y = CrossPlatformInputManager.GetAxisRaw("Vertical");
 
         foreach (GlitchEffect item in currentGlitches)
         {
@@ -266,7 +267,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         move = GetProperMovement(KeysReversed);
 
-        if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump"))
+        if (inputActions.PlayerControls.Jump.triggered || CrossPlatformInputManager.GetButtonDown("Jump") || movement.y >= 0.85f)
         {
             JumpQuick();
         }

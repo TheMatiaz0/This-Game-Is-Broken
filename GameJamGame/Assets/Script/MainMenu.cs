@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    protected void Start()
+    {
+        GameJolt.UI.GameJoltUI.Instance.ShowSignIn();
+    }
+
     [SerializeField,RequiresAny]
     private GameObject childMainMenu = null;
     public void StartGame()

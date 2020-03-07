@@ -37,3 +37,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 GameJamGame/Assets/Scenes/GraphicsTesting.unity
+GameJamGame/Assets/Plugins/GameJolt/GJAPISettings.asset
