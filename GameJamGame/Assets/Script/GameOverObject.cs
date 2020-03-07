@@ -18,7 +18,7 @@ public class GameOverObject : CanvasMenu
 	protected new void OnEnable()
 	{
 		base.OnEnable();
-		ownFreezeMenu.EnableMenuWithPause(true);
+		ownFreezeMenu?.EnableMenuWithPause(true);
 	
 	}
 

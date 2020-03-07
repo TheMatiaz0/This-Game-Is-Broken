@@ -75,7 +75,7 @@ namespace Cyberevolver.Unity
 			if (to == true && Tutorial.TutorialIsActive)
 				return;
 
-			if (Countdown.Instance.IsCountdownEnabled == true)
+			if (Countdown.Instance?.IsCountdownEnabled == true)
 			{
 				return;
 			}

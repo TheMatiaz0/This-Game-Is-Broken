@@ -13,6 +13,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.Rendering.PostProcessing;
 using Cinemachine.PostFX;
+using GameJolt.API;
 
 [CustomBackgrounGroup(Asset, BackgroundMode.GroupBox)]
 
@@ -240,6 +241,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (GameJoltAPI.Instance.CurrentUser != null)
+            {
+                GameJoltAPI.Instance.CurrentUser.SignOut();
+            }
+        }
 #endif
        
         if (IsDeath)
@@ -375,6 +384,14 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         if (currentGlitches.Any(item => item.GetType() == effect.GetType()) == false)
         {
             currentGlitches.Add(effect);
+
+#if GAME_JOLT
+            if (currentGlitches.Count >= GlitchEffect.allGlitchEffects.Length)
+            {
+                TrophiesManager.UnlockTrophy(Trophy.ICantSeeAnything);
+            }
+#endif
+
             global::Console.Instance.GetWriter().WriteLine($"<color=#FF3107>ERROR:: <color=#FFCD00>{effect.Description}</color></color>");
             effect.WhenCollect();
         }
