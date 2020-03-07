@@ -23,7 +23,7 @@ public sealed class SettingsConfig
     public bool HugeWave { get; set; }
 
     public bool FastMode { get; set; }
-    public OptionsManager.ControlsSetup ControlsSetup { get; set; } = OptionsManager.ControlsSetup.Joystick;
+    public OptionsManager.ControlsSetup ControlsSetup { get; set; }
   
     public bool FirstTime { get; set; } = true;
 
@@ -89,6 +89,7 @@ public sealed class SettingsConfig
         SfxVolume = 1f;
         FastMode = false;
         HugeWave = false;
+        ControlsSetup = OptionsManager.ControlsSetup.Joystick;
     }
   
 

@@ -43,7 +43,7 @@ public class OptionsManager : MonoBehaviour
 	private PostProcessProfile postProcessProfile = null;
 
 	[SerializeField]
-	private AudioMixer mixer;
+	private AudioMixer mixer = null;
 
 
 

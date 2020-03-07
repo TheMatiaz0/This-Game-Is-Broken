@@ -186,17 +186,17 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     public void RightBtnClick ()
     {
-        movement.x = 1;
+        CrossPlatformInputManager.SetAxis("Horizontal", 1);
     }
 
     public void LeftBtnClick ()
     {
-        movement.x = -1;
+        CrossPlatformInputManager.SetAxis("Horizontal", -1);
     }
 
     public void ResetMovement ()
     {
-        movement.x = 0;
+        CrossPlatformInputManager.SetAxis("Horizontal", 0);
     }
 
     public void JumpQuick ()
