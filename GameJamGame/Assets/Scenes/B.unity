@@ -2202,7 +2202,7 @@ MonoBehaviour:
     Text: Eyes resolution isn't compatible, change it in the Settings menu.
     Object: {fileID: 0}
   - Language: Polish
-    Text: "Rozdzielczo\u015B\u0107 oczu nie jest kompatybilna, zmie\u0144 w Ustawieniach."
+    Text: Rozdzielczosc oczu nie jest kompatybilna, zmien w Ustawieniach.
     Object: {fileID: 0}
 --- !u!1001 &1867139044
 PrefabInstance:
@@ -2607,7 +2607,7 @@ MonoBehaviour:
     Text: FirstTime bool is undefined in XML file
     Object: {fileID: 0}
   - Language: Polish
-    Text: "Warto\u015B\u0107 logiczna FirstTime nie jest zdefiniowana w pliku XML"
+    Text: Wartosc logiczna FirstTime nie jest zdefiniowana w pliku XML
     Object: {fileID: 0}
 --- !u!1001 &1948327253
 PrefabInstance:
@@ -2847,7 +2847,7 @@ MonoBehaviour:
     Text: "has been repaired. \nThe game is now a little less broken."
     Object: {fileID: 0}
   - Language: Polish
-    Text: "zosta\u0142 naprawiony. \nGra jest teraz nieco mniej zepsuta."
+    Text: "zostal naprawiony. \nGra jest teraz nieco mniej zepsuta."
     Object: {fileID: 0}
 --- !u!1 &1980602039
 GameObject:
