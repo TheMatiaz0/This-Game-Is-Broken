@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LoggingIn : MonoBehaviour
 {
-#if GAME_JOLT
 	protected void Start()
 	{
+#if GAME_JOLT
+
 		GameJolt.UI.GameJoltUI.Instance.ShowSignIn();
 #else
 		ChangeScene();

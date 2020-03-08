@@ -11,6 +11,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using Lean.Localization;
+
 public class OptionsManager : MonoBehaviour
 {
 	public enum ControlsSetup
@@ -38,6 +40,8 @@ public class OptionsManager : MonoBehaviour
 	[SerializeField] private Dropdown controlsSetupDropdown = null;
 
 	[SerializeField] private Toggle fastMode = null, hugeWave = null;
+
+	[SerializeField] private Dropdown languageDropdown = null;
 
 	[SerializeField]
 	private PostProcessProfile postProcessProfile = null;
@@ -105,7 +109,10 @@ public class OptionsManager : MonoBehaviour
 		music.value = CurrentConfig.MusicVolume;
 		sfx.value = CurrentConfig.SfxVolume;
 
+		languageDropdown.SetValueWithoutNotify(ReturnIntFromLanguage(LeanLocalization.CurrentLanguage));
+
 		controlsSetupDropdown.SetValueWithoutNotify((int)CurrentConfig.ControlsSetup);
+
 
 		fastMode.isOn = CurrentConfig.FastMode;
 		hugeWave.isOn = CurrentConfig.HugeWave;
@@ -277,17 +284,32 @@ public class OptionsManager : MonoBehaviour
 
 	public void SetLanguage (int choice)
 	{
+
+		LeanLocalization.CurrentLanguage = ReturnLanguageFromInt(choice);
+	}
+
+	private string ReturnLanguageFromInt(int choice) 
+	{
 		switch (choice)
 		{
-			case 0:
-				Lean.Localization.LeanLocalization.CurrentLanguage = "English";
-				break;
-
 			case 1:
-				Lean.Localization.LeanLocalization.CurrentLanguage = "Polish";
-				break;
-		}
+				return "Polish";
 
+			default:
+				return "English";
+		}
+	}
+
+	private int ReturnIntFromLanguage (string text)
+	{
+		switch (text)
+		{
+			case "Polish":
+				return 1;
+
+			default:
+				return 0;
+		}
 	}
 
 	#endregion

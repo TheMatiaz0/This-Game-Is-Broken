@@ -610,6 +610,7 @@ MonoBehaviour:
   controlsSetupDropdown: {fileID: 1137484744}
   fastMode: {fileID: 1538645227}
   hugeWave: {fileID: 990704977}
+  languageDropdown: {fileID: 1077879247}
   postProcessProfile: {fileID: 11400000, guid: fd8701f2072d5e142a2b31409be6b0e5, type: 2}
   mixer: {fileID: 24100000, guid: bdca27d914302e44fb4c83dccb583973, type: 2}
 --- !u!114 &147695712
