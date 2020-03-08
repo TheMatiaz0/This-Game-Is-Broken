@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class AudioBugger : GlitchEffect
 {
-	public override string Description => "AUDIO_DRIVER_CRASH";
+	public override string Description => LeanLocalization.GetTranslationText("AudioBuggerMessage");
 
 	protected override void OnCancel()
 	{

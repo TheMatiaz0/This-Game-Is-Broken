@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using Lean.Localization;
 
 public class SpriteFlip : GlitchEffect
 {
-    public override string Description => "Error trying to draw pictures: \"char$cter.wav\"";
+    public override string Description => LeanLocalization.GetTranslationText("SpriteFlipMessage");
 
     protected override void OnCancel()
     {

@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotation45Screen : GlitchEffect
 {
-	public override string Description => "Screen/4_Out_Of_Index_Exception";
+	public override string Description => LeanLocalization.GetTranslationText("Rotation45Message");
 
     protected override void OnCancel()
     {

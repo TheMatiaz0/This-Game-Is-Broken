@@ -8,7 +8,15 @@ public class LoggingIn : MonoBehaviour
 	protected void Start()
 	{
 		GameJolt.UI.GameJoltUI.Instance.ShowSignIn();
-	}
+#else
+		ChangeScene();
 #endif
+	}
+
+	public void ChangeScene()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+	}
+
 
 }

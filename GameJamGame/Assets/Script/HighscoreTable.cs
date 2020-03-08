@@ -14,13 +14,26 @@ public enum Tables
 public class HighscoreTable : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GJStuff;
+    private GameObject GJStuff = null;
+
+    [SerializeField]
+    private GameObject nicknameObject = null;
 
 #if GAME_JOLT
 
     protected void Start()
     {
         GJStuff.SetActive(true);
+
+        if (GameJoltAPI.Instance.CurrentUser != null)
+        {
+            nicknameObject.SetActive(false);
+        }
+
+        else
+        {
+            nicknameObject.SetActive(true);
+        }
     }
 
     public void Show()

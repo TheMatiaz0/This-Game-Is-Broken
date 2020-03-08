@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 152040813}
   - component: {fileID: 152040815}
   - component: {fileID: 152040814}
+  - component: {fileID: 1894440665}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -76,7 +77,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You got glitched away
+  m_Text: Glicze cie pochowaly
+--- !u!114 &1894440665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152040812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: GlitchedAwayText
+  FallbackText: You got glitched away
 --- !u!1 &225023790
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &335314858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -310,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GJStuff: {fileID: 6680839535753693471}
+  nicknameObject: {fileID: 7926030099828351437}
 --- !u!1 &617566429
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +337,7 @@ GameObject:
   - component: {fileID: 617566430}
   - component: {fileID: 617566432}
   - component: {fileID: 617566431}
+  - component: {fileID: 1894440656}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -387,6 +404,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Pause
+--- !u!114 &1894440656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617566429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: PauseText
+  FallbackText: Pause
 --- !u!1 &718264131
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +633,7 @@ GameObject:
   - component: {fileID: 897475024}
   - component: {fileID: 897475023}
   - component: {fileID: 1387159673}
+  - component: {fileID: 7876339312614763891}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -625,8 +657,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -198}
-  m_SizeDelta: {x: 273, y: 152.6}
+  m_AnchoredPosition: {x: 0.000022888, y: -196}
+  m_SizeDelta: {x: 479.4, y: 152.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &897475024
 CanvasRenderer:
@@ -667,9 +699,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quit
-
-'
+  m_Text: Opusc gre
 --- !u!114 &1387159673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +743,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7876339312614763891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897475021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: QuitText
+  FallbackText: 'Quit
+
+'
 --- !u!1 &985105159
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +893,7 @@ GameObject:
   - component: {fileID: 1051569582}
   - component: {fileID: 1051569584}
   - component: {fileID: 1051569583}
+  - component: {fileID: 1894440660}
   m_Layer: 5
   m_Name: Text (1)
   m_TagString: Untagged
@@ -912,7 +959,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Do you wish to continue?
+  m_Text: Czy zyczysz sobie kontynnuowac?
+--- !u!114 &1894440660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051569581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: WishToContinueText
+  FallbackText: Do you wish to continue?
 --- !u!1 &1122374906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1379,7 @@ GameObject:
   - component: {fileID: 1595234145}
   - component: {fileID: 1595234144}
   - component: {fileID: 1595234143}
+  - component: {fileID: 8825840678830664903}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -1341,8 +1403,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 14.299988}
-  m_SizeDelta: {x: 273, y: 152.6}
+  m_AnchoredPosition: {x: 0, y: -0.00001049}
+  m_SizeDelta: {x: 824.4, y: 152.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1595234145
 CanvasRenderer:
@@ -1383,7 +1445,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retry
+  m_Text: Sprobuj ponownie
 --- !u!114 &1595234143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1427,6 +1489,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8825840678830664903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595234141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: RetryText
+  FallbackText: Retry
 --- !u!1 &1759815447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,16 +1727,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821407742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00012207031}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000061035156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1122374907}
-  m_Father: {fileID: 8059871351595891505}
-  m_RootOrder: 1
+  m_Father: {fileID: 8734620660717546230}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -488.8}
+  m_AnchoredPosition: {x: 251, y: 65.9}
   m_SizeDelta: {x: 325.2, y: 61}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1821407746
@@ -2027,6 +2103,7 @@ GameObject:
   - component: {fileID: 3580611808307796271}
   - component: {fileID: 7749993147925195636}
   - component: {fileID: 5176743831434255586}
+  - component: {fileID: 930016517}
   m_Layer: 0
   m_Name: SkipTutorial
   m_TagString: Untagged
@@ -2075,7 +2152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2093,6 +2170,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: PRESS ENTER TO SKIP TUTORIAL
+--- !u!114 &930016517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854592650853868043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: PressEnterText
+  FallbackText: PRESS ENTER TO SKIP TUTORIAL
 --- !u!1 &996777358385582410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,6 +2195,7 @@ GameObject:
   - component: {fileID: 162584109824843282}
   - component: {fileID: 6328897952756869974}
   - component: {fileID: 8926435733389367393}
+  - component: {fileID: 52093502}
   m_Layer: 0
   m_Name: Tutorial2
   m_TagString: Untagged
@@ -2127,8 +2219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183.3, y: 1}
-  m_SizeDelta: {x: 547.4, y: 131.2}
+  m_AnchoredPosition: {x: -183.3, y: -17.8}
+  m_SizeDelta: {x: 547.4, y: 168.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6328897952756869974
 CanvasRenderer:
@@ -2152,7 +2244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2169,7 +2261,22 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press arrows to move and jump (press SPACE to continue)
+  m_Text: "Poruszasz si\u0119 strza\u0142kami, a spacj\u0105 skaczesz (Spacja aby
+    kontynuowa\u0107)"
+--- !u!114 &52093502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996777358385582410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial2Text
+  FallbackText: Press arrows to move and jump (press SPACE to continue)
 --- !u!1 &1552545039587011070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,6 +2288,7 @@ GameObject:
   - component: {fileID: 8459961225826673434}
   - component: {fileID: 3909691714762449865}
   - component: {fileID: 2636680899954629172}
+  - component: {fileID: 1809525847}
   m_Layer: 0
   m_Name: Tutorial6
   m_TagString: Untagged
@@ -2229,7 +2337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2247,6 +2355,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Are you ready? Let's go! \n(press SPACE to continue)"
+--- !u!114 &1809525847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552545039587011070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial6Text
+  FallbackText: Are you ready? Let's go!  (press SPACE to continue)
 --- !u!1 &1652867852491301107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,6 +2432,7 @@ GameObject:
   - component: {fileID: 8724704621437800108}
   - component: {fileID: 3758100692661501529}
   - component: {fileID: 803454949355994916}
+  - component: {fileID: 955467749}
   m_Layer: 0
   m_Name: Tutorial1
   m_TagString: Untagged
@@ -2333,8 +2456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -733, y: 109.1}
-  m_SizeDelta: {x: 450.2, y: 183}
+  m_AnchoredPosition: {x: -733, y: 83.3}
+  m_SizeDelta: {x: 450.2, y: 234.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3758100692661501529
 CanvasRenderer:
@@ -2358,7 +2481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2376,6 +2499,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Your goal is to run from The Deadly Wall of Glitches (press SPACE to continue)
+--- !u!114 &955467749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722213668822725943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial1Text
+  FallbackText: Your goal is to run from The Deadly Wall of Glitches (press SPACE
+    to continue)
 --- !u!1 &1779538139471571416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,11 +2547,11 @@ RectTransform:
   m_Children:
   - {fileID: 6823634152174971325}
   m_Father: {fileID: 8734620660717546230}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.5, y: -38.9}
+  m_AnchoredPosition: {x: -210, y: -38.9}
   m_SizeDelta: {x: 325.2, y: 61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8109488596633399177
@@ -2805,6 +2943,7 @@ GameObject:
   - component: {fileID: 3486228292553162018}
   - component: {fileID: 3638391151997114}
   - component: {fileID: 5253172768574559711}
+  - component: {fileID: 700502699}
   m_Layer: 0
   m_Name: Tutorial5Text
   m_TagString: Untagged
@@ -2853,7 +2992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2870,8 +3009,23 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 3
-  m_Text: These ghosts will try to stop you. Try jumping on their heads! (press SPACE
-    to continue)
+  m_Text: "Te duszki b\u0119d\u0105 pr\xF3bowa\u0142y ci\u0119 powstrzyma\u0107.
+    Spr\xF3buj skoku na ich g\u0142owy! (Spacja aby kontynuowa\u0107)"
+--- !u!114 &700502699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367917728095696445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial5Text
+  FallbackText: These ghosts will try to stop you. Try jumping on their heads! (press
+    SPACE to continue)
 --- !u!1 &3680028505925943022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,7 +3170,7 @@ GameObject:
   - component: {fileID: 5602568713067507792}
   - component: {fileID: 5850430788103224260}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3033,16 +3187,16 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.000061035156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6738627354592715862}
   - {fileID: 6062970731945638253}
-  - {fileID: 3754651125418960308}
-  - {fileID: 1131587006498933722}
+  - {fileID: 1821407743}
   m_Father: {fileID: 8059871351595891505}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -664, y: -65}
-  m_SizeDelta: {x: 496.1, y: 223.68}
+  m_AnchoredPosition: {x: 0.000030518, y: -482}
+  m_SizeDelta: {x: 917.7, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5602568713067507792
 CanvasRenderer:
@@ -3969,7 +4123,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8734620660717546230}
-  - {fileID: 1821407743}
   m_Father: {fileID: 335314858}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4199,6 +4352,7 @@ GameObject:
   - component: {fileID: 2416967729864896993}
   - component: {fileID: 7740732195079688855}
   - component: {fileID: 1173439638987352184}
+  - component: {fileID: 566296895}
   m_Layer: 0
   m_Name: Tutorial3Text
   m_TagString: Untagged
@@ -4222,7 +4376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -14}
+  m_AnchoredPosition: {x: 0, y: -12.1}
   m_SizeDelta: {x: 470.6, y: 216.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7740732195079688855
@@ -4247,7 +4401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4265,6 +4419,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 2
   m_Text: Don't touch the spikes! (press SPACE to continue)
+--- !u!114 &566296895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248208517900290839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial3Text
+  FallbackText: Don't touch the spikes! (press SPACE to continue)
 --- !u!1 &7780198878603798335
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,16 +4458,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7780198878603798335}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8734620660717546230}
-  m_RootOrder: 2
+  m_Father: {fileID: 6738627354592715862}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119.359985, y: 72.299965}
+  m_AnchoredPosition: {x: -326.86, y: 72.299965}
   m_SizeDelta: {x: 180.27, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4578451875117424360
@@ -4353,6 +4521,7 @@ GameObject:
   - component: {fileID: 7136248162394331972}
   - component: {fileID: 4934986771737072357}
   - component: {fileID: 6295646068516755306}
+  - component: {fileID: 699525366}
   m_Layer: 0
   m_Name: Tutorial4Text
   m_TagString: Untagged
@@ -4401,7 +4570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4418,8 +4587,60 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: Collect cubes to repair the game. But look out for the glitchy ones! (press
-    SPACE to continue)
+  m_Text: "Zbieraj kostki, aby naprawi\u0107 gr\u0119. Ale uwa\u017Caj szczeg\xF3lnie
+    na te zgliczowane (Spacja aby kontynuowa\u0107)"
+--- !u!114 &699525366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793635291764051357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Tutorial4Text
+  FallbackText: Collect cubes to repair the game. But look out for the glitchy ones!
+    (press SPACE to continue)
+--- !u!1 &7926030099828351437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6738627354592715862}
+  m_Layer: 5
+  m_Name: Nickname
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!224 &6738627354592715862
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926030099828351437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3754651125418960308}
+  - {fileID: 1131587006498933722}
+  m_Father: {fileID: 8734620660717546230}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8761799257151699756
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,18 +4740,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8861863590197331947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5484315967741297926}
   - {fileID: 3089117931277587087}
-  m_Father: {fileID: 8734620660717546230}
-  m_RootOrder: 1
+  m_Father: {fileID: 6738627354592715862}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.4998982, y: 36.68998}
+  m_AnchoredPosition: {x: -209.9999, y: 36.68998}
   m_SizeDelta: {x: 413.99, y: 55.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2093583926932093544

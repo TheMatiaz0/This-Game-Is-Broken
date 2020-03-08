@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FishyEyeBug : GlitchEffect
 {
-	public override string Description => "You_Are_Now_A_Fish Exception";
+	public override string Description => LeanLocalization.GetTranslationText("FishyEyeMessage");
 
 	public static void ResetValues ()
 	{

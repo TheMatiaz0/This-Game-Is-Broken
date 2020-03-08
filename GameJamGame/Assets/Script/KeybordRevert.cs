@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using Lean.Localization;
 
 public class KeybordRevert : GlitchEffect
 {
-    public override string Description => "LoadKeyboardException";
+    public override string Description => LeanLocalization.GetTranslationText("KeyboardRevertMessage");
 
     protected override void OnCancel()
     {

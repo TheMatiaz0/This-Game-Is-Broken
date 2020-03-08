@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lean.Localization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ public abstract class GlitchEffect
     public void Cancel()
     {
         OnCancel();
-        global::Console.Instance.GetWriter().WriteLine($"<color=#00FFD5><color=#FFCD00>{Description}</color> has been repaired.\nThe game is now a little less broken.</color>");
+        global::Console.Instance.GetWriter().WriteLine($"<color=#00FFD5><color=#FFCD00>{Description}</color> {LeanLocalization.GetTranslationText("RepairMessage")}</color>");
     }
     public virtual void WhenCollect() { }
     public virtual  void Update() { }

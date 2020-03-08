@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BlindnessBug : GlitchEffect
 {
-	public override string Description => "Eyes resolution isn't compatible, change it in the Settings menu.";
+	public override string Description => LeanLocalization.GetTranslationText("BlindessMessage");
 
 	public static void ResetValues ()
 	{

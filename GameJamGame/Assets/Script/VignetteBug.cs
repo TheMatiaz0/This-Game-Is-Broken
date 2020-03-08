@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -19,7 +20,7 @@ public class VignetteBug : GlitchEffect
 		vignette.rounded.value = false;
 	}
 
-	public override string Description => "THE_SHOW_MUST_GO_ON.";
+	public override string Description => LeanLocalization.GetTranslationText("VignetteMessage");
 
 	protected override void OnCancel()
 	{

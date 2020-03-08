@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Cyberevolver;
 using Cyberevolver.Unity;
+using Lean.Localization;
 
 public class ZoomOnHerocs : GlitchEffect
 {
     private float before;
-    public override string Description => "Missing reference exception \"Zoom.json\"";
+    public override string Description => LeanLocalization.GetTranslationText("ZoomOnMessage");
 
     protected override void OnCancel()
     {

@@ -14,6 +14,7 @@ using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.Rendering.PostProcessing;
 using Cinemachine.PostFX;
 using GameJolt.API;
+using Lean.Localization;
 
 [CustomBackgrounGroup(Asset, BackgroundMode.GroupBox)]
 
@@ -101,6 +102,9 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
     [SerializeField]
     private CinemachinePostProcessing volume;
+
+    [SerializeField]
+    private UIChanger uiChanger = null;
 
 
     private Vignette vignetteEffect;
@@ -300,7 +304,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
 
         if (inputActions.PlayerControls.SwitchUI.triggered)
         {
-            GameObject.FindObjectOfType<UIChanger>().ReswitchUI();
+            uiChanger.ReswitchUI();
         }
 
        
@@ -413,6 +417,19 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
             walkingEffect.SetBool("Spawn", false);
             musicSource.Stop();
             Source.PlayOneShot(gameOverSound);
+
+#if GAME_JOLT
+            if (GameManager.Instance.Score <= -200)
+            {
+                TrophiesManager.UnlockTrophy(Trophy.IsItSomethingWrong);
+            }
+
+            if (GameManager.Instance.Score >= 250)
+            {
+                TrophiesManager.UnlockTrophy(Trophy.TheWinner);
+            }
+#endif
+
             StartCoroutine(DeathProcess());
         }
 
@@ -432,7 +449,7 @@ public sealed class PlayerController : AutoInstanceBehaviour<PlayerController>
         GameObject gameOverObj = go.transform.GetChild(0).gameObject;
         gameOverObj.SetActive(true);
         GameOverObject gameOver = gameOverObj.GetComponent<GameOverObject>();
-        gameOver.EndScore.text = $"Your score is: {GameManager.Instance.Score.ToString()}";
+        gameOver.EndScore.text = $"{LeanLocalization.GetTranslationText("YourScoreText")} <color=orange>{GameManager.Instance.Score.ToString()}</color>";
     }
 
 

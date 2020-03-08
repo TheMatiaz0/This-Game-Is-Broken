@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Lean.Localization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedExceptionBug : GlitchEffect
 {
-    public override string Description => "NullReferenceException: Time.timeScale is null";
+    public override string Description => LeanLocalization.GetTranslationText("SpeedExceptionMessage");
 
     protected override void OnCancel()
     {

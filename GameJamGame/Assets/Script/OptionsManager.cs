@@ -275,5 +275,20 @@ public class OptionsManager : MonoBehaviour
 		UpdateConfig();
 	}
 
+	public void SetLanguage (int choice)
+	{
+		switch (choice)
+		{
+			case 0:
+				Lean.Localization.LeanLocalization.CurrentLanguage = "English";
+				break;
+
+			case 1:
+				Lean.Localization.LeanLocalization.CurrentLanguage = "Polish";
+				break;
+		}
+
+	}
+
 	#endregion
 }
